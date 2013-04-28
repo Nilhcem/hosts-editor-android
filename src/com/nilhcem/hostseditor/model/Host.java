@@ -3,11 +3,13 @@ package com.nilhcem.hostseditor.model;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import com.google.common.net.InetAddresses;
-
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.text.TextUtils;
 
-public class Host {
+import com.google.common.net.InetAddresses;
+
+public class Host implements Parcelable {
 	private static final String STR_COMMENT = "#";
 	private static final String STR_SEPARATOR = "\\t";
 	private static final String HOST_PATTERN_STR = "^\\s*(" + STR_COMMENT + "?)\\s*(\\S*)\\s*(.*)$";
@@ -69,5 +71,38 @@ public class Host {
 					&& InetAddresses.isInetAddress(ip);
 		}
 		return new Host(ip, hostname, isCommented, isValid);
+	}
+
+	public static final Parcelable.Creator<Host> CREATOR = new Parcelable.Creator<Host>() {
+
+		@Override
+		public Host createFromParcel(Parcel source) {
+			return new Host(source);
+		}
+
+		@Override
+		public Host[] newArray(int size) {
+			return new Host[size];
+		}
+	};
+
+	@Override
+	public int describeContents() {
+		return 0;
+	}
+
+	@Override
+	public void writeToParcel(Parcel dest, int flags) {
+		dest.writeString(mIp);
+		dest.writeString(mHostName);
+		dest.writeByte((byte) (mIsCommented ? 1 : 0));
+		dest.writeByte((byte) (mIsValid ? 1 : 0));
+	}
+
+	private Host(Parcel in) {
+		mIp = in.readString();
+		mHostName = in.readString();
+		mIsCommented = in.readByte() == 1;
+		mIsValid = in.readByte() == 1;
 	}
 }

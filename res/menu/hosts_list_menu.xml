@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <!-- Add host -->
+    <item
+        android:id="@+id/action_add_host"
+        android:icon="@drawable/ic_action_add_dark"
+        android:showAsAction="ifRoom|withText"
+        android:title="@string/action_add_host"/>
+
+</menu>

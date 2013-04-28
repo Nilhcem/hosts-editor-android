@@ -1,6 +1,5 @@
 package com.nilhcem.hostseditor;
 
-
 import dagger.ObjectGraph;
 import android.app.Application;
 

@@ -18,25 +18,40 @@ public class HostsHelper {
 	private static final String TAG = "HostsHelper";
 	private static final String HOSTS_FILE = "/etc/hosts";
 
+	private List<Host> mHosts = null; // Do not access this field directly even in the same class, use getAllHosts() instead.
+
 	public List<Host> getValidHosts() {
-		return getHosts(true);
+		List<Host> hosts = new ArrayList<Host>();
+
+		for (Host host : getAllHosts()) {
+			if (host.isValid()) {
+				hosts.add(host);
+			}
+		}
+		return hosts;
+	}
+
+	public void addHost(Host host) {
+		// TODO
 	}
 
 	// Must be in an async call
-	private List<Host> getHosts(boolean validHostsOnly) {
-		List<Host> hosts = new ArrayList<Host>();
+	private List<Host> getAllHosts() {
+		if (mHosts == null) {
+			mHosts = new ArrayList<Host>();
 
-		try {
-			List<String> lines = Files.readLines(new File(HOSTS_FILE), Charsets.UTF_8);
-			for (String line : lines) {
-				Host host = Host.fromString(line);
-				if (host != null && (!validHostsOnly || host.isValid())) {
-					hosts.add(host);
+			try {
+				List<String> lines = Files.readLines(new File(HOSTS_FILE), Charsets.UTF_8);
+				for (String line : lines) {
+					Host host = Host.fromString(line);
+					if (host != null) {
+						mHosts.add(host);
+					}
 				}
+			} catch (IOException e) {
+				Log.e(TAG, "I/O error while opening hosts file", e);
 			}
-		} catch (IOException e) {
-			Log.e(TAG, "I/O error while opening hosts file", e);
 		}
-		return hosts;
+		return mHosts;
 	}
 }

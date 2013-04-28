@@ -3,4 +3,16 @@
 
     <string name="app_name">Hosts Editor</string>
 
+    <!-- Action bar menu -->
+    <string name="action_add_host">Add Host</string>
+
+    <!-- Add host -->
+    <string name="add_host_title">Add Hostname</string>
+    <string name="add_host_ip">IP Address:</string>
+    <string name="add_host_name">Hostname:</string>
+    <string name="add_host_button">Add Hostname</string>
+    <string name="add_host_error_title">Error</string>
+    <string name="add_host_error_ip">IP address is invalid</string>
+    <string name="add_host_error_hostname">Hostname should not be empty</string>
+
 </resources>
