@@ -20,6 +20,7 @@ public class HostsListFragment extends SherlockListFragment {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		setRetainInstance(true);
 		((HostsEditorApp) getSherlockActivity().getApplication()).getObjectGraph().inject(this);
 		mAdapter = new HostsListAdapter(getSherlockActivity());
 	}
