@@ -18,3 +18,7 @@
 #-keepclassmembers class fqcn.of.javascript.interface.for.webview {
 #   public *;
 #}
+
+# Butterknife
+-dontwarn butterknife.Views$InjectViewProcessor
+-keepclassmembers class **$$ViewInjector

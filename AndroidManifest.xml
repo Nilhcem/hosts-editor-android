@@ -9,12 +9,13 @@
         android:targetSdkVersion="17" />
 
     <application
+        android:name="com.nilhcem.hostseditor.HostsEditorApp"
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.nilhcem.hostseditor.MainActivity"
+            android:name="com.nilhcem.hostseditor.list.HostsListActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
