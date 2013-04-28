@@ -1,6 +1,5 @@
 package com.nilhcem.hostseditor;
 
-import com.nilhcem.hostseditor.core.HostsModule;
 
 import dagger.ObjectGraph;
 import android.app.Application;
@@ -14,7 +13,7 @@ public class HostsEditorApp extends Application {
 	@Override
 	public void onCreate() {
 		super.onCreate();
-		mObjectGraph = ObjectGraph.create(new HostsModule());
+		mObjectGraph = ObjectGraph.create(new HostsEditorModule());
 	}
 
 	public ObjectGraph getObjectGraph() {
