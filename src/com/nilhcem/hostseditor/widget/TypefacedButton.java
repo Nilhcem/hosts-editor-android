@@ -1,4 +1,4 @@
-package com.nilhcem.hostseditor.widgets;
+package com.nilhcem.hostseditor.widget;
 
 import android.content.Context;
 import android.util.AttributeSet;

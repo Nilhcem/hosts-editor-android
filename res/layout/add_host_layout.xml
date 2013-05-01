@@ -15,7 +15,7 @@
         android:orientation="vertical" >
 
         <!-- IP (label) -->
-        <com.nilhcem.hostseditor.widgets.TypefacedTextView
+        <com.nilhcem.hostseditor.widget.TypefacedTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/add_host_ip"
@@ -30,13 +30,13 @@
             android:layout_marginBottom="@dimen/add_host_form_margin"
             android:digits="0123456789.:"
             android:ems="10"
-            android:inputType="number" >
+            android:inputType="textNoSuggestions" >
 
             <requestFocus />
         </EditText>
 
         <!-- Hostname (label) -->
-        <com.nilhcem.hostseditor.widgets.TypefacedTextView
+        <com.nilhcem.hostseditor.widget.TypefacedTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/add_host_name"
@@ -53,7 +53,7 @@
             android:inputType="textNoSuggestions" />
 
         <!-- "Add Host" Button -->
-        <com.nilhcem.hostseditor.widgets.TypefacedButton
+        <com.nilhcem.hostseditor.widget.TypefacedButton
             android:id="@+id/addHostButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
