@@ -13,6 +13,6 @@
     <string name="add_host_button">Add Hostname</string>
     <string name="add_host_error_title">Error</string>
     <string name="add_host_error_ip">IP address is invalid</string>
-    <string name="add_host_error_hostname">Hostname should not be empty</string>
+    <string name="add_host_error_hostname">Hostname is invalid</string>
 
 </resources>

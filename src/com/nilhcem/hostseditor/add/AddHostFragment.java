@@ -1,5 +1,7 @@
 package com.nilhcem.hostseditor.add;
 
+import java.util.regex.Pattern;
+
 import android.app.AlertDialog;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -18,6 +20,8 @@ import com.nilhcem.hostseditor.core.BaseFragment;
 import com.nilhcem.hostseditor.model.Host;
 
 public class AddHostFragment extends BaseFragment implements OnClickListener {
+	private static final Pattern HOSTNAME_INVALID_CHARS_PATTERN = Pattern.compile("^.*[#'\",\\\\]+.*$");
+
 	private AlertDialog mErrorAlert;
 	@InjectView(R.id.addHostIp) EditText mIp;
 	@InjectView(R.id.addHostName) EditText mHostName;
@@ -62,7 +66,7 @@ public class AddHostFragment extends BaseFragment implements OnClickListener {
 	private int checkFormErrors(String ip, String hostname) {
 		int error = 0;
 
-		if (TextUtils.isEmpty(hostname)) {
+		if (TextUtils.isEmpty(hostname) || HOSTNAME_INVALID_CHARS_PATTERN.matcher(hostname).matches()) {
 			error = R.string.add_host_error_hostname;
 		}
 		if (TextUtils.isEmpty(ip) || !InetAddresses.isInetAddress(ip)) {
