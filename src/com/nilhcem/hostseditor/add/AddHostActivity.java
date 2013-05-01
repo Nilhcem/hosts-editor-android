@@ -8,7 +8,7 @@ import android.support.v4.app.FragmentTransaction;
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.view.MenuItem;
 import com.nilhcem.hostseditor.core.BaseActivity;
-import com.nilhcem.hostseditor.list.HostsListActivity;
+import com.nilhcem.hostseditor.list.ListHostsActivity;
 import com.nilhcem.hostseditor.model.Host;
 import com.squareup.otto.Subscribe;
 
@@ -37,7 +37,7 @@ public class AddHostActivity extends BaseActivity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 			case android.R.id.home:
-				Intent intent = new Intent(this, HostsListActivity.class);
+				Intent intent = new Intent(this, ListHostsActivity.class);
 				intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 				startActivity(intent);
 				return true;

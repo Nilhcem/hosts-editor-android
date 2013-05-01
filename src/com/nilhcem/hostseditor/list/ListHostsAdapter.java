@@ -14,13 +14,13 @@ import butterknife.Views;
 
 import com.nilhcem.hostseditor.R;
 import com.nilhcem.hostseditor.model.Host;
-import com.nilhcem.hostseditor.utils.ThreadPreconditions;
+import com.nilhcem.hostseditor.util.ThreadPreconditions;
 
-public class HostsListAdapter extends BaseAdapter {
+public class ListHostsAdapter extends BaseAdapter {
 	private List<Host> mHosts = Collections.emptyList();
 	private final LayoutInflater mInflater;
 
-	public HostsListAdapter(Context context) {
+	public ListHostsAdapter(Context context) {
 		mInflater = LayoutInflater.from(context);
 	}
 

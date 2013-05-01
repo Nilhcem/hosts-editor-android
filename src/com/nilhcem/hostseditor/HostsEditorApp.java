@@ -1,5 +1,7 @@
 package com.nilhcem.hostseditor;
 
+import com.nilhcem.hostseditor.bus.HostsEditorModule;
+
 import dagger.ObjectGraph;
 import android.app.Application;
 

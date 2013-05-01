@@ -14,30 +14,15 @@ import com.google.common.io.Files;
 import com.nilhcem.hostseditor.model.Host;
 
 @Singleton
-public class HostsHelper {
-	private static final String TAG = "HostsHelper";
-	private static final String HOSTS_FILE = "/etc/hosts";
+public class HostsManager {
+	private static final String TAG = "HostsManager";
+	public static final String HOSTS_FILE = "/system/etc/hosts";
 
 	private List<Host> mHosts = null; // Do not access this field directly even in the same class, use getAllHosts() instead.
 
-	public List<Host> getValidHosts() {
-		List<Host> hosts = new ArrayList<Host>();
-
-		for (Host host : getAllHosts()) {
-			if (host.isValid()) {
-				hosts.add(host);
-			}
-		}
-		return hosts;
-	}
-
-	public void addHost(Host host) {
-		// TODO
-	}
-
 	// Must be in an async call
-	private List<Host> getAllHosts() {
-		if (mHosts == null) {
+	public synchronized List<Host> getHosts(boolean forceRefresh) {
+		if (mHosts == null || forceRefresh) {
 			mHosts = new ArrayList<Host>();
 
 			try {

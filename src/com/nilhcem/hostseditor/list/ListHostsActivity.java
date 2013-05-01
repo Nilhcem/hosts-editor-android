@@ -1,28 +1,36 @@
 package com.nilhcem.hostseditor.list;
 
+import javax.inject.Inject;
+
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 
-import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 import com.nilhcem.hostseditor.R;
 import com.nilhcem.hostseditor.add.AddHostActivity;
+import com.nilhcem.hostseditor.core.BaseActivity;
+import com.nilhcem.hostseditor.core.HostsManager;
 import com.nilhcem.hostseditor.model.Host;
 
-public class HostsListActivity extends SherlockFragmentActivity {
+public class ListHostsActivity extends BaseActivity {
 	private static final int REQUESTCODE_ADDHOST_ACTIVITY = 1;
+
+	@Inject HostsManager mHostsManager;
+	private ListHostsFragment mFragment;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		if (savedInstanceState == null) {
-			Fragment fragment = new HostsListFragment();
-			FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-			ft.add(android.R.id.content, fragment);
+		FragmentManager fragmentMngr = getSupportFragmentManager();
+		mFragment = (ListHostsFragment) fragmentMngr.findFragmentByTag(ListHostsFragment.FRAGMENT_TAG);
+		if (mFragment == null) {
+			mFragment = new ListHostsFragment();
+			FragmentTransaction ft = fragmentMngr.beginTransaction();
+			ft.add(android.R.id.content, mFragment, ListHostsFragment.FRAGMENT_TAG);
 			ft.commit();
 		}
 	}
@@ -52,7 +60,7 @@ public class HostsListActivity extends SherlockFragmentActivity {
 		if (requestCode == REQUESTCODE_ADDHOST_ACTIVITY) {
 			if (resultCode == RESULT_OK) {
 				Host host = data.getParcelableExtra(AddHostActivity.EXTRA_HOST);
-				// TODO
+				mFragment.addHost(host);
 			}
 		}
 	}

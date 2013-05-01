@@ -8,6 +8,8 @@
         android:minSdkVersion="8"
         android:targetSdkVersion="17" />
 
+    <uses-permission android:name="android.permission.ACCESS_SUPERUSER" />
+
     <application
         android:name="com.nilhcem.hostseditor.HostsEditorApp"
         android:allowBackup="true"
@@ -15,7 +17,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.nilhcem.hostseditor.list.HostsListActivity"
+            android:name="com.nilhcem.hostseditor.list.ListHostsActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

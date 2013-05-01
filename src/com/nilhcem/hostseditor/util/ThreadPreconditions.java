@@ -1,4 +1,4 @@
-package com.nilhcem.hostseditor.utils;
+package com.nilhcem.hostseditor.util;
 
 import android.os.Looper;
 
