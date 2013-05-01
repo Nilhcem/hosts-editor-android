@@ -3,6 +3,7 @@ package com.nilhcem.hostseditor.core;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import javax.inject.Singleton;
@@ -23,7 +24,7 @@ public class HostsManager {
 	// Must be in an async call
 	public synchronized List<Host> getHosts(boolean forceRefresh) {
 		if (mHosts == null || forceRefresh) {
-			mHosts = new ArrayList<Host>();
+			mHosts = Collections.synchronizedList(new ArrayList<Host>());
 
 			try {
 				List<String> lines = Files.readLines(new File(HOSTS_FILE), Charsets.UTF_8);
