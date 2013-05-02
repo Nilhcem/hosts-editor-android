@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import javax.inject.Inject;
 import javax.inject.Singleton;
 
 import android.util.Log;
@@ -20,6 +21,10 @@ public class HostsManager {
 	public static final String HOSTS_FILE = "/system/etc/hosts";
 
 	private List<Host> mHosts = null; // Do not access this field directly even in the same class, use getAllHosts() instead.
+
+	@Inject
+	public HostsManager() {
+	}
 
 	// Must be in an async call
 	public synchronized List<Host> getHosts(boolean forceRefresh) {

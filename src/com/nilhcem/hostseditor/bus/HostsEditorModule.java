@@ -4,7 +4,6 @@ import javax.inject.Singleton;
 
 import com.nilhcem.hostseditor.add.AddHostActivity;
 import com.nilhcem.hostseditor.add.AddHostFragment;
-import com.nilhcem.hostseditor.core.HostsManager;
 import com.nilhcem.hostseditor.list.ListHostsActivity;
 import com.nilhcem.hostseditor.list.ListHostsFragment;
 import com.nilhcem.hostseditor.task.AddHostAsync;
@@ -25,12 +24,7 @@ import dagger.Provides;
 	}
 )
 public class HostsEditorModule {
-
 	@Provides @Singleton Bus provideBus() {
 		return new Bus();
-	}
-
-	@Provides @Singleton HostsManager provideHostsManager() {
-		return new HostsManager();
 	}
 }
