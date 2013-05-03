@@ -4,24 +4,21 @@ import java.util.Collections;
 import java.util.List;
 
 import android.content.Context;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView.LayoutParams;
 import android.widget.BaseAdapter;
-import android.widget.TextView;
-import butterknife.InjectView;
-import butterknife.Views;
 
-import com.nilhcem.hostseditor.R;
 import com.nilhcem.hostseditor.model.Host;
 import com.nilhcem.hostseditor.util.ThreadPreconditions;
+import com.nilhcem.hostseditor.widget.CheckableHostItem;
 
 public class ListHostsAdapter extends BaseAdapter {
 	private List<Host> mHosts = Collections.emptyList();
-	private final LayoutInflater mInflater;
+	private Context mAppContext;
 
 	public ListHostsAdapter(Context context) {
-		mInflater = LayoutInflater.from(context);
+		mAppContext = context;
 	}
 
 	public void updateHosts(List<Host> hosts) {
@@ -47,31 +44,13 @@ public class ListHostsAdapter extends BaseAdapter {
 
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
-		ViewHolder holder;
-
-		if (convertView != null) {
-			holder = (ViewHolder) convertView.getTag();
-		} else {
-			convertView = mInflater.inflate(R.layout.hosts_list_item, parent, false);
-			holder = new ViewHolder(convertView);
-			convertView.setTag(holder);
+		if (convertView == null) {
+			convertView = new CheckableHostItem(mAppContext);
+			convertView.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
 		}
 
 		Host host = getItem(position);
-		holder.mIp.setText(host.getIp());
-		holder.mHost.setText(host.getHostName());
-
+		((CheckableHostItem) convertView).init(host);
 		return convertView;
-	}
-
-	static class ViewHolder {
-		@InjectView(R.id.hostItemIp)
-		TextView mIp;
-		@InjectView(R.id.hostItemHostname)
-		TextView mHost;
-
-		public ViewHolder(View view) {
-			Views.inject(this, view);
-		}
 	}
 }

@@ -6,6 +6,7 @@ import android.app.Activity;
 import android.os.Bundle;
 
 import com.actionbarsherlock.app.SherlockFragment;
+import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.nilhcem.hostseditor.HostsEditorApp;
 import com.squareup.otto.Bus;
 
@@ -16,13 +17,17 @@ public class BaseFragment extends SherlockFragment {
 	@Inject
 	protected Bus mBus;
 
-	protected Activity mActivity;
+	protected SherlockFragmentActivity mActivity;
 	protected HostsEditorApp mApp;
 
 	@Override
 	public void onAttach(Activity activity) {
+		if (!(activity instanceof SherlockFragmentActivity)) {
+			throw new UnsupportedOperationException("Activity must be a SherlockFragmentActivity");
+		}
+
 		super.onAttach(activity);
-		mActivity = activity;
+		mActivity = (SherlockFragmentActivity) activity;
 		mApp = (HostsEditorApp) activity.getApplication();
 	}
 
