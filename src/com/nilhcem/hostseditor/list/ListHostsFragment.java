@@ -37,6 +37,7 @@ public class ListHostsFragment extends BaseFragment implements OnItemClickListen
 
 	private ActionMode mMode;
 	private ListView mListView;
+	private MenuItem mEditMenuItem;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -87,6 +88,10 @@ public class ListHostsFragment extends BaseFragment implements OnItemClickListen
 			if (mMode == null) {
 				mMode = mActivity.startActionMode(new ModeCallback());
 			}
+
+			if (mEditMenuItem != null) {
+				mEditMenuItem.setVisible(nbCheckedElements == 1);
+			}
 			mMode.setTitle(String.format(Locale.US, getString(R.string.add_host_menu_selected), nbCheckedElements));
 		} else {
 			if (mMode != null) {
@@ -128,6 +133,7 @@ public class ListHostsFragment extends BaseFragment implements OnItemClickListen
 
 		@Override
 		public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
+			mEditMenuItem = menu.findItem(R.id.cab_action_edit);
 			return false;
 		}
 
@@ -137,6 +143,7 @@ public class ListHostsFragment extends BaseFragment implements OnItemClickListen
 				mListView.setItemChecked(i, false);
 			}
 			mMode = null;
+			mEditMenuItem = null;
 		}
 
 		@Override

@@ -1,4 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
 
+    <!-- Edit (visible when only one element is selected) -->
+    <item
+        android:id="@+id/cab_action_edit"
+        android:icon="@drawable/ic_action_edit"
+        android:orderInCategory="1"
+        android:showAsAction="always|withText"
+        android:title="@string/add_host_menu_edit"
+        android:visible="false"/>
+
+    <!-- Toggle -->
+    <item
+        android:id="@+id/cab_action_toggle"
+        android:icon="@drawable/ic_action_toggle"
+        android:orderInCategory="2"
+        android:showAsAction="always|withText"
+        android:title="@string/add_host_menu_toggle"/>
+
+    <!-- Delete -->
+    <item
+        android:id="@+id/cab_action_delete"
+        android:icon="@drawable/ic_action_delete"
+        android:orderInCategory="3"
+        android:showAsAction="always|withText"
+        android:title="@string/add_host_menu_delete"/>
+
 </menu>

@@ -17,4 +17,7 @@
 
     <!-- List host (contextual menu) -->
     <string name="add_host_menu_selected">%d selected</string>
+    <string name="add_host_menu_edit">Edit</string>
+    <string name="add_host_menu_delete">Delete</string>
+    <string name="add_host_menu_toggle">Toggle</string>
 </resources>
