@@ -26,11 +26,11 @@ public class ListHostsActivity extends BaseActivity {
 		super.onCreate(savedInstanceState);
 
 		FragmentManager fragmentMngr = getSupportFragmentManager();
-		mFragment = (ListHostsFragment) fragmentMngr.findFragmentByTag(ListHostsFragment.FRAGMENT_TAG);
+		mFragment = (ListHostsFragment) fragmentMngr.findFragmentByTag(ListHostsFragment.TAG);
 		if (mFragment == null) {
 			mFragment = new ListHostsFragment();
 			FragmentTransaction ft = fragmentMngr.beginTransaction();
-			ft.add(android.R.id.content, mFragment, ListHostsFragment.FRAGMENT_TAG);
+			ft.add(android.R.id.content, mFragment, ListHostsFragment.TAG);
 			ft.commit();
 		}
 	}

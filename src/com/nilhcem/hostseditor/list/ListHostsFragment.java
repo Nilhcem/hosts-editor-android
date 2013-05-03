@@ -6,6 +6,7 @@ import java.util.Locale;
 import javax.inject.Inject;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -29,7 +30,7 @@ import com.nilhcem.hostseditor.task.ListHostsAsync;
 import com.squareup.otto.Subscribe;
 
 public class ListHostsFragment extends BaseFragment implements OnItemClickListener {
-	static final String FRAGMENT_TAG = "ListHostsFragment";
+	static final String TAG = "ListHostsFragment";
 
 	@Inject HostsManager mHostsManager;
 	private ListHostsAdapter mAdapter;
@@ -61,28 +62,48 @@ public class ListHostsFragment extends BaseFragment implements OnItemClickListen
 
 	@Override
 	public void onPause() {
-		mMode = null;
+		if (mMode != null) {
+			mMode.finish();
+		}
 		super.onPause();
 	}
 
 	@Override
 	public void onResume() {
 		super.onResume();
-		updateActionBar();
 	}
 
 	@Override
 	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-		updateActionBar();
+		int nbCheckedElements = 0;
+		SparseBooleanArray checked = mListView.getCheckedItemPositions();
+		for (int i = 0; i < checked.size(); i++) {
+			if (checked.valueAt(i)) {
+				nbCheckedElements++;
+			}
+		}
+
+		if (nbCheckedElements > 0) {
+			if (mMode == null) {
+				mMode = mActivity.startActionMode(new ModeCallback());
+			}
+			mMode.setTitle(String.format(Locale.US, getString(R.string.add_host_menu_selected), nbCheckedElements));
+		} else {
+			if (mMode != null) {
+				mMode.finish();
+			}
+		}
 	}
 
 	@Subscribe
 	public void onHostAdded(AddedHostEvent event) {
+		Log.d(TAG, "onHostAdded event");
 		refreshHosts(false);
 	}
 
 	@Subscribe
 	public void onRefreshHosts(RefreshHostsEvent hosts) {
+		Log.d(TAG, "onRefreshHosts event");
 		mAdapter.updateHosts(hosts.get());
 		mListView.setAdapter(mAdapter);
 	}
@@ -94,32 +115,6 @@ public class ListHostsFragment extends BaseFragment implements OnItemClickListen
 	private void refreshHosts(boolean forceRefresh) {
 		mAdapter.updateHosts(new ArrayList<Host>());
 		mApp.getObjectGraph().get(ListHostsAsync.class).execute(forceRefresh);
-	}
-
-	private void updateActionBar() {
-		SparseBooleanArray checked = mListView.getCheckedItemPositions();
-		boolean hasCheckedElement = false;
-		for (int i = 0; i < checked.size() && !hasCheckedElement; i++) {
-			hasCheckedElement = checked.valueAt(i);
-		}
-
-		if (hasCheckedElement) {
-			if (mMode == null) {
-				mMode = getSherlockActivity().startActionMode(new ModeCallback());
-			}
-
-			int nbItemChecked = 0;
-			for (int i = 0; i < checked.size(); i++) {
-				if (checked.valueAt(i)) {
-					nbItemChecked++;
-				}
-			}
-			mMode.setTitle(String.format(Locale.US, getString(R.string.add_host_menu_selected), nbItemChecked));
-		} else {
-			if (mMode != null) {
-				mMode.finish();
-			}
-		}
 	}
 
 	private final class ModeCallback implements ActionMode.Callback {
