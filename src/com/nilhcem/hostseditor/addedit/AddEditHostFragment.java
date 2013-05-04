@@ -24,7 +24,7 @@ public class AddEditHostFragment extends BaseFragment implements OnClickListener
 	public static final String TAG = "AddHostFragment";
 	private static final Pattern HOSTNAME_INVALID_CHARS_PATTERN = Pattern.compile("^.*[#'\",\\\\]+.*$");
 
-	private Host mInitialHost; // edit mode only - null for add mode
+	private Host mInitialHost; // "edit mode" only - null for "add mode"
 	private AlertDialog mErrorAlert;
 
 	@InjectView(R.id.addEditHostIp) EditText mIp;
