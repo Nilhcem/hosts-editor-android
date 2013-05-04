@@ -5,7 +5,7 @@ import android.util.Log;
 import com.nilhcem.hostseditor.model.Host;
 
 /**
- * AsyncTask that inserts an host entry and triggers a {@code AddedHostEvent} event.
+ * AsyncTask that inserts an host entry and triggers a {@code TaskCompletedEvent} event.
  */
 public class AddHostAsync extends GenericTaskAsync {
 	public static final String TAG = "AddHostAsync";

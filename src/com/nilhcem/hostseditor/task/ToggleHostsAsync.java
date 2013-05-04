@@ -5,7 +5,7 @@ import android.util.Log;
 import com.nilhcem.hostseditor.model.Host;
 
 /**
- * AsyncTask that toggles one or many host entries and triggers a {@code ToggledHostEvent} event.
+ * AsyncTask that toggles one or many host entries and triggers a {@code TaskCompletedEvent} event.
  */
 public class ToggleHostsAsync extends GenericTaskAsync {
 	public static final String TAG = "ToggleHostsAsync";
