@@ -27,6 +27,13 @@ public class Host implements Parcelable {
 		mIsValid = isValid;
 	}
 
+	public void merge(Host src) {
+		mIp = src.getIp();
+		mHostName = src.getHostName();
+		mIsCommented = src.isCommented();
+		mIsValid = src.isValid();
+	}
+
 	public String getIp() {
 		return mIp;
 	}

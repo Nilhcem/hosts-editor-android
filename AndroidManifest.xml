@@ -26,9 +26,7 @@
             </intent-filter>
         </activity>
 
-        <activity
-            android:name="com.nilhcem.hostseditor.add.AddHostActivity"
-            android:label="@string/add_host_title" />
+        <activity android:name="com.nilhcem.hostseditor.addedit.AddEditHostActivity" />
     </application>
 
 </manifest>

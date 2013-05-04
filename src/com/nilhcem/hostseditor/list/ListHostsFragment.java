@@ -21,12 +21,13 @@ import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
 import com.nilhcem.hostseditor.R;
+import com.nilhcem.hostseditor.bus.event.StartAddEditActivityEvent;
 import com.nilhcem.hostseditor.bus.event.RefreshHostsEvent;
 import com.nilhcem.hostseditor.bus.event.TaskCompletedEvent;
 import com.nilhcem.hostseditor.core.BaseFragment;
 import com.nilhcem.hostseditor.core.HostsManager;
 import com.nilhcem.hostseditor.model.Host;
-import com.nilhcem.hostseditor.task.AddHostAsync;
+import com.nilhcem.hostseditor.task.AddEditHostAsync;
 import com.nilhcem.hostseditor.task.GenericTaskAsync;
 import com.nilhcem.hostseditor.task.ListHostsAsync;
 import com.nilhcem.hostseditor.task.RemoveHostsAsync;
@@ -96,7 +97,7 @@ public class ListHostsFragment extends BaseFragment implements OnItemClickListen
 			if (mEditMenuItem != null) {
 				mEditMenuItem.setVisible(nbCheckedElements == 1);
 			}
-			mMode.setTitle(String.format(Locale.US, getString(R.string.add_host_menu_selected), nbCheckedElements));
+			mMode.setTitle(String.format(Locale.US, getString(R.string.list_menu_selected), nbCheckedElements));
 		} else {
 			if (mMode != null) {
 				mMode.finish();
@@ -122,8 +123,8 @@ public class ListHostsFragment extends BaseFragment implements OnItemClickListen
 		mListView.setAdapter(mAdapter);
 	}
 
-	public void addHost(Host host) {
-		runGenericTask(AddHostAsync.class, new Host[] { host });
+	public void addHost(Host[] hosts) {
+		runGenericTask(AddEditHostAsync.class, hosts);
 	}
 
 	private void refreshHosts(boolean forceRefresh) {
@@ -161,7 +162,7 @@ public class ListHostsFragment extends BaseFragment implements OnItemClickListen
 
 			switch (item.getItemId()) {
 				case R.id.cab_action_edit:
-					// TODO
+					mBus.post(new StartAddEditActivityEvent(selectedItems[0]));
 					break;
 				case R.id.cab_action_delete:
 					runGenericTask(RemoveHostsAsync.class, selectedItems);

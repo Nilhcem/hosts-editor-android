@@ -6,18 +6,18 @@
     <!-- Action bar menu -->
     <string name="action_add_host">Add Host</string>
 
-    <!-- Add host -->
+    <!-- Add/Edit host -->
     <string name="add_host_title">Add Hostname</string>
-    <string name="add_host_ip">IP Address:</string>
-    <string name="add_host_name">Hostname:</string>
-    <string name="add_host_button">Add Hostname</string>
-    <string name="add_host_error_title">Error</string>
-    <string name="add_host_error_ip">IP address is invalid</string>
-    <string name="add_host_error_hostname">Hostname is invalid</string>
+    <string name="edit_host_title">Edit Hostname</string>
+    <string name="add_edit_ip">IP Address:</string>
+    <string name="add_edit_name">Hostname:</string>
+    <string name="add_edit_error_title">Error</string>
+    <string name="add_edit_error_ip">IP address is invalid</string>
+    <string name="add_edit_error_hostname">Hostname is invalid</string>
 
     <!-- List host (contextual menu) -->
-    <string name="add_host_menu_selected">%d selected</string>
-    <string name="add_host_menu_edit">Edit</string>
-    <string name="add_host_menu_delete">Delete</string>
-    <string name="add_host_menu_toggle">Toggle</string>
+    <string name="list_menu_selected">%d selected</string>
+    <string name="list_menu_edit">Edit</string>
+    <string name="list_menu_delete">Delete</string>
+    <string name="list_menu_toggle">Toggle</string>
 </resources>

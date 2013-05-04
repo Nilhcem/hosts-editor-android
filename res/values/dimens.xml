@@ -5,8 +5,8 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
 
-    <!-- Add host -->
-    <dimen name="add_host_form_margin">20dp</dimen>
-    <dimen name="add_host_label_size">16sp</dimen>
+    <!-- Add/Edit host -->
+    <dimen name="add_edit_form_margin">20dp</dimen>
+    <dimen name="add_edit_label_size">16sp</dimen>
 
 </resources>

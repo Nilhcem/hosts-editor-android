@@ -10,10 +10,12 @@ import android.support.v4.app.FragmentTransaction;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 import com.nilhcem.hostseditor.R;
-import com.nilhcem.hostseditor.add.AddHostActivity;
+import com.nilhcem.hostseditor.addedit.AddEditHostActivity;
+import com.nilhcem.hostseditor.bus.event.StartAddEditActivityEvent;
 import com.nilhcem.hostseditor.core.BaseActivity;
 import com.nilhcem.hostseditor.core.HostsManager;
 import com.nilhcem.hostseditor.model.Host;
+import com.squareup.otto.Subscribe;
 
 public class ListHostsActivity extends BaseActivity {
 	private static final int REQUESTCODE_ADDHOST_ACTIVITY = 1;
@@ -45,8 +47,7 @@ public class ListHostsActivity extends BaseActivity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 			case R.id.action_add_host:
-				Intent intent = new Intent(this, AddHostActivity.class);
-				startActivityForResult(intent, REQUESTCODE_ADDHOST_ACTIVITY);
+				mBus.post(new StartAddEditActivityEvent(null));
 				return true;
 			default:
 				return super.onOptionsItemSelected(item);
@@ -59,9 +60,17 @@ public class ListHostsActivity extends BaseActivity {
 
 		if (requestCode == REQUESTCODE_ADDHOST_ACTIVITY) {
 			if (resultCode == RESULT_OK) {
-				Host host = data.getParcelableExtra(AddHostActivity.EXTRA_HOST);
-				mFragment.addHost(host);
+				Host modified = data.getParcelableExtra(AddEditHostActivity.EXTRA_HOST_MODIFIED);
+				Host original = data.getParcelableExtra(AddEditHostActivity.EXTRA_HOST_ORIGINAL);
+				mFragment.addHost(new Host[] { modified, original });
 			}
 		}
+	}
+
+	@Subscribe
+	public void onEditHostEvent(StartAddEditActivityEvent event) {
+		Intent intent = new Intent(this, AddEditHostActivity.class);
+		intent.putExtra(AddEditHostActivity.EXTRA_HOST_ORIGINAL, event.getHost());
+		startActivityForResult(intent, REQUESTCODE_ADDHOST_ACTIVITY);
 	}
 }
