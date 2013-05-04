@@ -1,5 +1,6 @@
 package com.nilhcem.hostseditor.core;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -56,9 +57,12 @@ public class HostsManager {
 		if (mHosts == null || forceRefresh) {
 			mHosts = Collections.synchronizedList(new ArrayList<Host>());
 
+			BufferedReader reader = null;
 			try {
-				List<String> lines = Files.readLines(new File(HOSTS_FILE_PATH), Charsets.UTF_8);
-				for (String line : lines) {
+				reader = Files.newReader(new File(HOSTS_FILE_PATH), Charsets.UTF_8);
+
+				String line;
+				while ((line = reader.readLine()) != null) {
 					Host host = Host.fromString(line);
 					if (host != null) {
 						mHosts.add(host);
@@ -66,6 +70,12 @@ public class HostsManager {
 				}
 			} catch (IOException e) {
 				Log.e(TAG, "I/O error while opening hosts file", e);
+			} finally {
+				try {
+					reader.close();
+				} catch (IOException e) {
+					Log.e(TAG, "Error while closing reader", e);
+				}
 			}
 		}
 		return mHosts;
