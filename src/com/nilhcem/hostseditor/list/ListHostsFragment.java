@@ -68,9 +68,7 @@ public class ListHostsFragment extends BaseFragment implements OnItemClickListen
 
 	@Override
 	public void onPause() {
-		if (mMode != null) {
-			mMode.finish();
-		}
+		finishActionMode();
 		super.onPause();
 	}
 
@@ -99,9 +97,7 @@ public class ListHostsFragment extends BaseFragment implements OnItemClickListen
 			}
 			mMode.setTitle(String.format(Locale.US, getString(R.string.list_menu_selected), nbCheckedElements));
 		} else {
-			if (mMode != null) {
-				mMode.finish();
-			}
+			finishActionMode();
 		}
 	}
 
@@ -119,6 +115,7 @@ public class ListHostsFragment extends BaseFragment implements OnItemClickListen
 	@Subscribe
 	public void onHostsRefreshed(RefreshHostsEvent hosts) {
 		Log.d(TAG, "Refreshing listview");
+		finishActionMode();
 		mAdapter.updateHosts(hosts.get());
 		mListView.setAdapter(mAdapter);
 	}
@@ -195,5 +192,11 @@ public class ListHostsFragment extends BaseFragment implements OnItemClickListen
 		GenericTaskAsync task = mApp.getObjectGraph().get(clazz);
 		task.setAppContext(mActivity.getApplicationContext());
 		task.execute(hosts);
+	}
+
+	private void finishActionMode() {
+		if (mMode != null) {
+			mMode.finish();
+		}
 	}
 }
