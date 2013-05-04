@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.ListView;
 
 import com.actionbarsherlock.view.ActionMode;
@@ -34,7 +35,7 @@ import com.nilhcem.hostseditor.task.RemoveHostsAsync;
 import com.nilhcem.hostseditor.task.ToggleHostsAsync;
 import com.squareup.otto.Subscribe;
 
-public class ListHostsFragment extends BaseFragment implements OnItemClickListener {
+public class ListHostsFragment extends BaseFragment implements OnItemClickListener, OnItemLongClickListener {
 	static final String TAG = "ListHostsFragment";
 
 	@Inject HostsManager mHostsManager;
@@ -58,6 +59,7 @@ public class ListHostsFragment extends BaseFragment implements OnItemClickListen
 			mListView.setFastScrollEnabled(true);
 			mListView.setItemsCanFocus(false);
 			mListView.setOnItemClickListener(this);
+			mListView.setOnItemLongClickListener(this);
 			refreshHosts(false);
 		} else {
 			// detach from container and return the same view
@@ -99,6 +101,16 @@ public class ListHostsFragment extends BaseFragment implements OnItemClickListen
 		} else {
 			finishActionMode();
 		}
+	}
+
+	@Override
+	public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+		if (mMode == null) {
+			Host host = mAdapter.getItem(position);
+			mBus.post(new StartAddEditActivityEvent(host));
+			return true;
+		}
+		return false;
 	}
 
 	@Subscribe
