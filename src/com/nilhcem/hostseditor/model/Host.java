@@ -15,10 +15,10 @@ public class Host implements Parcelable {
 	private static final String HOST_PATTERN_STR = "^\\s*(" + STR_COMMENT + "?)\\s*(\\S*)\\s*(.*)$";
 	private static final Pattern HOST_PATTERN = Pattern.compile(HOST_PATTERN_STR);
 
-	private final String mIp;
-	private final String mHostName;
-	private final boolean mIsCommented;
-	private final boolean mIsValid;
+	private String mIp;
+	private String mHostName;
+	private boolean mIsCommented;
+	private boolean mIsValid;
 
 	public Host(String ip, String hostName, boolean isCommented, boolean isValid) {
 		mIp = ip;
@@ -41,6 +41,10 @@ public class Host implements Parcelable {
 
 	public boolean isCommented() {
 		return mIsCommented;
+	}
+
+	public void toggleComment() {
+		mIsCommented = !mIsCommented;
 	}
 
 	@Override

@@ -8,6 +8,7 @@ import com.nilhcem.hostseditor.list.ListHostsActivity;
 import com.nilhcem.hostseditor.list.ListHostsFragment;
 import com.nilhcem.hostseditor.task.AddHostAsync;
 import com.nilhcem.hostseditor.task.ListHostsAsync;
+import com.nilhcem.hostseditor.task.ToggleHostsAsync;
 import com.squareup.otto.Bus;
 
 import dagger.Module;
@@ -20,7 +21,8 @@ import dagger.Provides;
 		AddHostFragment.class,
 		ListHostsActivity.class,
 		ListHostsAsync.class,
-		ListHostsFragment.class
+		ListHostsFragment.class,
+		ToggleHostsAsync.class
 	}
 )
 public class HostsEditorModule {

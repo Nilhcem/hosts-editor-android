@@ -1,6 +1,7 @@
 package com.nilhcem.hostseditor.list;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
 import javax.inject.Inject;
@@ -20,13 +21,15 @@ import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
 import com.nilhcem.hostseditor.R;
-import com.nilhcem.hostseditor.bus.event.AddedHostEvent;
 import com.nilhcem.hostseditor.bus.event.RefreshHostsEvent;
+import com.nilhcem.hostseditor.bus.event.TaskCompletedEvent;
 import com.nilhcem.hostseditor.core.BaseFragment;
 import com.nilhcem.hostseditor.core.HostsManager;
 import com.nilhcem.hostseditor.model.Host;
 import com.nilhcem.hostseditor.task.AddHostAsync;
+import com.nilhcem.hostseditor.task.GenericTaskAsync;
 import com.nilhcem.hostseditor.task.ListHostsAsync;
+import com.nilhcem.hostseditor.task.ToggleHostsAsync;
 import com.squareup.otto.Subscribe;
 
 public class ListHostsFragment extends BaseFragment implements OnItemClickListener {
@@ -101,20 +104,25 @@ public class ListHostsFragment extends BaseFragment implements OnItemClickListen
 	}
 
 	@Subscribe
-	public void onHostAdded(AddedHostEvent event) {
-		Log.d(TAG, "onHostAdded event");
-		refreshHosts(false);
+	public void onTaskFinished(TaskCompletedEvent task) {
+		Log.d(TAG, "Task " + task.getTag() + " finished");
+		if (task.isSuccessful()) {
+			refreshHosts(false);
+		} else {
+			// Display error message
+			// Force reload
+		}
 	}
 
 	@Subscribe
-	public void onRefreshHosts(RefreshHostsEvent hosts) {
-		Log.d(TAG, "onRefreshHosts event");
+	public void onHostsRefreshed(RefreshHostsEvent hosts) {
+		Log.d(TAG, "Refreshing listview");
 		mAdapter.updateHosts(hosts.get());
 		mListView.setAdapter(mAdapter);
 	}
 
 	public void addHost(Host host) {
-		mApp.getObjectGraph().get(AddHostAsync.class).execute(host);
+		runGenericTask(AddHostAsync.class, new Host[] { host });
 	}
 
 	private void refreshHosts(boolean forceRefresh) {
@@ -148,8 +156,42 @@ public class ListHostsFragment extends BaseFragment implements OnItemClickListen
 
 		@Override
 		public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
+			Host[] selectedItems = getSelectedItems();
+
+			switch (item.getItemId()) {
+				case R.id.cab_action_edit:
+					// TODO
+					break;
+				case R.id.cab_action_delete:
+					// TODO
+					break;
+				case R.id.cab_action_toggle:
+					runGenericTask(ToggleHostsAsync.class, selectedItems);
+					break;
+				default:
+					return false;
+			}
 			mode.finish();
 			return true;
 		}
+
+		private Host[] getSelectedItems() {
+			List<Host> items = new ArrayList<Host>();
+
+			int len = mListView.getCount();
+			SparseBooleanArray checked = mListView.getCheckedItemPositions();
+			for (int i = 0; i < len ; i++) {
+				if (checked.get(i)) {
+					items.add(mAdapter.getItem(i));
+				}
+			}
+			return items.toArray(new Host[items.size()]);
+		}
 	};
+
+	private void runGenericTask(Class<? extends GenericTaskAsync> clazz, Host[] hosts) {
+		GenericTaskAsync task = mApp.getObjectGraph().get(clazz);
+		task.setAppContext(mActivity.getApplicationContext());
+		task.execute(hosts);
+	}
 }
