@@ -127,7 +127,7 @@ public class ListHostsFragment extends BaseFragment implements OnItemClickListen
 		runGenericTask(AddEditHostAsync.class, hosts);
 	}
 
-	private void refreshHosts(boolean forceRefresh) {
+	public void refreshHosts(boolean forceRefresh) {
 		mAdapter.updateHosts(new ArrayList<Host>());
 		mApp.getObjectGraph().get(ListHostsAsync.class).execute(forceRefresh);
 	}

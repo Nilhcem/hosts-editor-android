@@ -10,7 +10,7 @@
         android:title="@string/list_menu_edit"
         android:visible="false"/>
 
-    <!-- Toggle -->
+    <!-- Toggle (comment/uncomment) -->
     <item
         android:id="@+id/cab_action_toggle"
         android:icon="@drawable/ic_action_toggle"

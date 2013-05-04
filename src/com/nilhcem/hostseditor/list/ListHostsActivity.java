@@ -49,6 +49,9 @@ public class ListHostsActivity extends BaseActivity {
 			case R.id.action_add_host:
 				mBus.post(new StartAddEditActivityEvent(null));
 				return true;
+			case R.id.action_reload_hosts:
+				mFragment.refreshHosts(true);
+				return true;
 			default:
 				return super.onOptionsItemSelected(item);
 		}
