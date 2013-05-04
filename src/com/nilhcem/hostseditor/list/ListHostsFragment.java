@@ -29,6 +29,7 @@ import com.nilhcem.hostseditor.model.Host;
 import com.nilhcem.hostseditor.task.AddHostAsync;
 import com.nilhcem.hostseditor.task.GenericTaskAsync;
 import com.nilhcem.hostseditor.task.ListHostsAsync;
+import com.nilhcem.hostseditor.task.RemoveHostsAsync;
 import com.nilhcem.hostseditor.task.ToggleHostsAsync;
 import com.squareup.otto.Subscribe;
 
@@ -163,7 +164,7 @@ public class ListHostsFragment extends BaseFragment implements OnItemClickListen
 					// TODO
 					break;
 				case R.id.cab_action_delete:
-					// TODO
+					runGenericTask(RemoveHostsAsync.class, selectedItems);
 					break;
 				case R.id.cab_action_toggle:
 					runGenericTask(ToggleHostsAsync.class, selectedItems);

@@ -8,6 +8,7 @@ import com.nilhcem.hostseditor.list.ListHostsActivity;
 import com.nilhcem.hostseditor.list.ListHostsFragment;
 import com.nilhcem.hostseditor.task.AddHostAsync;
 import com.nilhcem.hostseditor.task.ListHostsAsync;
+import com.nilhcem.hostseditor.task.RemoveHostsAsync;
 import com.nilhcem.hostseditor.task.ToggleHostsAsync;
 import com.squareup.otto.Bus;
 
@@ -22,6 +23,7 @@ import dagger.Provides;
 		ListHostsActivity.class,
 		ListHostsAsync.class,
 		ListHostsFragment.class,
+		RemoveHostsAsync.class,
 		ToggleHostsAsync.class
 	}
 )
