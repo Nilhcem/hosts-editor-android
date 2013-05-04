@@ -113,4 +113,51 @@ public class Host implements Parcelable {
 		mIsCommented = in.readByte() == 1;
 		mIsValid = in.readByte() == 1;
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((mHostName == null) ? 0 : mHostName.hashCode());
+		result = prime * result + ((mIp == null) ? 0 : mIp.hashCode());
+		result = prime * result + (mIsCommented ? 1231 : 1237);
+		result = prime * result + (mIsValid ? 1231 : 1237);
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (obj == null) {
+			return false;
+		}
+		if (getClass() != obj.getClass()) {
+			return false;
+		}
+
+		Host other = (Host) obj;
+		if (mHostName == null) {
+			if (other.mHostName != null) {
+				return false;
+			}
+		} else if (!mHostName.equals(other.mHostName)) {
+			return false;
+		}
+		if (mIp == null) {
+			if (other.mIp != null) {
+				return false;
+			}
+		} else if (!mIp.equals(other.mIp)) {
+			return false;
+		}
+		if (mIsCommented != other.mIsCommented) {
+			return false;
+		}
+		if (mIsValid != other.mIsValid) {
+			return false;
+		}
+		return true;
+	}
 }
