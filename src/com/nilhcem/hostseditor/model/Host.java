@@ -10,7 +10,7 @@ import android.text.TextUtils;
 import com.google.common.net.InetAddresses;
 
 public class Host implements Parcelable {
-	private static final String STR_COMMENT = "#";
+	public static final String STR_COMMENT = "#";
 	private static final String STR_SEPARATOR = " ";
 	private static final String HOST_PATTERN_STR = "^\\s*(" + STR_COMMENT + "?)\\s*(\\S*)\\s*(.*)$";
 	private static final Pattern HOST_PATTERN = Pattern.compile(HOST_PATTERN_STR);
@@ -37,6 +37,10 @@ public class Host implements Parcelable {
 
 	public boolean isValid() {
 		return mIsValid;
+	}
+
+	public boolean isCommented() {
+		return mIsCommented;
 	}
 
 	@Override

@@ -1,5 +1,7 @@
 package com.nilhcem.hostseditor.widget;
 
+import java.util.Locale;
+
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
@@ -42,8 +44,19 @@ public class CheckableHostItem extends RelativeLayout implements Checkable {
 	}
 
 	public void init(Host host) {
-		mIp.setText(host.getIp());
+		String ip = String.format(Locale.US, "%s%s", (host.isCommented() ? Host.STR_COMMENT : ""), host.getIp());
+
+		int textColor;
+		if (host.isCommented()) {
+			textColor = 0xffb0b0b0;
+		} else {
+			textColor = 0xffffffff;
+		}
+
+		mIp.setText(ip);
+		mIp.setTextColor(textColor);
 		mHostname.setText(host.getHostName());
+		mHostname.setTextColor(textColor);
 		mCheckbox.setChecked(false);
 	}
 
