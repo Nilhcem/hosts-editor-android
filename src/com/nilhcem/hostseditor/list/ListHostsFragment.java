@@ -22,8 +22,8 @@ import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
 import com.nilhcem.hostseditor.R;
-import com.nilhcem.hostseditor.bus.event.StartAddEditActivityEvent;
 import com.nilhcem.hostseditor.bus.event.RefreshHostsEvent;
+import com.nilhcem.hostseditor.bus.event.StartAddEditActivityEvent;
 import com.nilhcem.hostseditor.bus.event.TaskCompletedEvent;
 import com.nilhcem.hostseditor.core.BaseFragment;
 import com.nilhcem.hostseditor.core.HostsManager;
@@ -88,19 +88,7 @@ public class ListHostsFragment extends BaseFragment implements OnItemClickListen
 				nbCheckedElements++;
 			}
 		}
-
-		if (nbCheckedElements > 0) {
-			if (mMode == null) {
-				mMode = mActivity.startActionMode(new ModeCallback());
-			}
-
-			if (mEditMenuItem != null) {
-				mEditMenuItem.setVisible(nbCheckedElements == 1);
-			}
-			mMode.setTitle(String.format(Locale.US, getString(R.string.list_menu_selected), nbCheckedElements));
-		} else {
-			finishActionMode();
-		}
+		displayActionMode(nbCheckedElements);
 	}
 
 	@Override
@@ -139,6 +127,32 @@ public class ListHostsFragment extends BaseFragment implements OnItemClickListen
 	public void refreshHosts(boolean forceRefresh) {
 		mAdapter.updateHosts(new ArrayList<Host>());
 		mApp.getObjectGraph().get(ListHostsAsync.class).execute(forceRefresh);
+	}
+
+	public void selectAll() {
+		int nbElem = mAdapter.getCount();
+
+		if (nbElem > 0) {
+			for (int i = 0; i < nbElem; i++ ) {
+				mListView.setItemChecked(i, true);
+			}
+			displayActionMode(nbElem);
+		}
+	}
+
+	private void displayActionMode(int nbCheckedElements) {
+		if (nbCheckedElements > 0) {
+			if (mMode == null) {
+				mMode = mActivity.startActionMode(new ModeCallback());
+			}
+
+			if (mEditMenuItem != null) {
+				mEditMenuItem.setVisible(nbCheckedElements == 1);
+			}
+			mMode.setTitle(String.format(Locale.US, getString(R.string.list_menu_selected), nbCheckedElements));
+		} else {
+			finishActionMode();
+		}
 	}
 
 	private final class ModeCallback implements ActionMode.Callback {

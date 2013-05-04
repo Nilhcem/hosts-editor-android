@@ -15,4 +15,10 @@
         android:showAsAction="never|withText"
         android:title="@string/action_reload"/>
 
+    <!-- Select all -->
+    <item
+        android:id="@+id/action_select_all"
+        android:showAsAction="never|withText"
+        android:title="@string/action_select_all"/>
+
 </menu>

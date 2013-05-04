@@ -52,6 +52,9 @@ public class ListHostsActivity extends BaseActivity {
 			case R.id.action_reload_hosts:
 				mFragment.refreshHosts(true);
 				return true;
+			case R.id.action_select_all:
+				mFragment.selectAll();
+				return true;
 			default:
 				return super.onOptionsItemSelected(item);
 		}

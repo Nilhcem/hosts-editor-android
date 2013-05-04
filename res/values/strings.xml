@@ -6,6 +6,7 @@
     <!-- Action bar menu -->
     <string name="action_add_host">Add Host</string>
     <string name="action_reload">Reload host entries</string>
+    <string name="action_select_all">Select all hosts</string>
 
     <!-- Add/Edit host -->
     <string name="add_host_title">Add Hostname</string>
