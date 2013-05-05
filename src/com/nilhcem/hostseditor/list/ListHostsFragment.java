@@ -22,6 +22,7 @@ import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
 import com.nilhcem.hostseditor.R;
+import com.nilhcem.hostseditor.bus.event.LoadingEvent;
 import com.nilhcem.hostseditor.bus.event.RefreshHostsEvent;
 import com.nilhcem.hostseditor.bus.event.StartAddEditActivityEvent;
 import com.nilhcem.hostseditor.bus.event.TaskCompletedEvent;
@@ -36,7 +37,7 @@ import com.nilhcem.hostseditor.task.ToggleHostsAsync;
 import com.squareup.otto.Subscribe;
 
 public class ListHostsFragment extends BaseFragment implements OnItemClickListener, OnItemLongClickListener {
-	static final String TAG = "ListHostsFragment";
+	private static final String TAG = "ListHostsFragment";
 
 	@Inject HostsManager mHostsManager;
 	private ListHostsAdapter mAdapter;
@@ -72,11 +73,6 @@ public class ListHostsFragment extends BaseFragment implements OnItemClickListen
 	public void onPause() {
 		finishActionMode();
 		super.onPause();
-	}
-
-	@Override
-	public void onResume() {
-		super.onResume();
 	}
 
 	@Override
@@ -118,6 +114,7 @@ public class ListHostsFragment extends BaseFragment implements OnItemClickListen
 		finishActionMode();
 		mAdapter.updateHosts(hosts.get());
 		mListView.setAdapter(mAdapter);
+		mBus.post(new LoadingEvent(false));
 	}
 
 	public void addHost(Host[] hosts) {
@@ -125,7 +122,6 @@ public class ListHostsFragment extends BaseFragment implements OnItemClickListen
 	}
 
 	public void refreshHosts(boolean forceRefresh) {
-		mAdapter.updateHosts(new ArrayList<Host>());
 		mApp.getObjectGraph().get(ListHostsAsync.class).execute(forceRefresh);
 	}
 
@@ -138,6 +134,10 @@ public class ListHostsFragment extends BaseFragment implements OnItemClickListen
 			}
 			displayActionMode(nbElem);
 		}
+	}
+
+	public void computeViewWidths() {
+		mAdapter.computeViewWidths(mActivity);
 	}
 
 	private void displayActionMode(int nbCheckedElements) {

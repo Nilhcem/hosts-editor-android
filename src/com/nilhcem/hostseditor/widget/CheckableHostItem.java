@@ -3,6 +3,7 @@ package com.nilhcem.hostseditor.widget;
 import java.util.Locale;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
@@ -30,6 +31,9 @@ public class CheckableHostItem extends RelativeLayout implements Checkable {
 	@InjectView(R.id.hostItemCheckbox)
 	InertCheckBox mCheckbox;
 
+	private int mTextColor;
+	private int mCommentColor;
+
 	public CheckableHostItem(Context context) {
 		super(context);
 		initLayout(context);
@@ -44,20 +48,26 @@ public class CheckableHostItem extends RelativeLayout implements Checkable {
 		LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		View view = inflater.inflate(R.layout.checkable_host_item, this, true);
 		Views.inject(this, view);
+
+		Resources res = context.getResources();
+		mTextColor = res.getColor(R.color.list_hosts_entry);
+		mCommentColor = res.getColor(R.color.list_hosts_comment);
 	}
 
-	public void init(Host host) {
+	public void init(Host host, int ipMinWidth, int ipMaxWidth) {
 		String ip = String.format(Locale.US, "%s%s", (host.isCommented() ? Host.STR_COMMENT : ""), host.getIp());
 
 		int textColor;
 		if (host.isCommented()) {
-			textColor = 0xffb0b0b0;
+			textColor = mCommentColor;
 		} else {
-			textColor = 0xffffffff;
+			textColor = mTextColor;
 		}
 
 		mIp.setText(ip);
 		mIp.setTextColor(textColor);
+		mIp.setMinimumWidth(ipMinWidth);
+		mIp.setMaxWidth(ipMaxWidth);
 		mHostname.setText(host.getHostName());
 		mHostname.setTextColor(textColor);
 		mCheckbox.setChecked(false);
@@ -68,9 +78,6 @@ public class CheckableHostItem extends RelativeLayout implements Checkable {
 		} else {
 			mComment.setText(String.format(Locale.US, "%s%s", Host.STR_COMMENT, comment));
 			mComment.setVisibility(View.VISIBLE);
-			if (host.isCommented()) {
-				mComment.setTextColor(textColor);
-			}
 		}
 	}
 

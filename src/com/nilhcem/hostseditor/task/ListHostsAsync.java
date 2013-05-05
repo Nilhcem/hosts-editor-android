@@ -7,6 +7,7 @@ import javax.inject.Inject;
 
 import android.os.AsyncTask;
 
+import com.nilhcem.hostseditor.bus.event.LoadingEvent;
 import com.nilhcem.hostseditor.bus.event.RefreshHostsEvent;
 import com.nilhcem.hostseditor.core.HostsManager;
 import com.nilhcem.hostseditor.model.Host;
@@ -18,6 +19,12 @@ import com.squareup.otto.Bus;
 public class ListHostsAsync extends AsyncTask<Boolean, Void, List<Host>> {
 	@Inject Bus mBus;
 	@Inject HostsManager mHostsManager;
+
+	@Override
+	protected void onPreExecute() {
+		super.onPreExecute();
+		mBus.post(new LoadingEvent(true));
+	}
 
 	@Override
 	protected List<Host> doInBackground(Boolean... params) {

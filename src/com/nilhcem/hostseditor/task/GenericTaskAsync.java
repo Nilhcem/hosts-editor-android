@@ -6,6 +6,7 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
 
+import com.nilhcem.hostseditor.bus.event.LoadingEvent;
 import com.nilhcem.hostseditor.bus.event.TaskCompletedEvent;
 import com.nilhcem.hostseditor.core.HostsManager;
 import com.nilhcem.hostseditor.model.Host;
@@ -19,6 +20,12 @@ public abstract class GenericTaskAsync extends AsyncTask<Host, Void, Void> {
 	HostsManager mHostsManager;
 
 	private Context mAppContext;
+
+	@Override
+	protected void onPreExecute() {
+		super.onPreExecute();
+		mBus.post(new LoadingEvent(true));
+	}
 
 	@Override
 	protected Void doInBackground(Host... params) {
