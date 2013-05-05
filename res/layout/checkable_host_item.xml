@@ -3,6 +3,7 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent" >
 
+    <!-- Left part (IP) -->
     <TextView
         android:id="@+id/hostItemIp"
         android:layout_width="wrap_content"
@@ -10,27 +11,47 @@
         android:layout_alignParentLeft="true"
         android:layout_centerVertical="true"
         android:focusable="false"
-        android:paddingRight="20dp"
+        android:paddingRight="18dp"
         android:textIsSelectable="false"
         android:textSize="18sp" />
 
-    <TextView
-        android:id="@+id/hostItemHostname"
-        android:layout_width="wrap_content"
+    <!-- Middle part (hostname/comment) -->
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:layout_toLeftOf="@+id/hostItemCheckbox"
         android:layout_toRightOf="@+id/hostItemIp"
         android:focusable="false"
-        android:textIsSelectable="false"
-        android:textSize="18sp" />
+        android:orientation="vertical" >
 
+        <!-- Hostname -->
+        <TextView
+            android:id="@+id/hostItemHostname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:focusable="false"
+            android:textIsSelectable="false"
+            android:textSize="18sp" />
+
+        <!-- Comment -->
+        <TextView
+            android:id="@+id/hostItemComment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:focusable="false"
+            android:textColor="#ffadadad"
+            android:textStyle="italic"
+            android:visibility="gone" />
+    </LinearLayout>
+
+    <!-- Right part (checkbox) -->
     <com.nilhcem.hostseditor.widget.InertCheckBox
         android:id="@+id/hostItemCheckbox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
-        android:focusable="false"
-        android:gravity="center_vertical" />
+        android:layout_centerVertical="true"
+        android:focusable="false" />
 
 </RelativeLayout>

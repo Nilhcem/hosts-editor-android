@@ -63,7 +63,7 @@ public class AddEditHostFragment extends BaseFragment implements OnClickListener
 			int error = checkFormErrors(ip, hostname);
 
 			if (error == 0) {
-				Host edited = new Host(ip, hostname, false, true);
+				Host edited = new Host(ip, hostname, null, false, true);
 				mBus.post(new CreatedHostEvent(mInitialHost, edited));
 			} else {
 				mErrorAlert = new AlertDialog.Builder(getSherlockActivity())

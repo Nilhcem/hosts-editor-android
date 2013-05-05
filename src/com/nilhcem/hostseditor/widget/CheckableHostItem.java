@@ -3,6 +3,7 @@ package com.nilhcem.hostseditor.widget;
 import java.util.Locale;
 
 import android.content.Context;
+import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,6 +25,8 @@ public class CheckableHostItem extends RelativeLayout implements Checkable {
 	TextView mIp;
 	@InjectView(R.id.hostItemHostname)
 	TextView mHostname;
+	@InjectView(R.id.hostItemComment)
+	TextView mComment;
 	@InjectView(R.id.hostItemCheckbox)
 	InertCheckBox mCheckbox;
 
@@ -58,6 +61,17 @@ public class CheckableHostItem extends RelativeLayout implements Checkable {
 		mHostname.setText(host.getHostName());
 		mHostname.setTextColor(textColor);
 		mCheckbox.setChecked(false);
+
+		String comment = host.getComment();
+		if (TextUtils.isEmpty(comment)) {
+			mComment.setVisibility(View.GONE);
+		} else {
+			mComment.setText(String.format(Locale.US, "%s%s", Host.STR_COMMENT, comment));
+			mComment.setVisibility(View.VISIBLE);
+			if (host.isCommented()) {
+				mComment.setTextColor(textColor);
+			}
+		}
 	}
 
 	@Override
