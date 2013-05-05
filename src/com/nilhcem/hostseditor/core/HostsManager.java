@@ -90,11 +90,13 @@ public class HostsManager {
 	 */
 	public synchronized boolean saveHosts(Context appContext) {
 		if (!RootTools.isAccessGiven()) {
+			Log.w(TAG, "Can't get root access");
 			return false;
 		}
 
 		// Step 1: Create temporary hosts file in /data/data/project_package/files/hosts
 		if (!createTempHostsFile(appContext)) {
+			Log.w(TAG, "Can't create temporary hosts file");
 			return false;
 		}
 
