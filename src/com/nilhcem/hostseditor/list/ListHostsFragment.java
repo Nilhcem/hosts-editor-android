@@ -160,7 +160,7 @@ public class ListHostsFragment extends BaseFragment implements OnItemClickListen
 		@Override
 		public boolean onCreateActionMode(ActionMode mode, Menu menu) {
 			MenuInflater inflater = mActivity.getSupportMenuInflater();
-			inflater.inflate(R.menu.hosts_list_contextual_actions, menu);
+			inflater.inflate(R.menu.list_contextual_actions, menu);
 			return true;
 		}
 

@@ -39,7 +39,7 @@ public class ListHostsActivity extends BaseActivity {
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		getSupportMenuInflater().inflate(R.menu.hosts_list_menu, menu);
+		getSupportMenuInflater().inflate(R.menu.list_menu, menu);
 		return true;
 	}
 
