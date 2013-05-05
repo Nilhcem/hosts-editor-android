@@ -27,7 +27,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/add_edit_form_margin"
-            android:digits="0123456789.:"
+            android:digits="0123456789abcdefABCDEF.:"
             android:ems="10"
             android:inputType="textNoSuggestions" >
 
