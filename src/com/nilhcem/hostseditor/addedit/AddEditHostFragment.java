@@ -11,6 +11,7 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import butterknife.InjectView;
 import butterknife.Views;
 
@@ -29,6 +30,8 @@ public class AddEditHostFragment extends BaseFragment implements OnClickListener
 
 	@InjectView(R.id.addEditHostIp) EditText mIp;
 	@InjectView(R.id.addEditHostName) EditText mHostName;
+	@InjectView(R.id.addEditComment) EditText mComment;
+	@InjectView(R.id.addEditCommentLabel) TextView mCommentLabel;
 	@InjectView(R.id.addEditHostButton) Button mButton;
 
 	@Override
@@ -43,6 +46,12 @@ public class AddEditHostFragment extends BaseFragment implements OnClickListener
 			mIp.setText(mInitialHost.getIp());
 			mHostName.setText(mInitialHost.getHostName());
 			mButton.setText(R.string.edit_host_title);
+
+			String comment = mInitialHost.getComment();
+			if (!TextUtils.isEmpty(comment)) {
+				mComment.setText(comment);
+				toggleCommentVisibility();
+			}
 		}
 		return view;
 	}
@@ -60,10 +69,14 @@ public class AddEditHostFragment extends BaseFragment implements OnClickListener
 		if (v.getId() == R.id.addEditHostButton) {
 			String ip = mIp.getText().toString();
 			String hostname = mHostName.getText().toString();
+			String comment = mComment.getText().toString();
+			if (TextUtils.isEmpty(comment)) {
+				comment = null;
+			}
 			int error = checkFormErrors(ip, hostname);
 
 			if (error == 0) {
-				Host edited = new Host(ip, hostname, null, false, true);
+				Host edited = new Host(ip, hostname, comment, false, true);
 				mBus.post(new CreatedHostEvent(mInitialHost, edited));
 			} else {
 				mErrorAlert = new AlertDialog.Builder(getSherlockActivity())
@@ -78,6 +91,23 @@ public class AddEditHostFragment extends BaseFragment implements OnClickListener
 
 	public void setHostToEdit(Host toEdit) {
 		mInitialHost = toEdit;
+	}
+
+	public boolean hasComment() {
+		return mComment.getVisibility() == View.VISIBLE;
+	}
+
+	public void toggleCommentVisibility() {
+		int visibility;
+		if (hasComment()) {
+			visibility = View.GONE;
+			mComment.setText("");
+		} else {
+			visibility = View.VISIBLE;
+		}
+
+		mComment.setVisibility(visibility);
+		mCommentLabel.setVisibility(visibility);
 	}
 
 	private int checkFormErrors(String ip, String hostname) {

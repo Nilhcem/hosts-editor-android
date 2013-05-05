@@ -51,6 +51,26 @@
             android:ems="10"
             android:inputType="textNoSuggestions" />
 
+        <!-- Comment (label) - hidden by default -->
+        <com.nilhcem.hostseditor.widget.TypefacedTextView
+            android:id="@+id/addEditCommentLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/add_edit_comment"
+            android:textSize="@dimen/add_edit_label_size"
+            android:visibility="gone"
+            app:typeface="fonts/Roboto-Regular.ttf" />
+
+        <!-- Comment (input) - hidden by default -->
+        <EditText
+            android:id="@+id/addEditComment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/add_edit_form_margin"
+            android:ems="10"
+            android:inputType="text"
+            android:visibility="gone" />
+
         <!-- "Add/Edit Host" Button -->
         <com.nilhcem.hostseditor.widget.TypefacedButton
             android:id="@+id/addEditHostButton"

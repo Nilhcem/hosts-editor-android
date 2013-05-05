@@ -6,6 +6,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 
 import com.actionbarsherlock.app.ActionBar;
+import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 import com.nilhcem.hostseditor.R;
 import com.nilhcem.hostseditor.bus.event.CreatedHostEvent;
@@ -42,12 +43,32 @@ public class AddEditHostActivity extends BaseActivity {
 	}
 
 	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		getSupportMenuInflater().inflate(R.menu.add_edit_menu, menu);
+		return true;
+	}
+
+	@Override
+	public boolean onPrepareOptionsMenu(Menu menu) {
+		MenuItem item = menu.findItem(R.id.action_add_rm_comment);
+		if (mFragment.hasComment()) {
+			item.setTitle(R.string.action_remove_comment);
+		} else {
+			item.setTitle(R.string.action_add_comment);
+		}
+		return super.onPrepareOptionsMenu(menu);
+	}
+
+	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 			case android.R.id.home:
 				Intent intent = new Intent(this, ListHostsActivity.class);
 				intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 				startActivity(intent);
+				return true;
+			case R.id.action_add_rm_comment:
+				mFragment.toggleCommentVisibility();
 				return true;
 			default:
 				return super.onOptionsItemSelected(item);

@@ -13,9 +13,14 @@
     <string name="edit_host_title">Edit Hostname</string>
     <string name="add_edit_ip">IP Address:</string>
     <string name="add_edit_name">Hostname:</string>
+    <string name="add_edit_comment">Comment:</string>
     <string name="add_edit_error_title">Error</string>
     <string name="add_edit_error_ip">IP address is invalid</string>
     <string name="add_edit_error_hostname">Hostname is invalid</string>
+
+    <!-- Add/Edit host menu -->
+    <string name="action_add_comment">Add comment</string>
+    <string name="action_remove_comment">Remove comment</string>
 
     <!-- List host (contextual menu) -->
     <string name="list_menu_selected">%d selected</string>
