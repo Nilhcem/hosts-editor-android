@@ -22,7 +22,11 @@
     <string name="action_add_comment">Add comment</string>
     <string name="action_remove_comment">Remove comment</string>
 
-    <!-- List host (contextual menu) -->
+    <!-- List hosts (empty layout) -->
+    <string name="list_empty">No \'hosts\' records found.</string>
+    <string name="list_empty_desc">We couldn\'t find any host entry for this device.\nFeel free to add some!</string>
+
+    <!-- List hosts (contextual menu) -->
     <string name="list_menu_selected">%d selected</string>
     <string name="list_menu_edit">Edit</string>
     <string name="list_menu_delete">Delete</string>

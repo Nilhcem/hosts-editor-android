@@ -16,6 +16,8 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.ListView;
+import butterknife.InjectView;
+import butterknife.Views;
 
 import com.actionbarsherlock.view.ActionMode;
 import com.actionbarsherlock.view.Menu;
@@ -40,10 +42,10 @@ public class ListHostsFragment extends BaseFragment implements OnItemClickListen
 	private static final String TAG = "ListHostsFragment";
 
 	@Inject HostsManager mHostsManager;
+	@InjectView(R.id.listHosts) ListView mListView;
 	private ListHostsAdapter mAdapter;
 
 	private ActionMode mMode;
-	private ListView mListView;
 	private MenuItem mEditMenuItem;
 
 	@Override
@@ -54,19 +56,23 @@ public class ListHostsFragment extends BaseFragment implements OnItemClickListen
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-		if (mListView == null) {
-			mListView = new ListView(mActivity.getApplicationContext());
-			mListView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
-			mListView.setFastScrollEnabled(true);
-			mListView.setItemsCanFocus(false);
-			mListView.setOnItemClickListener(this);
-			mListView.setOnItemLongClickListener(this);
+		boolean firstCall = (mListView == null);
+
+		View view = inflater.inflate(R.layout.list_hosts_fragment, container, false);
+		Views.inject(this, view);
+
+		mListView.setAdapter(mAdapter);
+		mListView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
+		mListView.setEmptyView(view.findViewById(R.id.listEmptyLayout));
+		mListView.setFastScrollEnabled(true);
+		mListView.setItemsCanFocus(false);
+		mListView.setOnItemClickListener(this);
+		mListView.setOnItemLongClickListener(this);
+
+		if (firstCall) {
 			refreshHosts(false);
-		} else {
-			// detach from container and return the same view
-			((ViewGroup) mListView.getParent()).removeAllViews();
 		}
-		return mListView;
+		return view;
 	}
 
 	@Override
@@ -113,7 +119,6 @@ public class ListHostsFragment extends BaseFragment implements OnItemClickListen
 		Log.d(TAG, "Refreshing listview");
 		finishActionMode();
 		mAdapter.updateHosts(hosts.get());
-		mListView.setAdapter(mAdapter);
 		mBus.post(new LoadingEvent(false));
 	}
 
