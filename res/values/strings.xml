@@ -32,4 +32,13 @@
     <string name="list_menu_delete">Delete</string>
     <string name="list_menu_toggle">Toggle</string>
 
+    <!-- Loading messages -->
+    <string name="loading_hosts">Loading host entries</string>
+    <string name="loading_add">Adding entry</string>
+    <string name="loading_edit">Editing entry</string>
+    <string name="loading_remove_single">Removing entry</string>
+    <string name="loading_remove_multiple">Removing entries</string>
+    <string name="loading_toggle_single">Toggling entry</string>
+    <string name="loading_toggle_multiple">Toggling entries</string>
+
 </resources>

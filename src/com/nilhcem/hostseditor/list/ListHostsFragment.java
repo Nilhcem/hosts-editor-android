@@ -122,8 +122,8 @@ public class ListHostsFragment extends BaseFragment implements OnItemClickListen
 		mBus.post(new LoadingEvent(false));
 	}
 
-	public void addHost(Host[] hosts) {
-		runGenericTask(AddEditHostAsync.class, hosts);
+	public void addEditHost(boolean addMode, Host[] hosts) {
+		runGenericTask(AddEditHostAsync.class, hosts, addMode);
 	}
 
 	public void refreshHosts(boolean forceRefresh) {
@@ -220,8 +220,12 @@ public class ListHostsFragment extends BaseFragment implements OnItemClickListen
 	};
 
 	private void runGenericTask(Class<? extends GenericTaskAsync> clazz, Host[] hosts) {
+		runGenericTask(clazz, hosts, hosts.length == 1);
+	}
+
+	private void runGenericTask(Class<? extends GenericTaskAsync> clazz, Host[] hosts, boolean flagMsg) {
 		GenericTaskAsync task = mApp.getObjectGraph().get(clazz);
-		task.setAppContext(mActivity.getApplicationContext());
+		task.init(mActivity.getApplicationContext(), flagMsg);
 		task.execute(hosts);
 	}
 

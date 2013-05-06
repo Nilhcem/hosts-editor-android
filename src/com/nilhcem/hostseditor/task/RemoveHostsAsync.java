@@ -4,6 +4,7 @@ import java.util.List;
 
 import android.util.Log;
 
+import com.nilhcem.hostseditor.R;
 import com.nilhcem.hostseditor.core.Host;
 
 /**
@@ -21,5 +22,10 @@ public class RemoveHostsAsync extends GenericTaskAsync {
 		for (int i = 0; i < nbHosts; i++) {
 			hosts.remove(params[i]);
 		}
+	}
+
+	@Override
+	protected int getLoadingMsgRes() {
+		return mFlagLoadingMsg ? R.string.loading_remove_single : R.string.loading_remove_multiple;
 	}
 }

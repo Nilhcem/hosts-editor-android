@@ -2,6 +2,7 @@ package com.nilhcem.hostseditor.task;
 
 import android.util.Log;
 
+import com.nilhcem.hostseditor.R;
 import com.nilhcem.hostseditor.core.Host;
 
 /**
@@ -18,5 +19,10 @@ public class ToggleHostsAsync extends GenericTaskAsync {
 		for (int i = 0; i < nbHosts; i++) {
 			params[i].toggleComment();
 		}
+	}
+
+	@Override
+	protected int getLoadingMsgRes() {
+		return mFlagLoadingMsg ? R.string.loading_toggle_single : R.string.loading_toggle_multiple;
 	}
 }

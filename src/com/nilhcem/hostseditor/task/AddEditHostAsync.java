@@ -4,6 +4,7 @@ import java.util.List;
 
 import android.util.Log;
 
+import com.nilhcem.hostseditor.R;
 import com.nilhcem.hostseditor.core.Host;
 
 /**
@@ -24,5 +25,10 @@ public class AddEditHostAsync extends GenericTaskAsync {
 		} else {
 			hosts.get(hosts.indexOf(original)).merge(host);
 		}
+	}
+
+	@Override
+	protected int getLoadingMsgRes() {
+		return mFlagLoadingMsg ? R.string.loading_add : R.string.loading_edit;
 	}
 }

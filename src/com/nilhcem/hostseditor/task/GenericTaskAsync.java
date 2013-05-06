@@ -20,11 +20,12 @@ public abstract class GenericTaskAsync extends AsyncTask<Host, Void, Void> {
 	HostsManager mHostsManager;
 
 	private Context mAppContext;
+	protected boolean mFlagLoadingMsg; // which loading message (between 2) to display: (singular/plural) - (add/edit).
 
 	@Override
 	protected void onPreExecute() {
 		super.onPreExecute();
-		mBus.post(new LoadingEvent(true));
+		mBus.post(new LoadingEvent(true, getLoadingMsgRes()));
 	}
 
 	@Override
@@ -50,8 +51,9 @@ public abstract class GenericTaskAsync extends AsyncTask<Host, Void, Void> {
 		mBus.post(new TaskCompletedEvent(getClass().getSimpleName(), false));
 	}
 
-	public void setAppContext(Context appContext) {
+	public void init(Context appContext, boolean flagMsg) {
 		mAppContext = appContext;
+		mFlagLoadingMsg = flagMsg;
 	}
 
 	/**
@@ -59,4 +61,5 @@ public abstract class GenericTaskAsync extends AsyncTask<Host, Void, Void> {
 	 * @param params selected Hosts from the main ListView.
 	 */
 	protected abstract void process(Host... params);
+	protected abstract int getLoadingMsgRes();
 }
