@@ -30,7 +30,6 @@ public class HostsManager {
 
 	private static final String HOSTS_FILE_NAME = "hosts";
 	private static final String HOSTS_FILE_PATH = "/system/etc/" + HOSTS_FILE_NAME;
-	private static final String HOSTS_FILE_PATH_BACKUP = HOSTS_FILE_PATH + ".bak";
 
 	private static final String LINE_SEPARATOR = System.getProperty("line.separator", "\n");
 	private static final String MOUNT_TYPE_RO = "ro";
@@ -102,16 +101,17 @@ public class HostsManager {
 			return false;
 		}
 
+		String tmpFile = String.format(Locale.US, "%s/%s", appContext.getFilesDir().getAbsolutePath(), HOSTS_FILE_NAME);
+		String backupFile = String.format(Locale.US, "%s.bak", tmpFile);
 		try {
 			// Step 2: Create backup of current hosts file (if any)
 			RootTools.remount(HOSTS_FILE_PATH, MOUNT_TYPE_RW);
-			runRootCommand(COMMAND_RM, HOSTS_FILE_PATH_BACKUP);
-			RootTools.copyFile(HOSTS_FILE_PATH, HOSTS_FILE_PATH_BACKUP, false, true);
+			runRootCommand(COMMAND_RM, backupFile);
+			RootTools.copyFile(HOSTS_FILE_PATH, backupFile, false, true);
 
 			// Step 3: Replace hosts file with generated file
 			runRootCommand(COMMAND_RM, HOSTS_FILE_PATH);
-			String src = String.format(Locale.US, "%s/%s", appContext.getFilesDir().getAbsolutePath(), HOSTS_FILE_NAME);
-			RootTools.copyFile(src, HOSTS_FILE_PATH, false, true);
+			RootTools.copyFile(tmpFile, HOSTS_FILE_PATH, false, true);
 
 			// Step 4: Give proper rights
 			runRootCommand(COMMAND_CHOWN, HOSTS_FILE_PATH);
