@@ -1,4 +1,4 @@
-package com.nilhcem.hostseditor.model;
+package com.nilhcem.hostseditor.core;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

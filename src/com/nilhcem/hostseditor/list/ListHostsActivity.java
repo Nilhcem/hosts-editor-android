@@ -18,8 +18,8 @@ import com.nilhcem.hostseditor.addedit.AddEditHostActivity;
 import com.nilhcem.hostseditor.bus.event.LoadingEvent;
 import com.nilhcem.hostseditor.bus.event.StartAddEditActivityEvent;
 import com.nilhcem.hostseditor.core.BaseActivity;
+import com.nilhcem.hostseditor.core.Host;
 import com.nilhcem.hostseditor.core.HostsManager;
-import com.nilhcem.hostseditor.model.Host;
 import com.squareup.otto.Subscribe;
 
 public class ListHostsActivity extends BaseActivity {

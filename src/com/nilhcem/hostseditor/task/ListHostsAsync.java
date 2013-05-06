@@ -9,8 +9,8 @@ import android.os.AsyncTask;
 
 import com.nilhcem.hostseditor.bus.event.LoadingEvent;
 import com.nilhcem.hostseditor.bus.event.RefreshHostsEvent;
+import com.nilhcem.hostseditor.core.Host;
 import com.nilhcem.hostseditor.core.HostsManager;
-import com.nilhcem.hostseditor.model.Host;
 import com.squareup.otto.Bus;
 
 /**

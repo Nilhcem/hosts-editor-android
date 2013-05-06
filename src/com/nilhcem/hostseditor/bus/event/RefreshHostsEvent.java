@@ -2,7 +2,7 @@ package com.nilhcem.hostseditor.bus.event;
 
 import java.util.List;
 
-import com.nilhcem.hostseditor.model.Host;
+import com.nilhcem.hostseditor.core.Host;
 
 /**
  * Sent to the bus when hosts need to be refreshed.

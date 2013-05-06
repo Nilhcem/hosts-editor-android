@@ -11,8 +11,8 @@ import com.actionbarsherlock.view.MenuItem;
 import com.nilhcem.hostseditor.R;
 import com.nilhcem.hostseditor.bus.event.CreatedHostEvent;
 import com.nilhcem.hostseditor.core.BaseActivity;
+import com.nilhcem.hostseditor.core.Host;
 import com.nilhcem.hostseditor.list.ListHostsActivity;
-import com.nilhcem.hostseditor.model.Host;
 import com.squareup.otto.Subscribe;
 
 public class AddEditHostActivity extends BaseActivity {

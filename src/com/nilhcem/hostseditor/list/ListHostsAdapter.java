@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 import android.widget.AbsListView.LayoutParams;
 import android.widget.BaseAdapter;
 
-import com.nilhcem.hostseditor.model.Host;
+import com.nilhcem.hostseditor.core.Host;
 import com.nilhcem.hostseditor.util.Compatibility;
 import com.nilhcem.hostseditor.util.ThreadPreconditions;
 import com.nilhcem.hostseditor.widget.CheckableHostItem;

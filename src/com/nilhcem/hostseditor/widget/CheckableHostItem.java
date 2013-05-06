@@ -15,7 +15,7 @@ import butterknife.InjectView;
 import butterknife.Views;
 
 import com.nilhcem.hostseditor.R;
-import com.nilhcem.hostseditor.model.Host;
+import com.nilhcem.hostseditor.core.Host;
 
 /**
  * Custom component that implements the Checkable interface.

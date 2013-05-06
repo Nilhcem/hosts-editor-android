@@ -1,6 +1,6 @@
 package com.nilhcem.hostseditor.bus.event;
 
-import com.nilhcem.hostseditor.model.Host;
+import com.nilhcem.hostseditor.core.Host;
 
 public class CreatedHostEvent {
 	private Host mEdited;

@@ -4,7 +4,7 @@ import java.util.List;
 
 import android.util.Log;
 
-import com.nilhcem.hostseditor.model.Host;
+import com.nilhcem.hostseditor.core.Host;
 
 /**
  * AsyncTask that removes one or many host entries and triggers a {@code TaskCompletedEvent} event.

@@ -19,7 +19,7 @@ import com.google.common.net.InetAddresses;
 import com.nilhcem.hostseditor.R;
 import com.nilhcem.hostseditor.bus.event.CreatedHostEvent;
 import com.nilhcem.hostseditor.core.BaseFragment;
-import com.nilhcem.hostseditor.model.Host;
+import com.nilhcem.hostseditor.core.Host;
 
 public class AddEditHostFragment extends BaseFragment implements OnClickListener {
 	public static final String TAG = "AddHostFragment";

@@ -8,8 +8,8 @@ import android.util.Log;
 
 import com.nilhcem.hostseditor.bus.event.LoadingEvent;
 import com.nilhcem.hostseditor.bus.event.TaskCompletedEvent;
+import com.nilhcem.hostseditor.core.Host;
 import com.nilhcem.hostseditor.core.HostsManager;
-import com.nilhcem.hostseditor.model.Host;
 import com.squareup.otto.Bus;
 
 public abstract class GenericTaskAsync extends AsyncTask<Host, Void, Void> {
