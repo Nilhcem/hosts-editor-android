@@ -72,7 +72,9 @@ public class HostsManager {
 				Log.e(TAG, "I/O error while opening hosts file", e);
 			} finally {
 				try {
-					reader.close();
+					if (reader != null) {
+						reader.close();
+					}
 				} catch (IOException e) {
 					Log.e(TAG, "Error while closing reader", e);
 				}
