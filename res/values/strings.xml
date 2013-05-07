@@ -17,6 +17,7 @@
     <string name="add_edit_error_title">Error</string>
     <string name="add_edit_error_ip">IP address is invalid</string>
     <string name="add_edit_error_hostname">Hostname is invalid</string>
+    <string name="add_edit_error_ok">OK</string>
 
     <!-- Add/Edit host menu -->
     <string name="action_add_comment">Add comment</string>

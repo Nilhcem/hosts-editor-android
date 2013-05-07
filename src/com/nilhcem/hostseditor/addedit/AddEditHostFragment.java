@@ -3,6 +3,7 @@ package com.nilhcem.hostseditor.addedit;
 import java.util.regex.Pattern;
 
 import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -79,10 +80,16 @@ public class AddEditHostFragment extends BaseFragment implements OnClickListener
 				Host edited = new Host(ip, hostname, comment, false, true);
 				mBus.post(new CreatedHostEvent(mInitialHost, edited));
 			} else {
-				mErrorAlert = new AlertDialog.Builder(getSherlockActivity())
+				mErrorAlert = new AlertDialog.Builder(mActivity)
 					.setTitle(R.string.add_edit_error_title)
 					.setMessage(error)
 					.setCancelable(true)
+					.setNeutralButton(R.string.add_edit_error_ok, new DialogInterface.OnClickListener() {
+						@Override
+						public void onClick(DialogInterface dialog, int which) {
+							// Do nothing
+						}
+					})
 					.create();
 				mErrorAlert.show();
 			}
