@@ -4,6 +4,8 @@
     <string name="app_name">Hosts Editor</string>
 
     <!-- Action bar menu -->
+    <string name="action_search">Search</string>
+    <string name="action_search_results">Search results</string>
     <string name="action_add_host">Add Host</string>
     <string name="action_reload">Reload host entries</string>
     <string name="action_select_all">Select all hosts</string>
@@ -25,7 +27,7 @@
 
     <!-- List hosts (empty layout) -->
     <string name="list_empty">No \'hosts\' records found.</string>
-    <string name="list_empty_desc">We couldn\'t find any host entry for this device.\nFeel free to add some!</string>
+    <string name="list_empty_desc">We couldn\'t find any host entry.\nFeel free to add some!</string>
 
     <!-- List hosts (contextual menu) -->
     <string name="list_menu_selected">%d selected</string>

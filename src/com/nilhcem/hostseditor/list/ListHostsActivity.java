@@ -6,7 +6,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.text.TextUtils;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -15,6 +17,7 @@ import butterknife.Views;
 
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
+import com.actionbarsherlock.widget.SearchView;
 import com.nilhcem.hostseditor.R;
 import com.nilhcem.hostseditor.addedit.AddEditHostActivity;
 import com.nilhcem.hostseditor.bus.event.LoadingEvent;
@@ -27,13 +30,17 @@ import com.squareup.otto.Subscribe;
 public class ListHostsActivity extends BaseActivity {
 	private static final int REQUESTCODE_ADDEDIT_ACTIVITY = 1;
 	private static final String TAG = "ListHostsActivity";
+	private static final String STR_EMPTY = "";
 	private static final String INSTANCE_STATE_LOADING = "loading";
 	private static final String INSTANCE_STATE_LOADING_MESSAGE = "loadingMessage";
+	private static final String INSTANCE_STATE_SEARCH = "search";
 
 	@Inject HostsManager mHostsManager;
 	@InjectView(R.id.listLoading) ProgressBar mProgressBar;
 	@InjectView(R.id.listLoadingMsg) TextView mLoadingMsg;
 	private ListHostsFragment mFragment;
+	private String mSearchQuery;
+	private MenuItem mSearchItem;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +50,6 @@ public class ListHostsActivity extends BaseActivity {
 
 		FragmentManager fragmentMngr = getSupportFragmentManager();
 		mFragment = (ListHostsFragment) fragmentMngr.findFragmentById(R.id.listHostsFragment);
-		mFragment.computeViewWidths();
 
 		if (savedInstanceState == null) {
 			onLoadingEvent(new LoadingEvent(true, R.string.loading_hosts));
@@ -53,7 +59,47 @@ public class ListHostsActivity extends BaseActivity {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		getSupportMenuInflater().inflate(R.menu.list_menu, menu);
+
+		// Init search
+		mSearchItem = menu.findItem(R.id.action_search);
+		SearchView searchView = (SearchView) mSearchItem.getActionView();
+		if (searchView != null) {
+			searchView.setQueryHint(getString(R.string.action_search));
+			searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+				@Override
+				public boolean onQueryTextSubmit(String query) {
+					mSearchItem.collapseActionView();
+					return true;
+				}
+
+				@Override
+				public boolean onQueryTextChange(String newText) {
+					Log.d(TAG, "Search query: " + newText);
+					setSearchQuery(newText);
+					mFragment.filterList(newText);
+					return true;
+				}
+			});
+		}
 		return true;
+	}
+
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		switch (keyCode) {
+			case KeyEvent.KEYCODE_BACK:
+				if (!TextUtils.isEmpty(mSearchQuery)) {
+					// Revert search
+					setSearchQuery(STR_EMPTY);
+					mFragment.filterList(mSearchQuery);
+					return true;
+				}
+				break;
+			case KeyEvent.KEYCODE_SEARCH:
+				mSearchItem.expandActionView();
+				return true;
+		}
+		return super.onKeyDown(keyCode, event);
 	}
 
 	@Override
@@ -95,6 +141,7 @@ public class ListHostsActivity extends BaseActivity {
 		super.onSaveInstanceState(outState);
 		outState.putBoolean(INSTANCE_STATE_LOADING, mProgressBar.getVisibility() == View.VISIBLE);
 		outState.putString(INSTANCE_STATE_LOADING_MESSAGE, mLoadingMsg.getText().toString());
+		outState.putString(INSTANCE_STATE_SEARCH, mSearchQuery);
 	}
 
 	@Override
@@ -104,10 +151,11 @@ public class ListHostsActivity extends BaseActivity {
 		if (isLoading) {
 			String loadingMsg = savedInstanceState.getString(INSTANCE_STATE_LOADING_MESSAGE);
 			if (loadingMsg == null) {
-				loadingMsg = "";
+				loadingMsg = STR_EMPTY;
 			}
 			onLoadingEvent(new LoadingEvent(isLoading, loadingMsg));
 		}
+		setSearchQuery(savedInstanceState.getString(INSTANCE_STATE_SEARCH));
 	}
 
 	@Subscribe
@@ -125,6 +173,11 @@ public class ListHostsActivity extends BaseActivity {
 		mLoadingMsg.setText(event.getMessage(this));
 		if (event.isLoading()) {
 			Log.d(TAG, "Start loading");
+			if (mSearchItem != null) {
+				setSearchQuery(STR_EMPTY);
+				mSearchItem.collapseActionView();
+			}
+
 			mProgressBar.setVisibility(View.VISIBLE);
 			mLoadingMsg.setVisibility(View.VISIBLE);
 			ft.hide(mFragment);
@@ -135,5 +188,20 @@ public class ListHostsActivity extends BaseActivity {
 			ft.show(mFragment);
 		}
 		ft.commit();
+	}
+
+	private void setSearchQuery(String searchQuery) {
+		mSearchQuery = searchQuery;
+		setActionBarTitle();
+	}
+
+	private void setActionBarTitle() {
+		int titleRes;
+		if (TextUtils.isEmpty(mSearchQuery)) {
+			titleRes = R.string.app_name;
+		} else {
+			titleRes = R.string.action_search_results;
+		}
+		getSupportActionBar().setTitle(titleRes);
 	}
 }

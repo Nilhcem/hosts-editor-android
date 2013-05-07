@@ -45,8 +45,9 @@ public class ListHostsFragment extends BaseFragment implements OnItemClickListen
 	private static final String TAG = "ListHostsFragment";
 
 	@Inject HostsManager mHostsManager;
+	@Inject ListHostsAdapter mAdapter;
+	@Inject ListHostsSearchFilter mSearchFilter;
 	@InjectView(R.id.listHosts) ListView mListView;
-	private ListHostsAdapter mAdapter;
 
 	private ActionMode mMode;
 	private MenuItem mEditMenuItem;
@@ -55,7 +56,7 @@ public class ListHostsFragment extends BaseFragment implements OnItemClickListen
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		mAdapter = new ListHostsAdapter(mActivity.getApplicationContext());
+		mAdapter.init(mActivity.getApplicationContext());
 	}
 
 	@Override
@@ -72,6 +73,8 @@ public class ListHostsFragment extends BaseFragment implements OnItemClickListen
 		mListView.setItemsCanFocus(false);
 		mListView.setOnItemClickListener(this);
 		mListView.setOnItemLongClickListener(this);
+
+		mAdapter.computeViewWidths(mActivity);
 
 		if (firstCall) {
 			refreshHosts(false);
@@ -148,8 +151,8 @@ public class ListHostsFragment extends BaseFragment implements OnItemClickListen
 		}
 	}
 
-	public void computeViewWidths() {
-		mAdapter.computeViewWidths(mActivity);
+	public void filterList(String filter) {
+		mAdapter.getFilter().filter(filter);
 	}
 
 	private void displayActionMode(int nbCheckedElements) {

@@ -3,29 +3,34 @@ package com.nilhcem.hostseditor.list;
 import java.util.Collections;
 import java.util.List;
 
+import javax.inject.Inject;
+
 import android.content.Context;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView.LayoutParams;
 import android.widget.BaseAdapter;
+import android.widget.Filter;
+import android.widget.Filterable;
 
 import com.nilhcem.hostseditor.core.Host;
 import com.nilhcem.hostseditor.util.Compatibility;
 import com.nilhcem.hostseditor.util.ThreadPreconditions;
 import com.nilhcem.hostseditor.widget.CheckableHostItem;
 
-public class ListHostsAdapter extends BaseAdapter {
+public class ListHostsAdapter extends BaseAdapter implements Filterable {
 	private static final String TAG = "ListHostsAdapter";
 
 	private List<Host> mHosts = Collections.emptyList();
 	private Context mAppContext;
+	@Inject ListHostsSearchFilter mSearchFilter;
 
 	private int mIpMinWidth;
 	private int mIpMaxWidth;
 
-	public ListHostsAdapter(Context context) {
-		mAppContext = context;
+	public void init(Context appContext) {
+		mAppContext = appContext;
 	}
 
 	public void updateHosts(List<Host> hosts) {
@@ -91,5 +96,10 @@ public class ListHostsAdapter extends BaseAdapter {
 		Host host = getItem(position);
 		((CheckableHostItem) convertView).init(host, mIpMinWidth, mIpMaxWidth);
 		return convertView;
+	}
+
+	@Override
+	public Filter getFilter() {
+		return mSearchFilter;
 	}
 }

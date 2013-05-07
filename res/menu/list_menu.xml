@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
 
+    <!-- Search -->
+    <item
+        android:id="@+id/action_search"
+        android:actionViewClass="com.actionbarsherlock.widget.SearchView"
+        android:icon="@drawable/ic_action_search"
+        android:showAsAction="always|withText|collapseActionView"
+        android:title="@string/action_search"/>
+
     <!-- Add host -->
     <item
         android:id="@+id/action_add_host"

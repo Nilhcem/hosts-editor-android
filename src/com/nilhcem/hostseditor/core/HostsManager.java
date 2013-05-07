@@ -128,6 +128,25 @@ public class HostsManager {
 	}
 
 	/**
+	 * Returns a list of hosts matching the constraint parameter.
+	 */
+	public List<Host> filterHosts(CharSequence constraint) {
+		List<Host> all = getHosts(false);
+		List<Host> hosts = new ArrayList<Host>();
+
+		for (Host host : all) {
+			if (host.isValid()) {
+				if (host.getIp().contains(constraint)
+						|| host.getHostName().contains(constraint)
+						|| (host.getComment() != null && host.getComment().contains(constraint))) {
+					hosts.add(host);
+				}
+			}
+		}
+		return hosts;
+	}
+
+	/**
 	 * Creates a temporary hosts file in {@code /data/data/project_package/files/hosts}.
 	 * <p><b>Must be in an async call.</b></p>
 	 *
