@@ -16,7 +16,7 @@ import dagger.Module;
 import dagger.Provides;
 
 @Module(
-	entryPoints = {
+	injects = {
 		AddEditHostActivity.class,
 		AddEditHostAsync.class,
 		AddEditHostFragment.class,
