@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Filter;
 
@@ -21,13 +22,17 @@ public class ListHostsSearchFilter extends Filter {
 	@SuppressWarnings("unchecked")
 	@Override
 	protected void publishResults(CharSequence constraint, FilterResults results) {
-		Log.d(TAG, "Publishing result for: " + constraint);
+		if (!TextUtils.isEmpty(constraint)) {
+			Log.d(TAG, "Publishing result for: " + constraint);
+		}
 		mBus.post(new RefreshHostsEvent((List<Host>) results.values));
 	}
 
 	@Override
 	protected FilterResults performFiltering(CharSequence constraint) {
-		Log.d(TAG, "Perform filtering for: " + constraint);
+		if (!TextUtils.isEmpty(constraint)) {
+			Log.d(TAG, "Perform filtering for: " + constraint);
+		}
 		FilterResults results = new FilterResults();
 		results.values = mHostsManager.filterHosts(constraint);
 		return results;
