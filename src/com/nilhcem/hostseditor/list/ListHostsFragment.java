@@ -6,6 +6,9 @@ import java.util.Locale;
 
 import javax.inject.Inject;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.SparseBooleanArray;
@@ -47,6 +50,7 @@ public class ListHostsFragment extends BaseFragment implements OnItemClickListen
 
 	private ActionMode mMode;
 	private MenuItem mEditMenuItem;
+	private Dialog mDisplayedDialog;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -78,6 +82,10 @@ public class ListHostsFragment extends BaseFragment implements OnItemClickListen
 	@Override
 	public void onPause() {
 		finishActionMode();
+		if (mDisplayedDialog != null) {
+			mDisplayedDialog.dismiss();
+			mDisplayedDialog = null;
+		}
 		super.onPause();
 	}
 
@@ -193,7 +201,7 @@ public class ListHostsFragment extends BaseFragment implements OnItemClickListen
 					mBus.post(new StartAddEditActivityEvent(selectedItems[0]));
 					break;
 				case R.id.cab_action_delete:
-					runGenericTask(RemoveHostsAsync.class, selectedItems);
+					displayDeleteConfirmationDialog(selectedItems);
 					break;
 				case R.id.cab_action_toggle:
 					runGenericTask(ToggleHostsAsync.class, selectedItems);
@@ -218,6 +226,26 @@ public class ListHostsFragment extends BaseFragment implements OnItemClickListen
 			return items.toArray(new Host[items.size()]);
 		}
 	};
+
+	private void displayDeleteConfirmationDialog(final Host[] selectedItems) {
+		mDisplayedDialog = new AlertDialog.Builder(mActivity)
+			.setTitle(R.string.delete_dialog_title)
+			.setMessage(getResources().getQuantityText(R.plurals.delete_dialog_content, selectedItems.length))
+			.setPositiveButton(R.string.delete_dialog_delete, new DialogInterface.OnClickListener() {
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					runGenericTask(RemoveHostsAsync.class, selectedItems);
+				}
+			})
+			.setNegativeButton(R.string.delete_dialog_cancel, new DialogInterface.OnClickListener() {
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					// Do nothing
+				}
+			})
+			.create();
+		mDisplayedDialog.show();
+	}
 
 	private void runGenericTask(Class<? extends GenericTaskAsync> clazz, Host[] hosts) {
 		runGenericTask(clazz, hosts, hosts.length == 1);

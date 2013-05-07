@@ -32,6 +32,15 @@
     <string name="list_menu_delete">Delete</string>
     <string name="list_menu_toggle">Toggle</string>
 
+    <!-- Delete confirmation dialog -->
+    <string name="delete_dialog_title">Delete</string>
+    <plurals name="delete_dialog_content">
+        <item quantity="one">Delete selected host?</item>
+        <item quantity="other">Delete selected hosts?</item>
+    </plurals>
+    <string name="delete_dialog_cancel">Cancel</string>
+    <string name="delete_dialog_delete">Delete</string>
+
     <!-- Loading messages -->
     <string name="loading_hosts">Loading host entries</string>
     <string name="loading_add">Adding entry</string>
