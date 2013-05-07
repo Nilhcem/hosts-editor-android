@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res/com.nilhcem.hostseditor"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:paddingBottom="4dp"
     android:paddingTop="4dp" >
 
     <!-- Left part (IP) -->
-    <com.nilhcem.hostseditor.widget.TypefacedTextView
+    <TextView
         android:id="@+id/hostItemIp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -17,8 +16,7 @@
         android:paddingLeft="8dp"
         android:paddingRight="18dp"
         android:textIsSelectable="false"
-        android:textSize="16sp"
-        app:typeface="fonts/Roboto-Regular.ttf" />
+        android:textSize="16sp" />
 
     <!-- Middle part (hostname/comment) -->
     <LinearLayout
@@ -31,25 +29,23 @@
         android:orientation="vertical" >
 
         <!-- Hostname -->
-        <com.nilhcem.hostseditor.widget.TypefacedTextView
+        <TextView
             android:id="@+id/hostItemHostname"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:focusable="false"
             android:textIsSelectable="false"
-            android:textSize="16sp"
-            app:typeface="fonts/Roboto-Regular.ttf" />
+            android:textSize="16sp" />
 
         <!-- Comment -->
-        <com.nilhcem.hostseditor.widget.TypefacedTextView
+        <TextView
             android:id="@+id/hostItemComment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:focusable="false"
             android:textColor="@color/list_hosts_comment"
             android:textSize="12sp"
-            android:visibility="gone"
-            app:typeface="fonts/Roboto-Italic.ttf" />
+            android:visibility="gone" />
     </LinearLayout>
 
     <!-- Right part (checkbox) -->
