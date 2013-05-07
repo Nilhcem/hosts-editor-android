@@ -33,6 +33,11 @@
     <string name="list_menu_delete">Delete</string>
     <string name="list_menu_toggle">Toggle</string>
 
+    <!-- List hosts error dialog -->
+    <string name="list_error_title">Error</string>
+    <string name="list_error_content">Can\'t edit hosts, make sure your device is rooted.\nThe app should be allowed to request super user access.</string>
+    <string name="list_error_ok">OK</string>
+
     <!-- Delete confirmation dialog -->
     <string name="delete_dialog_title">Delete</string>
     <plurals name="delete_dialog_content">

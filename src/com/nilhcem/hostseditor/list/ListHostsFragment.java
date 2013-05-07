@@ -117,8 +117,7 @@ public class ListHostsFragment extends BaseFragment implements OnItemClickListen
 		if (task.isSuccessful()) {
 			refreshHosts(false);
 		} else {
-			// Display error message
-			// Force reload
+			displayErrorDialog();
 		}
 	}
 
@@ -241,6 +240,27 @@ public class ListHostsFragment extends BaseFragment implements OnItemClickListen
 				@Override
 				public void onClick(DialogInterface dialog, int which) {
 					// Do nothing
+				}
+			})
+			.create();
+		mDisplayedDialog.show();
+	}
+
+	private void displayErrorDialog() {
+		mBus.post(new LoadingEvent(false));
+		mDisplayedDialog = new AlertDialog.Builder(mActivity)
+			.setTitle(R.string.list_error_title)
+			.setMessage(R.string.list_error_content)
+			.setNeutralButton(R.string.list_error_ok, new DialogInterface.OnClickListener() {
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					refreshHosts(true);
+				}
+			})
+			.setOnCancelListener(new DialogInterface.OnCancelListener() {
+				@Override
+				public void onCancel(DialogInterface dialog) {
+					refreshHosts(true);
 				}
 			})
 			.create();
