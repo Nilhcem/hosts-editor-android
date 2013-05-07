@@ -39,7 +39,7 @@ public class ListHostsActivity extends BaseActivity {
 	@InjectView(R.id.listLoading) ProgressBar mProgressBar;
 	@InjectView(R.id.listLoadingMsg) TextView mLoadingMsg;
 	private ListHostsFragment mFragment;
-	private String mSearchQuery;
+	private String mSearchQuery = STR_EMPTY;
 	private MenuItem mSearchItem;
 
 	@Override
@@ -82,6 +82,12 @@ public class ListHostsActivity extends BaseActivity {
 			});
 		}
 		return true;
+	}
+
+	@Override
+	protected void onResume() {
+		super.onResume();
+		mFragment.filterList(mSearchQuery);
 	}
 
 	@Override
