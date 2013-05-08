@@ -7,11 +7,8 @@ tmp/
 target/
 
 # Eclipse files
-.classpath
 .metadata
 .pmd
-.project
-.settings/
 .apt_generated/
 
 # IntelliJ files
