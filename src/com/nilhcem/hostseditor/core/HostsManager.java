@@ -97,27 +97,43 @@ public class HostsManager {
 
 		String tmpFile = String.format(Locale.US, "%s/%s", appContext.getFilesDir().getAbsolutePath(), HOSTS_FILE_NAME);
 		String backupFile = String.format(Locale.US, "%s.bak", tmpFile);
+
+		// Step 2: Get canonical path for /etc/hosts (it could be a symbolic link)
+		String hostsFilePath = HOSTS_FILE_PATH;
+		File hostsFile = new File(HOSTS_FILE_PATH);
+		if (hostsFile != null && hostsFile.exists()) {
+			try {
+				if (FileUtils.isSymlink(hostsFile)) {
+					hostsFilePath = hostsFile.getCanonicalPath();
+				}
+			} catch (IOException e1) {
+				Log.e(TAG, "", e1);
+			}
+		} else {
+			Log.w(TAG, "Hosts file was not found in filesystem");
+		}
+
 		try {
-			// Step 2: Create backup of current hosts file (if any)
-			RootTools.remount(HOSTS_FILE_PATH, MOUNT_TYPE_RW);
+			// Step 3: Create backup of current hosts file (if any)
+			RootTools.remount(hostsFilePath, MOUNT_TYPE_RW);
 			runRootCommand(COMMAND_RM, backupFile);
-			RootTools.copyFile(HOSTS_FILE_PATH, backupFile, false, true);
+			RootTools.copyFile(hostsFilePath, backupFile, false, true);
 
-			// Step 3: Replace hosts file with generated file
-			runRootCommand(COMMAND_RM, HOSTS_FILE_PATH);
-			RootTools.copyFile(tmpFile, HOSTS_FILE_PATH, false, true);
+			// Step 4: Replace hosts file with generated file
+			runRootCommand(COMMAND_RM, hostsFilePath);
+			RootTools.copyFile(tmpFile, hostsFilePath, false, true);
 
-			// Step 4: Give proper rights
-			runRootCommand(COMMAND_CHOWN, HOSTS_FILE_PATH);
-			runRootCommand(COMMAND_CHMOD_644, HOSTS_FILE_PATH);
+			// Step 5: Give proper rights
+			runRootCommand(COMMAND_CHOWN, hostsFilePath);
+			runRootCommand(COMMAND_CHMOD_644, hostsFilePath);
 
-			// Step 5: Delete local file
+			// Step 6: Delete local file
 			appContext.deleteFile(HOSTS_FILE_NAME);
 		} catch (Exception e) {
 			Log.e(TAG, "", e);
 			return false;
 		} finally {
-			RootTools.remount(HOSTS_FILE_PATH, MOUNT_TYPE_RO);
+			RootTools.remount(hostsFilePath, MOUNT_TYPE_RO);
 		}
 		return true;
 	}
