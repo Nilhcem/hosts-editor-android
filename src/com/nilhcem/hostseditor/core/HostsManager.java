@@ -1,6 +1,5 @@
 package com.nilhcem.hostseditor.core;
 
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -14,11 +13,12 @@ import java.util.concurrent.TimeoutException;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.LineIterator;
+
 import android.content.Context;
 import android.util.Log;
 
-import com.google.common.base.Charsets;
-import com.google.common.io.Files;
 import com.stericson.RootTools.RootTools;
 import com.stericson.RootTools.exceptions.RootDeniedException;
 import com.stericson.RootTools.execution.CommandCapture;
@@ -27,6 +27,7 @@ import com.stericson.RootTools.execution.CommandCapture;
 public class HostsManager {
 	private static final String TAG = "HostsManager";
 
+	private static final String UTF_8 = "UTF-8";
 	private static final String HOSTS_FILE_NAME = "hosts";
 	private static final String HOSTS_FILE_PATH = "/system/etc/" + HOSTS_FILE_NAME;
 
@@ -55,13 +56,11 @@ public class HostsManager {
 		if (mHosts == null || forceRefresh) {
 			mHosts = Collections.synchronizedList(new ArrayList<Host>());
 
-			BufferedReader reader = null;
+			LineIterator it = null;
 			try {
-				reader = Files.newReader(new File(HOSTS_FILE_PATH), Charsets.UTF_8);
-
-				String line;
-				while ((line = reader.readLine()) != null) {
-					Host host = Host.fromString(line);
+				it = FileUtils.lineIterator(new File(HOSTS_FILE_PATH), UTF_8);
+				while (it.hasNext()) {
+					Host host = Host.fromString(it.nextLine());
 					if (host != null) {
 						mHosts.add(host);
 					}
@@ -69,12 +68,8 @@ public class HostsManager {
 			} catch (IOException e) {
 				Log.e(TAG, "I/O error while opening hosts file", e);
 			} finally {
-				try {
-					if (reader != null) {
-						reader.close();
-					}
-				} catch (IOException e) {
-					Log.e(TAG, "Error while closing reader", e);
+				if (it != null) {
+					LineIterator.closeQuietly(it);
 				}
 			}
 		}

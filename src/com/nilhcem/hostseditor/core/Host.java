@@ -7,7 +7,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import android.text.TextUtils;
 
-import com.google.common.net.InetAddresses;
+import com.nilhcem.hostseditor.util.InetAddresses;
 
 public class Host implements Parcelable {
 	public static final String STR_COMMENT = "#";
