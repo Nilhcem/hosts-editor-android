@@ -10,7 +10,6 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.util.Log;
 import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -39,6 +38,7 @@ import com.nilhcem.hostseditor.task.GenericTaskAsync;
 import com.nilhcem.hostseditor.task.ListHostsAsync;
 import com.nilhcem.hostseditor.task.RemoveHostsAsync;
 import com.nilhcem.hostseditor.task.ToggleHostsAsync;
+import com.nilhcem.hostseditor.util.Log;
 import com.squareup.otto.Subscribe;
 
 public class ListHostsFragment extends BaseFragment implements OnItemClickListener, OnItemLongClickListener {
@@ -116,7 +116,7 @@ public class ListHostsFragment extends BaseFragment implements OnItemClickListen
 
 	@Subscribe
 	public void onTaskFinished(TaskCompletedEvent task) {
-		Log.d(TAG, "Task " + task.getTag() + " finished");
+		Log.d(TAG, "Task %s finished", task.getTag());
 		if (task.isSuccessful()) {
 			refreshHosts(false);
 		} else {

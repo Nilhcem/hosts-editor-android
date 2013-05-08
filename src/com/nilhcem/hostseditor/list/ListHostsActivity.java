@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ProgressBar;
@@ -26,6 +25,7 @@ import com.nilhcem.hostseditor.bus.event.StartAddEditActivityEvent;
 import com.nilhcem.hostseditor.core.BaseActivity;
 import com.nilhcem.hostseditor.core.Host;
 import com.nilhcem.hostseditor.core.HostsManager;
+import com.nilhcem.hostseditor.util.Log;
 import com.squareup.otto.Subscribe;
 
 public class ListHostsActivity extends BaseActivity {
@@ -75,7 +75,7 @@ public class ListHostsActivity extends BaseActivity {
 
 				@Override
 				public boolean onQueryTextChange(String newText) {
-					Log.d(TAG, "Search query: " + newText);
+					Log.d(TAG, "Search query: %s", newText);
 					setSearchQuery(newText);
 					mFragment.filterList(newText);
 					return true;

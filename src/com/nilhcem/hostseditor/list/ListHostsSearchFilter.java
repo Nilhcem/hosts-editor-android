@@ -5,12 +5,12 @@ import java.util.List;
 import javax.inject.Inject;
 
 import android.text.TextUtils;
-import android.util.Log;
 import android.widget.Filter;
 
 import com.nilhcem.hostseditor.bus.event.RefreshHostsEvent;
 import com.nilhcem.hostseditor.core.Host;
 import com.nilhcem.hostseditor.core.HostsManager;
+import com.nilhcem.hostseditor.util.Log;
 import com.squareup.otto.Bus;
 
 public class ListHostsSearchFilter extends Filter {
@@ -23,7 +23,7 @@ public class ListHostsSearchFilter extends Filter {
 	@Override
 	protected void publishResults(CharSequence constraint, FilterResults results) {
 		if (!TextUtils.isEmpty(constraint)) {
-			Log.d(TAG, "Publishing result for: " + constraint);
+			Log.d(TAG, "Publishing result for: %s", constraint);
 		}
 		mBus.post(new RefreshHostsEvent((List<Host>) results.values));
 	}
@@ -31,7 +31,7 @@ public class ListHostsSearchFilter extends Filter {
 	@Override
 	protected FilterResults performFiltering(CharSequence constraint) {
 		if (!TextUtils.isEmpty(constraint)) {
-			Log.d(TAG, "Perform filtering for: " + constraint);
+			Log.d(TAG, "Perform filtering for: %s", constraint);
 		}
 		FilterResults results = new FilterResults();
 		results.values = mHostsManager.filterHosts(constraint);

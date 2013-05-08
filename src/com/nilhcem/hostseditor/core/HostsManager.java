@@ -17,8 +17,8 @@ import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.LineIterator;
 
 import android.content.Context;
-import android.util.Log;
 
+import com.nilhcem.hostseditor.util.Log;
 import com.stericson.RootTools.RootTools;
 import com.stericson.RootTools.exceptions.RootDeniedException;
 import com.stericson.RootTools.execution.CommandCapture;

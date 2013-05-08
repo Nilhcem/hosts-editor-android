@@ -1,9 +1,8 @@
 package com.nilhcem.hostseditor.task;
 
-import android.util.Log;
-
 import com.nilhcem.hostseditor.R;
 import com.nilhcem.hostseditor.core.Host;
+import com.nilhcem.hostseditor.util.Log;
 
 /**
  * AsyncTask that toggles one or many host entries and triggers a {@code TaskCompletedEvent} event.
