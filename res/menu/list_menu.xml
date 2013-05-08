@@ -30,4 +30,11 @@
         android:showAsAction="never|withText"
         android:title="@string/action_select_all"/>
 
+    <!-- About -->
+    <item
+        android:id="@+id/action_about"
+        android:icon="@drawable/ic_menu_info_details"
+        android:showAsAction="never|withText"
+        android:title="@string/action_about"/>
+
 </menu>

@@ -19,6 +19,7 @@ import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 import com.actionbarsherlock.widget.SearchView;
 import com.nilhcem.hostseditor.R;
+import com.nilhcem.hostseditor.about.AboutDialogFragment;
 import com.nilhcem.hostseditor.addedit.AddEditHostActivity;
 import com.nilhcem.hostseditor.bus.event.LoadingEvent;
 import com.nilhcem.hostseditor.bus.event.StartAddEditActivityEvent;
@@ -120,6 +121,9 @@ public class ListHostsActivity extends BaseActivity {
 			case R.id.action_select_all:
 				mFragment.selectAll();
 				return true;
+			case R.id.action_about:
+				displayAboutDialog();
+				return true;
 			default:
 				return super.onOptionsItemSelected(item);
 		}
@@ -209,5 +213,11 @@ public class ListHostsActivity extends BaseActivity {
 			titleRes = R.string.action_search_results;
 		}
 		getSupportActionBar().setTitle(titleRes);
+	}
+
+	private void displayAboutDialog() {
+		FragmentManager fm = getSupportFragmentManager();
+		AboutDialogFragment dialog = new AboutDialogFragment();
+		dialog.show(fm, AboutDialogFragment.TAG);
 	}
 }

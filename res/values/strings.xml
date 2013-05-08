@@ -9,6 +9,7 @@
     <string name="action_add_host">Add Host</string>
     <string name="action_reload">Reload host entries</string>
     <string name="action_select_all">Select all hosts</string>
+    <string name="action_about">About</string>
 
     <!-- Add/Edit host -->
     <string name="add_host_title">Add Hostname</string>
@@ -58,4 +59,9 @@
     <string name="loading_toggle_single">Toggling entry</string>
     <string name="loading_toggle_multiple">Toggling entries</string>
 
+    <!-- About -->
+    <string name="about_title">About Hosts Editor</string>
+    <string name="about_text">This app lets you modify your /etc/hosts file on Android.\nYou might need to reboot to clear your DNS cache after any change.</string>
+    <string name="about_author">2013 - www.nilhcem.com</string>
+    <string name="about_github_button">GitHub</string>
 </resources>
