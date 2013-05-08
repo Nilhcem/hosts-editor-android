@@ -197,7 +197,7 @@ public class ListHostsActivity extends BaseActivity {
 			mLoadingMsg.setVisibility(View.GONE);
 			ft.show(mFragment);
 		}
-		ft.commit();
+		ft.commitAllowingStateLoss();
 	}
 
 	private void setSearchQuery(String searchQuery) {
