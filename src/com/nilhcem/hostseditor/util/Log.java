@@ -4,7 +4,7 @@ import java.util.IllegalFormatException;
 import java.util.Locale;
 
 public final class Log {
-	private static final int LOG_LEVEL = 4; // 1: error, 2: warn, 3: info, 4: debug
+	private static final int LOG_LEVEL = 1; // 1: error, 2: warn, 3: info, 4: debug
 
 	private static final boolean LOG_ERROR = LOG_LEVEL > 0;
 	private static final boolean LOG_WARN = LOG_LEVEL > 1;
