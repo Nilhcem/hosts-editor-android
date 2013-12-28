@@ -18,8 +18,8 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.ListView;
+import butterknife.ButterKnife;
 import butterknife.InjectView;
-import butterknife.Views;
 
 import com.actionbarsherlock.view.ActionMode;
 import com.actionbarsherlock.view.Menu;
@@ -62,7 +62,7 @@ public class ListHostsFragment extends BaseFragment implements OnItemClickListen
 		boolean firstCall = (mListView == null);
 
 		View view = inflater.inflate(R.layout.list_hosts_fragment, container, false);
-		Views.inject(this, view);
+		ButterKnife.inject(this, view);
 
 		mListView.setAdapter(mAdapter);
 		mListView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);

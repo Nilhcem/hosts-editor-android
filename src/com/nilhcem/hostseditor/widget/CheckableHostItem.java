@@ -11,8 +11,8 @@ import android.view.View;
 import android.widget.Checkable;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import butterknife.ButterKnife;
 import butterknife.InjectView;
-import butterknife.Views;
 
 import com.nilhcem.hostseditor.R;
 import com.nilhcem.hostseditor.core.Host;
@@ -22,14 +22,11 @@ import com.nilhcem.hostseditor.core.Host;
  * @see {@link http://www.marvinlabs.com/2010/10/29/custom-listview-ability-check-items/}
  */
 public class CheckableHostItem extends RelativeLayout implements Checkable {
-	@InjectView(R.id.hostItemIp)
-	TextView mIp;
-	@InjectView(R.id.hostItemHostname)
-	TextView mHostname;
-	@InjectView(R.id.hostItemComment)
-	TextView mComment;
-	@InjectView(R.id.hostItemCheckbox)
-	InertCheckBox mCheckbox;
+
+	@InjectView(R.id.hostItemIp) TextView mIp;
+	@InjectView(R.id.hostItemHostname) TextView mHostname;
+	@InjectView(R.id.hostItemComment) TextView mComment;
+	@InjectView(R.id.hostItemCheckbox) InertCheckBox mCheckbox;
 
 	private int mTextColor;
 	private int mCommentColor;
@@ -47,7 +44,7 @@ public class CheckableHostItem extends RelativeLayout implements Checkable {
 	public void initLayout(Context context) {
 		LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		View view = inflater.inflate(R.layout.checkable_host_item, this, true);
-		Views.inject(this, view);
+		ButterKnife.inject(this, view);
 
 		Resources res = context.getResources();
 		mTextColor = res.getColor(R.color.list_hosts_entry);

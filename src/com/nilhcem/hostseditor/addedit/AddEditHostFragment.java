@@ -13,8 +13,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import butterknife.ButterKnife;
 import butterknife.InjectView;
-import butterknife.Views;
 
 import com.nilhcem.hostseditor.R;
 import com.nilhcem.hostseditor.bus.event.CreatedHostEvent;
@@ -39,7 +39,7 @@ public class AddEditHostFragment extends BaseFragment implements OnClickListener
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		View view = inflater.inflate(R.layout.add_edit_host_layout, container, false);
-		Views.inject(this, view);
+		ButterKnife.inject(this, view);
 		mButton.setOnClickListener(this);
 
 		if (mInitialHost == null) {

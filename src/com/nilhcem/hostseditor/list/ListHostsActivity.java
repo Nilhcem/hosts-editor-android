@@ -9,8 +9,8 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import butterknife.ButterKnife;
 import butterknife.InjectView;
-import butterknife.Views;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 import com.actionbarsherlock.widget.SearchView;
@@ -48,7 +48,7 @@ public class ListHostsActivity extends BaseActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.list_hosts_layout);
-		Views.inject(this);
+		ButterKnife.inject(this);
 
 		FragmentManager fragmentMngr = getSupportFragmentManager();
 		mFragment = (ListHostsFragment) fragmentMngr.findFragmentById(R.id.listHostsFragment);

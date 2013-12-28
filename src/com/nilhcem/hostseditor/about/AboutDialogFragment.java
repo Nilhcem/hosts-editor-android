@@ -7,8 +7,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import butterknife.ButterKnife;
 import butterknife.InjectView;
-import butterknife.Views;
 
 import com.actionbarsherlock.app.SherlockDialogFragment;
 import com.nilhcem.hostseditor.R;
@@ -23,7 +23,7 @@ public class AboutDialogFragment extends SherlockDialogFragment implements View.
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		View view = inflater.inflate(R.layout.about_dialog, container, false);
-		Views.inject(this, view);
+		ButterKnife.inject(this, view);
 		getDialog().setTitle(R.string.about_title);
 
 		mGitHubBtn.setOnClickListener(this);
