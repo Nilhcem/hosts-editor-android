@@ -198,7 +198,7 @@ public class HostsManager {
 	 * @param uniqueArg the unique argument for the command, usually the file name
 	 */
 	private void runRootCommand(String command, String uniqueArg) throws InterruptedException, IOException, TimeoutException, RootDeniedException {
-		CommandCapture cmd = new CommandCapture(0, String.format(Locale.US, "%s %s", command, uniqueArg));
-		RootTools.getShell(true).add(cmd).waitForFinish();
+		CommandCapture cmd = new CommandCapture(0, false, String.format(Locale.US, "%s %s", command, uniqueArg));
+		RootTools.getShell(true).add(cmd);
 	}
 }
