@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
@@ -16,13 +15,14 @@ import android.widget.TextView;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 
+import butterknife.OnClick;
 import com.nilhcem.hostseditor.R;
 import com.nilhcem.hostseditor.bus.event.CreatedHostEvent;
 import com.nilhcem.hostseditor.core.BaseFragment;
 import com.nilhcem.hostseditor.core.Host;
 import com.nilhcem.hostseditor.util.InetAddresses;
 
-public class AddEditHostFragment extends BaseFragment implements OnClickListener {
+public class AddEditHostFragment extends BaseFragment {
 
 	public static final String TAG = "AddHostFragment";
 	private static final Pattern HOSTNAME_INVALID_CHARS_PATTERN = Pattern.compile("^.*[#'\",\\\\]+.*$");
@@ -40,7 +40,6 @@ public class AddEditHostFragment extends BaseFragment implements OnClickListener
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		View view = inflater.inflate(R.layout.add_edit_host_layout, container, false);
 		ButterKnife.inject(this, view);
-		mButton.setOnClickListener(this);
 
 		if (mInitialHost == null) {
 			mButton.setText(R.string.add_host_title);
@@ -66,9 +65,9 @@ public class AddEditHostFragment extends BaseFragment implements OnClickListener
 		super.onStop();
 	}
 
-	@Override
-	public void onClick(View v) {
-		if (v.getId() == R.id.addEditHostButton) {
+    @OnClick(R.id.addEditHostButton)
+	void onAddEditHostButtonClicked(Button button) {
+		if (button.getId() == R.id.addEditHostButton) {
 			String ip = mIp.getText().toString();
 			String hostname = mHostName.getText().toString();
 			String comment = mComment.getText().toString();
