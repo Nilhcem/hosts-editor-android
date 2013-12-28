@@ -21,7 +21,7 @@ You might need to reboot to clear your DNS cache after any change.
 
 ## Building the app
 
-The Android SDK for API level 17 is required to build the app.
+The Android SDK for API level 19 is required to build the app.
 
 Run the following commands to clone the repo and create a release build:
 
