@@ -66,11 +66,15 @@ public class ListHostsFragment extends BaseFragment implements OnItemClickListen
 
 		mListView.setAdapter(mAdapter);
 		mListView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
-		mListView.setEmptyView(view.findViewById(R.id.listEmptyLayout));
 		mListView.setFastScrollEnabled(true);
 		mListView.setItemsCanFocus(false);
 		mListView.setOnItemClickListener(this);
 		mListView.setOnItemLongClickListener(this);
+
+		View emptyLayout = view.findViewById(R.id.listEmptyLayout);
+		if (emptyLayout != null) {
+			mListView.setEmptyView(emptyLayout);
+		}
 
 		mAdapter.computeViewWidths(mActivity);
 
@@ -114,8 +118,8 @@ public class ListHostsFragment extends BaseFragment implements OnItemClickListen
 
 	@Subscribe
 	public void onTaskFinished(TaskCompletedEvent task) {
-		Log.d(TAG, "Task %s finished", task.getTag());
-		if (task.isSuccessful()) {
+		Log.d(TAG, "Task %s finished", task.tag);
+		if (task.isSuccessful) {
 			refreshHosts(false);
 		} else {
 			displayErrorDialog();
@@ -126,8 +130,8 @@ public class ListHostsFragment extends BaseFragment implements OnItemClickListen
 	public void onHostsRefreshed(RefreshHostsEvent hosts) {
 		Log.d(TAG, "Refreshing listview");
 		finishActionMode();
-		mAdapter.updateHosts(hosts.get());
-		mBus.post(new LoadingEvent(false));
+		mAdapter.updateHosts(hosts.hosts);
+		mBus.post(new LoadingEvent());
 	}
 
 	public void addEditHost(boolean addMode, Host[] hosts) {
@@ -225,7 +229,7 @@ public class ListHostsFragment extends BaseFragment implements OnItemClickListen
 			}
 			return items.toArray(new Host[items.size()]);
 		}
-	};
+	}
 
 	private void displayDeleteConfirmationDialog(final Host[] selectedItems) {
 		mDisplayedDialog = new AlertDialog.Builder(mActivity)
@@ -248,7 +252,7 @@ public class ListHostsFragment extends BaseFragment implements OnItemClickListen
 	}
 
 	private void displayErrorDialog() {
-		mBus.post(new LoadingEvent(false));
+		mBus.post(new LoadingEvent());
 		mDisplayedDialog = new AlertDialog.Builder(mActivity)
 			.setTitle(R.string.list_error_title)
 			.setMessage(R.string.list_error_content)

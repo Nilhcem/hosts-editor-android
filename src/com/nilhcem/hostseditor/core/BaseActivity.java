@@ -11,7 +11,7 @@ import com.squareup.otto.Bus;
 /**
  * All activities should extend this for dependency injection.
  */
-public class BaseActivity extends SherlockFragmentActivity {
+public abstract class BaseActivity extends SherlockFragmentActivity {
 
 	@Inject protected Bus mBus;
 

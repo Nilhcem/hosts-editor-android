@@ -16,11 +16,10 @@ public class RemoveHostsAsync extends GenericTaskAsync {
 	@Override
 	protected void process(Host... params) {
 		Log.d(TAG, "Remove hosts");
-		int nbHosts = params.length;
 
 		List<Host> hosts = mHostsManager.getHosts(false);
-		for (int i = 0; i < nbHosts; i++) {
-			hosts.remove(params[i]);
+		for (Host host : params) {
+			hosts.remove(host);
 		}
 	}
 

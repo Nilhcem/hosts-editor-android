@@ -4,8 +4,8 @@ import com.nilhcem.hostseditor.core.Host;
 
 public class CreatedHostEvent {
 
-	private Host mEdited;
-	private Host mOriginal;
+	private final Host mEdited;
+	private final Host mOriginal;
 
 	public CreatedHostEvent(Host original, Host edited) {
 		mOriginal = original;

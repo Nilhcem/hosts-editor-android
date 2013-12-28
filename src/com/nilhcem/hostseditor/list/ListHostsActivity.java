@@ -36,7 +36,7 @@ public class ListHostsActivity extends BaseActivity {
 	private static final String INSTANCE_STATE_LOADING_MESSAGE = "loadingMessage";
 	private static final String INSTANCE_STATE_SEARCH = "search";
 
-	@Inject HostsManager mHostsManager;
+	@Inject protected HostsManager mHostsManager;
 	@InjectView(R.id.listLoading) ProgressBar mProgressBar;
 	@InjectView(R.id.listLoadingMsg) TextView mLoadingMsg;
 
@@ -165,7 +165,7 @@ public class ListHostsActivity extends BaseActivity {
 			if (loadingMsg == null) {
 				loadingMsg = STR_EMPTY;
 			}
-			onLoadingEvent(new LoadingEvent(isLoading, loadingMsg));
+			onLoadingEvent(new LoadingEvent(true, loadingMsg));
 		}
 		setSearchQuery(savedInstanceState.getString(INSTANCE_STATE_SEARCH));
 	}

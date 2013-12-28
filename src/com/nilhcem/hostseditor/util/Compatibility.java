@@ -22,7 +22,7 @@ public class Compatibility {
 	 * @param apiLevel the required API level.
 	 * @return {@code true} if current OS is compatible.
 	 */
-	public static boolean isCompatible(int apiLevel) {
+	private static boolean isCompatible(int apiLevel) {
 		return android.os.Build.VERSION.SDK_INT >= apiLevel;
 	}
 

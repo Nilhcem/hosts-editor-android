@@ -2,19 +2,11 @@ package com.nilhcem.hostseditor.bus.event;
 
 public class TaskCompletedEvent {
 
-	private String mTag;
-	private boolean mSuccess;
+	public final String tag;
+	public final boolean isSuccessful;
 
-	public TaskCompletedEvent(String tag, boolean success) {
-		mTag = tag;
-		mSuccess = success;
-	}
-
-	public boolean isSuccessful() {
-		return mSuccess;
-	}
-
-	public String getTag() {
-		return mTag;
+	public TaskCompletedEvent(String tag, boolean isSuccessful) {
+		this.tag = tag;
+		this.isSuccessful = isSuccessful;
 	}
 }

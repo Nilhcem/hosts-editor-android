@@ -14,10 +14,9 @@ public class ToggleHostsAsync extends GenericTaskAsync {
 	@Override
 	protected void process(Host... params) {
 		Log.d(TAG, "Toggle hosts");
-		int nbHosts = params.length;
 
-		for (int i = 0; i < nbHosts; i++) {
-			params[i].toggleComment();
+		for (Host host : params) {
+			host.toggleComment();
 		}
 	}
 

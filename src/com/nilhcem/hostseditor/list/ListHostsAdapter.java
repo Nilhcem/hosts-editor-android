@@ -19,7 +19,7 @@ import com.nilhcem.hostseditor.util.Log;
 import com.nilhcem.hostseditor.util.ThreadPreconditions;
 import com.nilhcem.hostseditor.widget.CheckableHostItem;
 
-public class ListHostsAdapter extends BaseAdapter implements Filterable {
+class ListHostsAdapter extends BaseAdapter implements Filterable {
 
 	private static final String TAG = "ListHostsAdapter";
 

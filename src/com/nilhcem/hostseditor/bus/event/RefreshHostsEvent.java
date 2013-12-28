@@ -9,13 +9,9 @@ import com.nilhcem.hostseditor.core.Host;
  */
 public class RefreshHostsEvent {
 
-	private List<Host> mHosts;
+	public final List<Host> hosts;
 
 	public RefreshHostsEvent(List<Host> hosts) {
-		mHosts = hosts;
-	}
-
-	public List<Host> get() {
-		return mHosts;
+		this.hosts = hosts;
 	}
 }

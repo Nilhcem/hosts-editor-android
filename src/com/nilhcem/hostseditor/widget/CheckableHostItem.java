@@ -19,7 +19,7 @@ import com.nilhcem.hostseditor.core.Host;
 
 /**
  * Custom component that implements the Checkable interface.
- * @see {@link http://www.marvinlabs.com/2010/10/29/custom-listview-ability-check-items/}
+ * @see "http://www.marvinlabs.com/2010/10/29/custom-listview-ability-check-items/"
  */
 public class CheckableHostItem extends RelativeLayout implements Checkable {
 
@@ -41,7 +41,7 @@ public class CheckableHostItem extends RelativeLayout implements Checkable {
 		initLayout(context);
 	}
 
-	public void initLayout(Context context) {
+	private void initLayout(Context context) {
 		LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		View view = inflater.inflate(R.layout.checkable_host_item, this, true);
 		ButterKnife.inject(this, view);

@@ -11,7 +11,7 @@ import com.nilhcem.hostseditor.R;
 /**
  * TextView using a custom font.
  *
- * @see {@link http://stackoverflow.com/questions/4395309/android-want-to-set-custom-fonts-for-whole-application-not-runtime/9199258#9199258}
+ * @see "http://stackoverflow.com/questions/4395309/android-want-to-set-custom-fonts-for-whole-application-not-runtime/9199258#9199258"
  */
 public final class TypefacedTextView extends TextView {
 
@@ -28,12 +28,14 @@ public final class TypefacedTextView extends TextView {
 
 	static void applyFont(Context context, AttributeSet attrs, TextView view) {
 		TypedArray styledAttrs = context.obtainStyledAttributes(attrs, R.styleable.TypefacedTextView);
-		String fontName = styledAttrs.getString(R.styleable.TypefacedTextView_typeface);
-		styledAttrs.recycle();
+		if (styledAttrs != null) {
+			String fontName = styledAttrs.getString(R.styleable.TypefacedTextView_typeface);
+			styledAttrs.recycle();
 
-		if (fontName != null) {
-			Typeface typeface = Typeface.createFromAsset(context.getAssets(), fontName);
-			view.setTypeface(typeface);
+			if (fontName != null) {
+				Typeface typeface = Typeface.createFromAsset(context.getAssets(), fontName);
+				view.setTypeface(typeface);
+			}
 		}
 	}
 }

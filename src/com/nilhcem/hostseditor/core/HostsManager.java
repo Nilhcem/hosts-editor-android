@@ -102,7 +102,7 @@ public class HostsManager {
 		// Step 2: Get canonical path for /etc/hosts (it could be a symbolic link)
 		String hostsFilePath = HOSTS_FILE_PATH;
 		File hostsFile = new File(HOSTS_FILE_PATH);
-		if (hostsFile != null && hostsFile.exists()) {
+		if (hostsFile.exists()) {
 			try {
 				if (FileUtils.isSymlink(hostsFile)) {
 					hostsFilePath = hostsFile.getCanonicalPath();
@@ -197,7 +197,7 @@ public class HostsManager {
 	 * @param command a command, ie {@code "rm -f"}, {@code "chmod 644"}...
 	 * @param uniqueArg the unique argument for the command, usually the file name
 	 */
-	private void runRootCommand(String command, String uniqueArg) throws InterruptedException, IOException, TimeoutException, RootDeniedException {
+	private void runRootCommand(String command, String uniqueArg) throws IOException, TimeoutException, RootDeniedException {
 		CommandCapture cmd = new CommandCapture(0, false, String.format(Locale.US, "%s %s", command, uniqueArg));
 		RootTools.getShell(true).add(cmd);
 	}
