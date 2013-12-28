@@ -38,7 +38,7 @@ public class AddEditHostActivity extends BaseActivity {
 				mFragment.setHostToEdit(hostToEdit);
 			}
 			FragmentTransaction ft = fragmentMngr.beginTransaction();
-			ft.add(android.R.id.content, mFragment, AddEditHostFragment.TAG);
+			ft.replace(android.R.id.content, mFragment, AddEditHostFragment.TAG);
 			ft.commit();
 		}
 	}
