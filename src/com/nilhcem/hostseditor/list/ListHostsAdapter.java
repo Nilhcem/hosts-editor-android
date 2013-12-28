@@ -20,11 +20,13 @@ import com.nilhcem.hostseditor.util.ThreadPreconditions;
 import com.nilhcem.hostseditor.widget.CheckableHostItem;
 
 public class ListHostsAdapter extends BaseAdapter implements Filterable {
+
 	private static final String TAG = "ListHostsAdapter";
+
+    @Inject ListHostsSearchFilter mSearchFilter;
 
 	private List<Host> mHosts = Collections.emptyList();
 	private Context mAppContext;
-	@Inject ListHostsSearchFilter mSearchFilter;
 
 	private int mIpMinWidth;
 	private int mIpMaxWidth;

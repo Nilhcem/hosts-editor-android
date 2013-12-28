@@ -8,7 +8,8 @@ import com.nilhcem.hostseditor.util.Log;
  * AsyncTask that toggles one or many host entries and triggers a {@code TaskCompletedEvent} event.
  */
 public class ToggleHostsAsync extends GenericTaskAsync {
-	public static final String TAG = "ToggleHostsAsync";
+
+	private static final String TAG = "ToggleHostsAsync";
 
 	@Override
 	protected void process(Host... params) {

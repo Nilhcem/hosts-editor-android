@@ -25,6 +25,7 @@ import com.stericson.RootTools.execution.CommandCapture;
 
 @Singleton
 public class HostsManager {
+
 	private static final String TAG = "HostsManager";
 
 	private static final String UTF_8 = "UTF-8";

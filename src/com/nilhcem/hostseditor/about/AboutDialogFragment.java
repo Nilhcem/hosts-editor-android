@@ -14,6 +14,7 @@ import com.actionbarsherlock.app.SherlockDialogFragment;
 import com.nilhcem.hostseditor.R;
 
 public class AboutDialogFragment extends SherlockDialogFragment implements View.OnClickListener {
+
 	public static final String TAG = "AboutDialogFragment";
 	private static final String GITHUB_URL = "https://github.com/Nilhcem/hosts-editor-android";
 

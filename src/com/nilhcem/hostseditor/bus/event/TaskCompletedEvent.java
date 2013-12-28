@@ -1,6 +1,7 @@
 package com.nilhcem.hostseditor.bus.event;
 
 public class TaskCompletedEvent {
+
 	private String mTag;
 	private boolean mSuccess;
 

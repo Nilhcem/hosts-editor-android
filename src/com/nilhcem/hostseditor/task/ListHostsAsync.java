@@ -18,6 +18,7 @@ import com.squareup.otto.Bus;
  * AsyncTask that gets all valid hosts and triggers a {@code RefreshHostEvent} event.
  */
 public class ListHostsAsync extends AsyncTask<Boolean, Void, List<Host>> {
+
 	@Inject Bus mBus;
 	@Inject HostsManager mHostsManager;
 

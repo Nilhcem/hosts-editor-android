@@ -8,6 +8,7 @@ import com.nilhcem.hostseditor.core.Host;
  * Sent to the bus when hosts need to be refreshed.
  */
 public class RefreshHostsEvent {
+
 	private List<Host> mHosts;
 
 	public RefreshHostsEvent(List<Host> hosts) {

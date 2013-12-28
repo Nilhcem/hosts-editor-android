@@ -32,7 +32,6 @@ import com.nilhcem.hostseditor.bus.event.StartAddEditActivityEvent;
 import com.nilhcem.hostseditor.bus.event.TaskCompletedEvent;
 import com.nilhcem.hostseditor.core.BaseFragment;
 import com.nilhcem.hostseditor.core.Host;
-import com.nilhcem.hostseditor.core.HostsManager;
 import com.nilhcem.hostseditor.task.AddEditHostAsync;
 import com.nilhcem.hostseditor.task.GenericTaskAsync;
 import com.nilhcem.hostseditor.task.ListHostsAsync;
@@ -42,11 +41,10 @@ import com.nilhcem.hostseditor.util.Log;
 import com.squareup.otto.Subscribe;
 
 public class ListHostsFragment extends BaseFragment implements OnItemClickListener, OnItemLongClickListener {
+
 	private static final String TAG = "ListHostsFragment";
 
-	@Inject HostsManager mHostsManager;
 	@Inject ListHostsAdapter mAdapter;
-	@Inject ListHostsSearchFilter mSearchFilter;
 	@InjectView(R.id.listHosts) ListView mListView;
 
 	private ActionMode mMode;

@@ -10,7 +10,8 @@ import com.nilhcem.hostseditor.util.Log;
  * AsyncTask that inserts or edits an host entry and triggers a {@code TaskCompletedEvent} event.
  */
 public class AddEditHostAsync extends GenericTaskAsync {
-	public static final String TAG = "AddEditHostAsync";
+
+	private static final String TAG = "AddEditHostAsync";
 
 	@Override
 	protected void process(Host... params) {

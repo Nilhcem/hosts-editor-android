@@ -1,7 +1,5 @@
 package com.nilhcem.hostseditor.list;
 
-import javax.inject.Inject;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
@@ -13,7 +11,6 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import butterknife.InjectView;
 import butterknife.Views;
-
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 import com.actionbarsherlock.widget.SearchView;
@@ -28,7 +25,10 @@ import com.nilhcem.hostseditor.core.HostsManager;
 import com.nilhcem.hostseditor.util.Log;
 import com.squareup.otto.Subscribe;
 
+import javax.inject.Inject;
+
 public class ListHostsActivity extends BaseActivity {
+
 	private static final int REQUESTCODE_ADDEDIT_ACTIVITY = 1;
 	private static final String TAG = "ListHostsActivity";
 	private static final String STR_EMPTY = "";
@@ -39,6 +39,7 @@ public class ListHostsActivity extends BaseActivity {
 	@Inject HostsManager mHostsManager;
 	@InjectView(R.id.listLoading) ProgressBar mProgressBar;
 	@InjectView(R.id.listLoadingMsg) TextView mLoadingMsg;
+
 	private ListHostsFragment mFragment;
 	private String mSearchQuery = STR_EMPTY;
 	private MenuItem mSearchItem;
@@ -158,6 +159,7 @@ public class ListHostsActivity extends BaseActivity {
 	protected void onRestoreInstanceState(Bundle savedInstanceState) {
 		super.onRestoreInstanceState(savedInstanceState);
 		boolean isLoading = savedInstanceState.getBoolean(INSTANCE_STATE_LOADING, true);
+
 		if (isLoading) {
 			String loadingMsg = savedInstanceState.getString(INSTANCE_STATE_LOADING_MESSAGE);
 			if (loadingMsg == null) {
@@ -207,6 +209,7 @@ public class ListHostsActivity extends BaseActivity {
 
 	private void setActionBarTitle() {
 		int titleRes;
+
 		if (TextUtils.isEmpty(mSearchQuery)) {
 			titleRes = R.string.app_name;
 		} else {

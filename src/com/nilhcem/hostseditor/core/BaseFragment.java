@@ -14,8 +14,8 @@ import com.squareup.otto.Bus;
 * All fragments should extend this for dependency injection.
 */
 public class BaseFragment extends SherlockFragment {
-	@Inject
-	protected Bus mBus;
+
+	@Inject protected Bus mBus;
 
 	protected SherlockFragmentActivity mActivity;
 	protected HostsEditorApp mApp;

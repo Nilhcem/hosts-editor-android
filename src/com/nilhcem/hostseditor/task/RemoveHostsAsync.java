@@ -10,7 +10,8 @@ import com.nilhcem.hostseditor.util.Log;
  * AsyncTask that removes one or many host entries and triggers a {@code TaskCompletedEvent} event.
  */
 public class RemoveHostsAsync extends GenericTaskAsync {
-	public static final String TAG = "RemoveHostsAsync";
+
+	private static final String TAG = "RemoveHostsAsync";
 
 	@Override
 	protected void process(Host... params) {

@@ -14,10 +14,8 @@ import com.squareup.otto.Bus;
 
 public abstract class GenericTaskAsync extends AsyncTask<Host, Void, Void> {
 
-	@Inject
-	Bus mBus;
-	@Inject
-	HostsManager mHostsManager;
+	@Inject Bus mBus;
+	@Inject HostsManager mHostsManager;
 
 	private Context mAppContext;
 	protected boolean mFlagLoadingMsg; // which loading message (between 2) to display: (singular/plural) - (add/edit).

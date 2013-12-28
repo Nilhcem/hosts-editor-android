@@ -14,6 +14,7 @@ import com.nilhcem.hostseditor.util.Log;
 import com.squareup.otto.Bus;
 
 public class ListHostsSearchFilter extends Filter {
+
 	private static final String TAG = "ListHostsSearchFilter";
 
 	@Inject Bus mBus;

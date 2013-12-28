@@ -3,6 +3,7 @@ package com.nilhcem.hostseditor.bus.event;
 import com.nilhcem.hostseditor.core.Host;
 
 public class CreatedHostEvent {
+
 	private Host mEdited;
 	private Host mOriginal;
 

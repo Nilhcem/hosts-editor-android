@@ -23,6 +23,7 @@ import com.nilhcem.hostseditor.core.Host;
 import com.nilhcem.hostseditor.util.InetAddresses;
 
 public class AddEditHostFragment extends BaseFragment implements OnClickListener {
+
 	public static final String TAG = "AddHostFragment";
 	private static final Pattern HOSTNAME_INVALID_CHARS_PATTERN = Pattern.compile("^.*[#'\",\\\\]+.*$");
 

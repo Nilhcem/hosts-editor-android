@@ -12,8 +12,8 @@ import com.squareup.otto.Bus;
  * All activities should extend this for dependency injection.
  */
 public class BaseActivity extends SherlockFragmentActivity {
-	@Inject
-	protected Bus mBus;
+
+	@Inject protected Bus mBus;
 
 	@Override
 	protected void onCreate(Bundle state) {

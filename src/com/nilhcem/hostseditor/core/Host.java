@@ -10,6 +10,7 @@ import android.text.TextUtils;
 import com.nilhcem.hostseditor.util.InetAddresses;
 
 public class Host implements Parcelable {
+
 	public static final String STR_COMMENT = "#";
 	private static final String STR_SEPARATOR = " ";
 	private static final String HOST_PATTERN_STR = "^\\s*(" + STR_COMMENT + "?)\\s*(\\S*)\\s*([^" + STR_COMMENT + "]*)" + STR_COMMENT + "?(.*)$";

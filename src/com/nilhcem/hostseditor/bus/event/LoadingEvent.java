@@ -3,6 +3,7 @@ package com.nilhcem.hostseditor.bus.event;
 import android.content.Context;
 
 public class LoadingEvent {
+
 	private boolean mIsLoading;
 	private int mMessageRes;
 	private String mMessage;

@@ -9,6 +9,7 @@ import android.app.Application;
  * Creates and provides access to Dagger's {@link ObjectGraph} instance.
  */
 public class HostsEditorApp extends Application {
+
 	private ObjectGraph mObjectGraph;
 
 	@Override
