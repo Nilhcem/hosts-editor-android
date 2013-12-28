@@ -37,7 +37,11 @@ public class ListHostsAdapter extends BaseAdapter implements Filterable {
 
 	public void updateHosts(List<Host> hosts) {
 		ThreadPreconditions.checkOnMainThread();
-		mHosts = hosts;
+		if (hosts == null) {
+			mHosts = Collections.emptyList();
+		} else {
+			mHosts = hosts;
+		}
 		notifyDataSetChanged();
 	}
 
