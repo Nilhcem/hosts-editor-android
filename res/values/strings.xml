@@ -62,6 +62,6 @@
     <!-- About -->
     <string name="about_title">About Hosts Editor</string>
     <string name="about_text">This app lets you modify your /etc/hosts file on Android.\nYou might need to reboot to clear your DNS cache after any change.</string>
-    <string name="about_author">2013 - www.nilhcem.com</string>
+    <string name="about_author">2013-2014\n<a href="http://www.nilhcem.com">http://www.nilhcem.com</a></string>
     <string name="about_github_button">GitHub</string>
 </resources>
