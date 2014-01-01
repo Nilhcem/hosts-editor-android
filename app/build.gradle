@@ -4,7 +4,7 @@ buildscript {
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:0.6.+'
-	classpath 'com.neenbedankt.gradle.plugins:android-apt:1.1'
+        classpath 'com.neenbedankt.gradle.plugins:android-apt:1.1'
     }
 }
 apply plugin: 'android'
@@ -26,7 +26,7 @@ android {
 
 dependencies {
     // Commons IO
-    compile 'commons-io:commons-io:2.4'
+    compile "commons-io:commons-io:${commonsioVersion}"
 
     // Dagger
     apt "com.squareup.dagger:dagger-compiler:${daggerVersion}"
