@@ -4,13 +4,11 @@ buildscript {
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:0.6.+'
+	classpath 'com.neenbedankt.gradle.plugins:android-apt:1.1'
     }
 }
 apply plugin: 'android'
-
-configurations {
-    apt
-}
+apply plugin: 'android-apt'
 
 repositories {
     mavenCentral()
