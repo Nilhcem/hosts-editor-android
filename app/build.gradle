@@ -8,6 +8,10 @@ buildscript {
 }
 apply plugin: 'android'
 
+configurations {
+    apt
+}
+
 repositories {
     mavenCentral()
 }
@@ -23,7 +27,23 @@ android {
 }
 
 dependencies {
-	compile 'com.actionbarsherlock:actionbarsherlock:4.4.0@aar'
-	compile 'com.android.support:support-v4:18.0.+'
-	compile fileTree(dir: 'libs', include: '*.jar')
+    // Commons IO
+    compile 'commons-io:commons-io:2.4'
+
+    // Dagger
+    apt "com.squareup.dagger:dagger-compiler:${daggerVersion}"
+    compile "com.squareup.dagger:dagger:${daggerVersion}"
+
+    // ActionBarSherlock + Support library
+    compile "com.actionbarsherlock:actionbarsherlock:${absVersion}@aar"
+    compile "com.android.support:support-v4:${supportv4Version}"
+
+    // Butterknife
+    compile "com.jakewharton:butterknife:${butterknifeVersion}"
+
+    // Otto
+    compile "com.squareup:otto:${ottoVersion}"
+
+    // Other jars (RootTools)
+    compile fileTree(dir: 'libs', include: '*.jar')
 }

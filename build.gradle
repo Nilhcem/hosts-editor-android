@@ -1,1 +1,8 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+// Dependencies
+ext.absVersion = '4.4.0';
+ext.butterknifeVersion = '4.0.1';
+ext.daggerVersion = '1.2.0';
+ext.ottoVersion = '1.3.4';
+ext.supportv4Version = '18.0.+';

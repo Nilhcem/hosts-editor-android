@@ -21,21 +21,9 @@ You might need to reboot to clear your DNS cache after any change.
 
 ## Building the app
 
-The Android SDK for API level 19 is required to build the app.
+The Android SDK for API level 19 is required to build the app. Then launch:
 
-Run the following commands to clone the repo and create a release build:
-
-    git clone git@github.com:Nilhcem/hosts-editor-android.git
-    cd hosts-editor-android
-    git submodule update --init
-    android update project -p contrib/actionbarsherlock/actionbarsherlock
-    ant clean release
-
-You will then have to sign the apk and run `zipalign` (See Android Developers Documentation).
-
-If you want to install a debug version on your device, launch the following command:
-
-    ant clean debug install
+    ./gradlew clean build
 
 
 ## Acknowledgements

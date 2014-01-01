@@ -3,8 +3,8 @@
 \#*
 tmp/
 
-# Target folder
-target/
+# Build directory
+build/
 
 # Eclipse files
 .metadata
@@ -37,3 +37,6 @@ local.properties
 
 # Windows files
 Thumbs.db
+
+# Gradle
+.gradle
