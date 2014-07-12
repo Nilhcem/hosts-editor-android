@@ -139,7 +139,7 @@ public class ListHostsFragment extends BaseFragment implements OnItemClickListen
     }
 
     public void refreshHosts(boolean forceRefresh) {
-        mApp.getObjectGraph().get(ListHostsAsync.class).execute(forceRefresh);
+        mApp.get(ListHostsAsync.class).execute(forceRefresh);
     }
 
     public void selectAll() {
@@ -277,7 +277,7 @@ public class ListHostsFragment extends BaseFragment implements OnItemClickListen
     }
 
     private void runGenericTask(Class<? extends GenericTaskAsync> clazz, Host[] hosts, boolean flagMsg) {
-        GenericTaskAsync task = mApp.getObjectGraph().get(clazz);
+        GenericTaskAsync task = mApp.get(clazz);
         task.init(mActivity.getApplicationContext(), flagMsg);
         task.execute(hosts);
     }

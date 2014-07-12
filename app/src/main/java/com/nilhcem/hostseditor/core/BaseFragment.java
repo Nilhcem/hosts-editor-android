@@ -4,7 +4,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import com.actionbarsherlock.app.SherlockFragment;
 import com.actionbarsherlock.app.SherlockFragmentActivity;
-import com.nilhcem.hostseditor.HostsEditorApp;
+import com.nilhcem.hostseditor.HostsEditorApplication;
 import com.squareup.otto.Bus;
 
 import javax.inject.Inject;
@@ -17,7 +17,7 @@ public class BaseFragment extends SherlockFragment {
     @Inject protected Bus mBus;
 
     protected SherlockFragmentActivity mActivity;
-    protected HostsEditorApp mApp;
+    protected HostsEditorApplication mApp;
 
     @Override
     public void onAttach(Activity activity) {
@@ -27,7 +27,7 @@ public class BaseFragment extends SherlockFragment {
 
         super.onAttach(activity);
         mActivity = (SherlockFragmentActivity) activity;
-        mApp = (HostsEditorApp) activity.getApplication();
+        mApp = (HostsEditorApplication) activity.getApplication();
     }
 
     @Override
@@ -41,9 +41,7 @@ public class BaseFragment extends SherlockFragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setRetainInstance(true);
-
-        // Android constructs Fragment instances so we must find the ObjectGraph instance and inject this.
-        mApp.getObjectGraph().inject(this);
+        HostsEditorApplication.get(mActivity).inject(this);
     }
 
     @Override

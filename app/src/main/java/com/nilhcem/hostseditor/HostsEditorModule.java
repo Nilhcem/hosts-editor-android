@@ -1,4 +1,4 @@
-package com.nilhcem.hostseditor.bus;
+package com.nilhcem.hostseditor;
 
 import com.nilhcem.hostseditor.addedit.AddEditHostActivity;
 import com.nilhcem.hostseditor.addedit.AddEditHostFragment;

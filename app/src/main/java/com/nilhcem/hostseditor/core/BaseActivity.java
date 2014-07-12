@@ -2,7 +2,7 @@ package com.nilhcem.hostseditor.core;
 
 import android.os.Bundle;
 import com.actionbarsherlock.app.SherlockFragmentActivity;
-import com.nilhcem.hostseditor.HostsEditorApp;
+import com.nilhcem.hostseditor.HostsEditorApplication;
 import com.squareup.otto.Bus;
 
 import javax.inject.Inject;
@@ -17,9 +17,7 @@ public abstract class BaseActivity extends SherlockFragmentActivity {
     @Override
     protected void onCreate(Bundle state) {
         super.onCreate(state);
-
-        // Android constructs Activity instances so we must find the ObjectGraph instance and inject this.
-        ((HostsEditorApp) getApplication()).getObjectGraph().inject(this);
+        HostsEditorApplication.get(this).inject(this);
     }
 
     @Override
