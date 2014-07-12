@@ -29,14 +29,11 @@ public class AddEditHostActivity extends BaseActivity {
         initActionBar(hostToEdit);
 
         // Add fragment
-        FragmentManager fragmentMngr = getSupportFragmentManager();
-        mFragment = (AddEditHostFragment) fragmentMngr.findFragmentByTag(AddEditHostFragment.TAG);
+        FragmentManager fm = getSupportFragmentManager();
+        mFragment = (AddEditHostFragment) fm.findFragmentByTag(AddEditHostFragment.TAG);
         if (mFragment == null) {
-            mFragment = new AddEditHostFragment();
-            if (hostToEdit != null) {
-                mFragment.setHostToEdit(hostToEdit);
-            }
-            FragmentTransaction ft = fragmentMngr.beginTransaction();
+            mFragment = AddEditHostFragment.newInstance(hostToEdit);
+            FragmentTransaction ft = fm.beginTransaction();
             ft.replace(android.R.id.content, mFragment, AddEditHostFragment.TAG);
             ft.commit();
         }

@@ -24,6 +24,8 @@ import java.util.regex.Pattern;
 public class AddEditHostFragment extends BaseFragment {
 
     public static final String TAG = AddEditHostFragment.class.getSimpleName();
+
+    private static final String ARG_HOST = "mInitialHost";
     private static final Pattern HOSTNAME_INVALID_CHARS_PATTERN = Pattern.compile("^.*[#'\",\\\\]+.*$");
 
     private Host mInitialHost; // "edit mode" only - null for "add mode"
@@ -34,6 +36,26 @@ public class AddEditHostFragment extends BaseFragment {
     @InjectView(R.id.addEditComment) EditText mComment;
     @InjectView(R.id.addEditCommentLabel) TextView mCommentLabel;
     @InjectView(R.id.addEditHostButton) Button mButton;
+
+    public static AddEditHostFragment newInstance(Host hostToEdit) {
+        AddEditHostFragment fragment = new AddEditHostFragment();
+
+        if (hostToEdit != null) {
+            Bundle args = new Bundle();
+            args.putParcelable(ARG_HOST, hostToEdit);
+            fragment.setArguments(args);
+        }
+        return fragment;
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        Bundle arguments = getArguments();
+        if (arguments != null) {
+            mInitialHost = arguments.getParcelable(ARG_HOST);
+        }
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -99,10 +121,6 @@ public class AddEditHostFragment extends BaseFragment {
                 mErrorAlert.show();
             }
         }
-    }
-
-    public void setHostToEdit(Host toEdit) {
-        mInitialHost = toEdit;
     }
 
     public boolean hasComment() {
