@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
-    <!-- List host (contextual menu) -->
     <color name="list_hosts_entry">#fff3f3f3</color>
     <color name="list_hosts_comment">#ff909090</color>
-
 </resources>
