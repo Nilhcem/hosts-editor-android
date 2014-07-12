@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <!-- Edit (visible when only one element is selected) -->
     <item
@@ -25,5 +25,4 @@
         android:orderInCategory="3"
         android:showAsAction="ifRoom|withText"
         android:title="@string/list_menu_delete"/>
-
 </menu>

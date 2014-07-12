@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <!-- Search -->
     <item
@@ -36,5 +36,4 @@
         android:icon="@drawable/ic_menu_info_details"
         android:showAsAction="never|withText"
         android:title="@string/action_about"/>
-
 </menu>
