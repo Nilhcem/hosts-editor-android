@@ -27,14 +27,7 @@ public class BaseFragment extends SherlockFragment {
 
         super.onAttach(activity);
         mActivity = (SherlockFragmentActivity) activity;
-        mApp = (HostsEditorApplication) activity.getApplication();
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        mApp = null;
-        mActivity = null;
+        mApp = HostsEditorApplication.get(activity);
     }
 
     @Override
@@ -52,7 +45,14 @@ public class BaseFragment extends SherlockFragment {
 
     @Override
     public void onPause() {
-        super.onPause();
         mBus.unregister(this);
+        super.onPause();
+    }
+
+    @Override
+    public void onDetach() {
+        mApp = null;
+        mActivity = null;
+        super.onDetach();
     }
 }
