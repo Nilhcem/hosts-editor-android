@@ -75,8 +75,8 @@ public class AddEditHostActivity extends BaseActivity {
     @Subscribe
     public void onHostCreatedFromFragment(CreatedHostEvent event) {
         Intent returnIntent = new Intent();
-        returnIntent.putExtra(EXTRA_HOST_ORIGINAL, event.getOriginal());
-        returnIntent.putExtra(EXTRA_HOST_MODIFIED, event.getHost());
+        returnIntent.putExtra(EXTRA_HOST_ORIGINAL, event.originalHost);
+        returnIntent.putExtra(EXTRA_HOST_MODIFIED, event.editedHost);
         setResult(RESULT_OK, returnIntent);
         finish();
     }

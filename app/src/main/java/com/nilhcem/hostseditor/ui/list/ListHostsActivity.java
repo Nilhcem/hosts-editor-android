@@ -169,7 +169,7 @@ public class ListHostsActivity extends BaseActivity {
     public void onStartAddEditActivityEvent(StartAddEditActivityEvent event) {
         Timber.d("Ready to start AddEditActivity");
         Intent intent = new Intent(this, AddEditHostActivity.class);
-        intent.putExtra(AddEditHostActivity.EXTRA_HOST_ORIGINAL, event.getHost());
+        intent.putExtra(AddEditHostActivity.EXTRA_HOST_ORIGINAL, event.host);
         startActivityForResult(intent, REQUESTCODE_ADDEDIT_ACTIVITY);
     }
 
