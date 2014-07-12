@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res/com.nilhcem.hostseditor"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingBottom="10dp"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="10dp" >
+    android:paddingTop="10dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical" >
+        android:orientation="vertical">
 
         <!-- Content -->
         <com.nilhcem.hostseditor.widget.TypefacedTextView
@@ -19,7 +20,7 @@
             android:layout_height="wrap_content"
             android:text="@string/about_text"
             android:textSize="16sp"
-            app:typeface="fonts/Roboto-Regular.ttf" />
+            app:typeface="fonts/Roboto-Regular.ttf"/>
 
         <!-- GitHub button -->
         <com.nilhcem.hostseditor.widget.TypefacedButton
@@ -29,7 +30,7 @@
             android:layout_marginBottom="12dp"
             android:layout_marginTop="12dp"
             android:text="@string/about_github_button"
-            app:typeface="fonts/Roboto-Regular.ttf" />
+            app:typeface="fonts/Roboto-Regular.ttf"/>
 
         <!-- Date - Author -->
         <com.nilhcem.hostseditor.widget.TypefacedTextView
@@ -38,7 +39,6 @@
             android:gravity="center"
             android:autoLink="web"
             android:text="@string/about_author"
-            app:typeface="fonts/Roboto-Italic.ttf" />
+            app:typeface="fonts/Roboto-Italic.ttf"/>
     </LinearLayout>
-
 </ScrollView>
