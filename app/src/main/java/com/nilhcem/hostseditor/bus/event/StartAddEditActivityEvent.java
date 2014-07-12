@@ -4,16 +4,16 @@ import com.nilhcem.hostseditor.core.Host;
 
 public class StartAddEditActivityEvent {
 
-	private final Host mHost;
+    private final Host mHost;
 
-	public StartAddEditActivityEvent(Host host) {
-		mHost = host;
-	}
+    public StartAddEditActivityEvent(Host host) {
+        mHost = host;
+    }
 
-	/**
-	 * Returns the Host entry to modify (edit mode), or {@code null} (add mode).
-	 */
-	public Host getHost() {
-		return mHost;
-	}
+    /**
+     * Returns the Host entry to modify (edit mode), or {@code null} (add mode).
+     */
+    public Host getHost() {
+        return mHost;
+    }
 }

@@ -11,8 +11,8 @@ import android.widget.Button;
  */
 public final class TypefacedButton extends Button {
 
-	public TypefacedButton(Context context, AttributeSet attrs) {
-		super(context, attrs);
-		TypefacedTextView.applyFont(context, attrs, this);
-	}
+    public TypefacedButton(Context context, AttributeSet attrs) {
+        super(context, attrs);
+        TypefacedTextView.applyFont(context, attrs, this);
+    }
 }

@@ -9,19 +9,19 @@ import com.nilhcem.hostseditor.util.Log;
  */
 public class ToggleHostsAsync extends GenericTaskAsync {
 
-	private static final String TAG = ToggleHostsAsync.class.getSimpleName();
+    private static final String TAG = ToggleHostsAsync.class.getSimpleName();
 
-	@Override
-	protected void process(Host... params) {
-		Log.d(TAG, "Toggle hosts");
+    @Override
+    protected void process(Host... params) {
+        Log.d(TAG, "Toggle hosts");
 
-		for (Host host : params) {
-			host.toggleComment();
-		}
-	}
+        for (Host host : params) {
+            host.toggleComment();
+        }
+    }
 
-	@Override
-	protected int getLoadingMsgRes() {
-		return mFlagLoadingMsg ? R.string.loading_toggle_single : R.string.loading_toggle_multiple;
-	}
+    @Override
+    protected int getLoadingMsgRes() {
+        return mFlagLoadingMsg ? R.string.loading_toggle_single : R.string.loading_toggle_multiple;
+    }
 }

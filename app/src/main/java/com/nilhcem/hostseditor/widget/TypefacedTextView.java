@@ -5,7 +5,6 @@ import android.content.res.TypedArray;
 import android.graphics.Typeface;
 import android.util.AttributeSet;
 import android.widget.TextView;
-
 import com.nilhcem.hostseditor.R;
 
 /**
@@ -15,27 +14,27 @@ import com.nilhcem.hostseditor.R;
  */
 public final class TypefacedTextView extends TextView {
 
-	public TypefacedTextView(Context context, AttributeSet attrs) {
-		super(context, attrs);
+    public TypefacedTextView(Context context, AttributeSet attrs) {
+        super(context, attrs);
 
-		// Typeface.createFromAsset doesn't work in the layout editor. Skipping...
-		if (isInEditMode()) {
-			return;
-		}
+        // Typeface.createFromAsset doesn't work in the layout editor. Skipping...
+        if (isInEditMode()) {
+            return;
+        }
 
-		TypefacedTextView.applyFont(context, attrs, this);
-	}
+        TypefacedTextView.applyFont(context, attrs, this);
+    }
 
-	static void applyFont(Context context, AttributeSet attrs, TextView view) {
-		TypedArray styledAttrs = context.obtainStyledAttributes(attrs, R.styleable.TypefacedTextView);
-		if (styledAttrs != null) {
-			String fontName = styledAttrs.getString(R.styleable.TypefacedTextView_typeface);
-			styledAttrs.recycle();
+    static void applyFont(Context context, AttributeSet attrs, TextView view) {
+        TypedArray styledAttrs = context.obtainStyledAttributes(attrs, R.styleable.TypefacedTextView);
+        if (styledAttrs != null) {
+            String fontName = styledAttrs.getString(R.styleable.TypefacedTextView_typeface);
+            styledAttrs.recycle();
 
-			if (fontName != null) {
-				Typeface typeface = Typeface.createFromAsset(context.getAssets(), fontName);
-				view.setTypeface(typeface);
-			}
-		}
-	}
+            if (fontName != null) {
+                Typeface typeface = Typeface.createFromAsset(context.getAssets(), fontName);
+                view.setTypeface(typeface);
+            }
+        }
+    }
 }

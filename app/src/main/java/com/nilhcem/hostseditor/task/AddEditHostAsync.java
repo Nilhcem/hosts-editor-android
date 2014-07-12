@@ -1,34 +1,34 @@
 package com.nilhcem.hostseditor.task;
 
-import java.util.List;
-
 import com.nilhcem.hostseditor.R;
 import com.nilhcem.hostseditor.core.Host;
 import com.nilhcem.hostseditor.util.Log;
+
+import java.util.List;
 
 /**
  * AsyncTask that inserts or edits an host entry and triggers a {@code TaskCompletedEvent} event.
  */
 public class AddEditHostAsync extends GenericTaskAsync {
 
-	private static final String TAG = AddEditHostAsync.class.getSimpleName();
+    private static final String TAG = AddEditHostAsync.class.getSimpleName();
 
-	@Override
-	protected void process(Host... params) {
-		Log.d(TAG, "Add/Edit host");
-		Host host = params[0];
-		Host original = params[1];
+    @Override
+    protected void process(Host... params) {
+        Log.d(TAG, "Add/Edit host");
+        Host host = params[0];
+        Host original = params[1];
 
-		List<Host> hosts = mHostsManager.getHosts(false);
-		if (original == null) {
-			hosts.add(host);
-		} else {
-			hosts.get(hosts.indexOf(original)).merge(host);
-		}
-	}
+        List<Host> hosts = mHostsManager.getHosts(false);
+        if (original == null) {
+            hosts.add(host);
+        } else {
+            hosts.get(hosts.indexOf(original)).merge(host);
+        }
+    }
 
-	@Override
-	protected int getLoadingMsgRes() {
-		return mFlagLoadingMsg ? R.string.loading_add : R.string.loading_edit;
-	}
+    @Override
+    protected int getLoadingMsgRes() {
+        return mFlagLoadingMsg ? R.string.loading_add : R.string.loading_edit;
+    }
 }
