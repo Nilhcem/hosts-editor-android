@@ -1,4 +1,4 @@
-package com.nilhcem.hostseditor.list;
+package com.nilhcem.hostseditor.ui.list;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,14 +15,14 @@ import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 import com.actionbarsherlock.widget.SearchView;
 import com.nilhcem.hostseditor.R;
-import com.nilhcem.hostseditor.about.AboutDialogFragment;
-import com.nilhcem.hostseditor.addedit.AddEditHostActivity;
-import com.nilhcem.hostseditor.bus.event.LoadingEvent;
-import com.nilhcem.hostseditor.bus.event.StartAddEditActivityEvent;
-import com.nilhcem.hostseditor.core.BaseActivity;
+import com.nilhcem.hostseditor.ui.about.AboutDialogFragment;
+import com.nilhcem.hostseditor.ui.addedit.AddEditHostActivity;
+import com.nilhcem.hostseditor.event.LoadingEvent;
+import com.nilhcem.hostseditor.event.StartAddEditActivityEvent;
+import com.nilhcem.hostseditor.ui.BaseActivity;
 import com.nilhcem.hostseditor.core.Host;
 import com.nilhcem.hostseditor.core.HostsManager;
-import com.nilhcem.hostseditor.util.Log;
+import com.nilhcem.hostseditor.core.util.Log;
 import com.squareup.otto.Subscribe;
 
 import javax.inject.Inject;

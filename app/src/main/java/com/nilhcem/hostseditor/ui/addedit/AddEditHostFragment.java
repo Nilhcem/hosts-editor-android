@@ -1,4 +1,4 @@
-package com.nilhcem.hostseditor.addedit;
+package com.nilhcem.hostseditor.ui.addedit;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -14,10 +14,10 @@ import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
 import com.nilhcem.hostseditor.R;
-import com.nilhcem.hostseditor.bus.event.CreatedHostEvent;
-import com.nilhcem.hostseditor.core.BaseFragment;
+import com.nilhcem.hostseditor.event.CreatedHostEvent;
+import com.nilhcem.hostseditor.ui.BaseFragment;
 import com.nilhcem.hostseditor.core.Host;
-import com.nilhcem.hostseditor.util.InetAddresses;
+import com.nilhcem.hostseditor.core.util.InetAddresses;
 
 import java.util.regex.Pattern;
 

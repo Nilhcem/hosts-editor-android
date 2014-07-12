@@ -2,7 +2,7 @@ package com.nilhcem.hostseditor.task;
 
 import com.nilhcem.hostseditor.R;
 import com.nilhcem.hostseditor.core.Host;
-import com.nilhcem.hostseditor.util.Log;
+import com.nilhcem.hostseditor.core.util.Log;
 
 import java.util.List;
 

@@ -1,7 +1,7 @@
 package com.nilhcem.hostseditor.core;
 
 import android.content.Context;
-import com.nilhcem.hostseditor.util.Log;
+import com.nilhcem.hostseditor.core.util.Log;
 import com.stericson.RootTools.RootTools;
 import com.stericson.RootTools.exceptions.RootDeniedException;
 import com.stericson.RootTools.execution.CommandCapture;

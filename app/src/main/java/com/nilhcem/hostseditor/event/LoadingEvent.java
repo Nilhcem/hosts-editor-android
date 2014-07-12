@@ -1,4 +1,4 @@
-package com.nilhcem.hostseditor.bus.event;
+package com.nilhcem.hostseditor.event;
 
 import android.content.Context;
 

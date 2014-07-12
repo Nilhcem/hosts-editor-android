@@ -15,7 +15,7 @@
         android:orientation="vertical">
 
         <!-- Content -->
-        <com.nilhcem.hostseditor.widget.TypefacedTextView
+        <com.nilhcem.hostseditor.ui.widget.TypefacedTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/about_text"
@@ -23,7 +23,7 @@
             app:typeface="fonts/Roboto-Regular.ttf"/>
 
         <!-- GitHub button -->
-        <com.nilhcem.hostseditor.widget.TypefacedButton
+        <com.nilhcem.hostseditor.ui.widget.TypefacedButton
             android:id="@+id/aboutGitHub"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -33,7 +33,7 @@
             app:typeface="fonts/Roboto-Regular.ttf"/>
 
         <!-- Date - Author -->
-        <com.nilhcem.hostseditor.widget.TypefacedTextView
+        <com.nilhcem.hostseditor.ui.widget.TypefacedTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"

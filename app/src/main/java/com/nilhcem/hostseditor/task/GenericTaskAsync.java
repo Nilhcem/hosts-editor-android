@@ -2,11 +2,11 @@ package com.nilhcem.hostseditor.task;
 
 import android.content.Context;
 import android.os.AsyncTask;
-import com.nilhcem.hostseditor.bus.event.LoadingEvent;
-import com.nilhcem.hostseditor.bus.event.TaskCompletedEvent;
+import com.nilhcem.hostseditor.event.LoadingEvent;
+import com.nilhcem.hostseditor.event.TaskCompletedEvent;
 import com.nilhcem.hostseditor.core.Host;
 import com.nilhcem.hostseditor.core.HostsManager;
-import com.nilhcem.hostseditor.util.Log;
+import com.nilhcem.hostseditor.core.util.Log;
 import com.squareup.otto.Bus;
 
 import javax.inject.Inject;

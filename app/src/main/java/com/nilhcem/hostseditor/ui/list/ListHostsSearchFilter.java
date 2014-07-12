@@ -1,11 +1,11 @@
-package com.nilhcem.hostseditor.list;
+package com.nilhcem.hostseditor.ui.list;
 
 import android.text.TextUtils;
 import android.widget.Filter;
-import com.nilhcem.hostseditor.bus.event.RefreshHostsEvent;
+import com.nilhcem.hostseditor.event.RefreshHostsEvent;
 import com.nilhcem.hostseditor.core.Host;
 import com.nilhcem.hostseditor.core.HostsManager;
-import com.nilhcem.hostseditor.util.Log;
+import com.nilhcem.hostseditor.core.util.Log;
 import com.squareup.otto.Bus;
 
 import javax.inject.Inject;

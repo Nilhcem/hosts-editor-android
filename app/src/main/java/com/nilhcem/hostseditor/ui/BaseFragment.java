@@ -1,4 +1,4 @@
-package com.nilhcem.hostseditor.core;
+package com.nilhcem.hostseditor.ui;
 
 import android.app.Activity;
 import android.os.Bundle;

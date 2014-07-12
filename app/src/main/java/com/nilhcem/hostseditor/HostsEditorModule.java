@@ -1,9 +1,9 @@
 package com.nilhcem.hostseditor;
 
-import com.nilhcem.hostseditor.addedit.AddEditHostActivity;
-import com.nilhcem.hostseditor.addedit.AddEditHostFragment;
-import com.nilhcem.hostseditor.list.ListHostsActivity;
-import com.nilhcem.hostseditor.list.ListHostsFragment;
+import com.nilhcem.hostseditor.ui.addedit.AddEditHostActivity;
+import com.nilhcem.hostseditor.ui.addedit.AddEditHostFragment;
+import com.nilhcem.hostseditor.ui.list.ListHostsActivity;
+import com.nilhcem.hostseditor.ui.list.ListHostsFragment;
 import com.nilhcem.hostseditor.task.AddEditHostAsync;
 import com.nilhcem.hostseditor.task.ListHostsAsync;
 import com.nilhcem.hostseditor.task.RemoveHostsAsync;

@@ -1,4 +1,4 @@
-package com.nilhcem.hostseditor.list;
+package com.nilhcem.hostseditor.ui.list;
 
 import android.content.Context;
 import android.view.View;
@@ -8,10 +8,10 @@ import android.widget.BaseAdapter;
 import android.widget.Filter;
 import android.widget.Filterable;
 import com.nilhcem.hostseditor.core.Host;
-import com.nilhcem.hostseditor.util.Compatibility;
-import com.nilhcem.hostseditor.util.Log;
-import com.nilhcem.hostseditor.util.ThreadPreconditions;
-import com.nilhcem.hostseditor.widget.CheckableHostItem;
+import com.nilhcem.hostseditor.core.util.Compatibility;
+import com.nilhcem.hostseditor.core.util.Log;
+import com.nilhcem.hostseditor.core.util.ThreadPreconditions;
+import com.nilhcem.hostseditor.ui.widget.CheckableHostItem;
 
 import javax.inject.Inject;
 import java.util.Collections;

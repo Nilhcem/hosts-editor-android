@@ -16,7 +16,7 @@
         android:orientation="vertical">
 
         <!-- IP (label) -->
-        <com.nilhcem.hostseditor.widget.TypefacedTextView
+        <com.nilhcem.hostseditor.ui.widget.TypefacedTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/add_edit_ip"
@@ -37,7 +37,7 @@
         </EditText>
 
         <!-- Hostname (label) -->
-        <com.nilhcem.hostseditor.widget.TypefacedTextView
+        <com.nilhcem.hostseditor.ui.widget.TypefacedTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/add_edit_name"
@@ -54,7 +54,7 @@
             android:inputType="textNoSuggestions"/>
 
         <!-- Comment (label) - hidden by default -->
-        <com.nilhcem.hostseditor.widget.TypefacedTextView
+        <com.nilhcem.hostseditor.ui.widget.TypefacedTextView
             android:id="@+id/addEditCommentLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -76,7 +76,7 @@
             tools:visibility="visible"/>
 
         <!-- "Add/Edit Host" Button -->
-        <com.nilhcem.hostseditor.widget.TypefacedButton
+        <com.nilhcem.hostseditor.ui.widget.TypefacedButton
             android:id="@+id/addEditHostButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

@@ -1,4 +1,4 @@
-package com.nilhcem.hostseditor.about;
+package com.nilhcem.hostseditor.ui.about;
 
 import android.content.Intent;
 import android.net.Uri;

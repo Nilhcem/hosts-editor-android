@@ -15,7 +15,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.nilhcem.hostseditor.util;
+package com.nilhcem.hostseditor.core.util;
 
 import java.net.InetAddress;
 import java.nio.ByteBuffer;

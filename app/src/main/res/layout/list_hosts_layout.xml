@@ -10,7 +10,7 @@
     <!-- Hosts list -->
     <fragment
         android:id="@+id/listHostsFragment"
-        android:name="com.nilhcem.hostseditor.list.ListHostsFragment"
+        android:name="com.nilhcem.hostseditor.ui.list.ListHostsFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 
@@ -23,7 +23,7 @@
         android:visibility="gone"/>
 
     <!-- Loading (message) -->
-    <com.nilhcem.hostseditor.widget.TypefacedTextView
+    <com.nilhcem.hostseditor.ui.widget.TypefacedTextView
         android:id="@+id/listLoadingMsg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
