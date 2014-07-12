@@ -36,11 +36,6 @@ public class CheckableHostItem extends RelativeLayout implements Checkable {
         initLayout(context);
     }
 
-    public CheckableHostItem(Context context, AttributeSet attrs) {
-        super(context, attrs);
-        initLayout(context);
-    }
-
     private void initLayout(Context context) {
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View view = inflater.inflate(R.layout.checkable_host_item, this, true);
