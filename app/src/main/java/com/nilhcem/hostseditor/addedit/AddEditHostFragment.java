@@ -24,7 +24,7 @@ import com.nilhcem.hostseditor.util.InetAddresses;
 
 public class AddEditHostFragment extends BaseFragment {
 
-	public static final String TAG = "AddHostFragment";
+	public static final String TAG = AddEditHostFragment.class.getSimpleName();
 	private static final Pattern HOSTNAME_INVALID_CHARS_PATTERN = Pattern.compile("^.*[#'\",\\\\]+.*$");
 
 	private Host mInitialHost; // "edit mode" only - null for "add mode"

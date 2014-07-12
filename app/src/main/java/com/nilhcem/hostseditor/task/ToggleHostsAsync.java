@@ -9,7 +9,7 @@ import com.nilhcem.hostseditor.util.Log;
  */
 public class ToggleHostsAsync extends GenericTaskAsync {
 
-	private static final String TAG = "ToggleHostsAsync";
+	private static final String TAG = ToggleHostsAsync.class.getSimpleName();
 
 	@Override
 	protected void process(Host... params) {

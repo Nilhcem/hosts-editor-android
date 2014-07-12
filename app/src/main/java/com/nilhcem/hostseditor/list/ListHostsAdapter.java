@@ -21,7 +21,7 @@ import com.nilhcem.hostseditor.widget.CheckableHostItem;
 
 class ListHostsAdapter extends BaseAdapter implements Filterable {
 
-	private static final String TAG = "ListHostsAdapter";
+	private static final String TAG = ListHostsAdapter.class.getSimpleName();
 
     @Inject ListHostsSearchFilter mSearchFilter;
 

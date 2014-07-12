@@ -15,7 +15,7 @@ import com.squareup.otto.Bus;
 
 class ListHostsSearchFilter extends Filter {
 
-	private static final String TAG = "ListHostsSearchFilter";
+	private static final String TAG = ListHostsSearchFilter.class.getSimpleName();
 
 	@Inject Bus mBus;
 	@Inject HostsManager mHostsManager;

@@ -42,7 +42,7 @@ import com.squareup.otto.Subscribe;
 
 public class ListHostsFragment extends BaseFragment implements OnItemClickListener, OnItemLongClickListener {
 
-	private static final String TAG = "ListHostsFragment";
+	private static final String TAG = ListHostsFragment.class.getSimpleName();
 
 	@Inject ListHostsAdapter mAdapter;
 	@InjectView(R.id.listHosts) ListView mListView;

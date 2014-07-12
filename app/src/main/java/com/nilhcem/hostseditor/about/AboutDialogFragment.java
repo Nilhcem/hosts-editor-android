@@ -14,7 +14,7 @@ import com.nilhcem.hostseditor.R;
 
 public class AboutDialogFragment extends SherlockDialogFragment {
 
-	public static final String TAG = "AboutDialogFragment";
+	public static final String TAG = AboutDialogFragment.class.getSimpleName();
 	private static final String GITHUB_URL = "https://github.com/Nilhcem/hosts-editor-android";
 
 	@Override

@@ -30,7 +30,7 @@ import javax.inject.Inject;
 public class ListHostsActivity extends BaseActivity {
 
 	private static final int REQUESTCODE_ADDEDIT_ACTIVITY = 1;
-	private static final String TAG = "ListHostsActivity";
+	private static final String TAG = ListHostsActivity.class.getSimpleName();
 	private static final String STR_EMPTY = "";
 	private static final String INSTANCE_STATE_LOADING = "loading";
 	private static final String INSTANCE_STATE_LOADING_MESSAGE = "loadingMessage";

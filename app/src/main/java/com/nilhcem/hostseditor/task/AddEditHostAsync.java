@@ -11,7 +11,7 @@ import com.nilhcem.hostseditor.util.Log;
  */
 public class AddEditHostAsync extends GenericTaskAsync {
 
-	private static final String TAG = "AddEditHostAsync";
+	private static final String TAG = AddEditHostAsync.class.getSimpleName();
 
 	@Override
 	protected void process(Host... params) {

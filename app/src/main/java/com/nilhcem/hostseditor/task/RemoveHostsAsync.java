@@ -11,7 +11,7 @@ import com.nilhcem.hostseditor.util.Log;
  */
 public class RemoveHostsAsync extends GenericTaskAsync {
 
-	private static final String TAG = "RemoveHostsAsync";
+	private static final String TAG = RemoveHostsAsync.class.getSimpleName();
 
 	@Override
 	protected void process(Host... params) {
