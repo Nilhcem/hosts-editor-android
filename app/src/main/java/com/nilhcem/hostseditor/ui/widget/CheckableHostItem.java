@@ -3,7 +3,6 @@ package com.nilhcem.hostseditor.ui.widget;
 import android.content.Context;
 import android.content.res.Resources;
 import android.text.TextUtils;
-import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Checkable;
