@@ -2,7 +2,7 @@ package com.nilhcem.hostseditor.task;
 
 import com.nilhcem.hostseditor.R;
 import com.nilhcem.hostseditor.core.Host;
-import com.nilhcem.hostseditor.core.util.Log;
+import timber.log.Timber;
 
 import java.util.List;
 
@@ -11,11 +11,9 @@ import java.util.List;
  */
 public class RemoveHostsAsync extends GenericTaskAsync {
 
-    private static final String TAG = RemoveHostsAsync.class.getSimpleName();
-
     @Override
     protected void process(Host... params) {
-        Log.d(TAG, "Remove hosts");
+        Timber.d("Remove hosts");
 
         List<Host> hosts = mHostsManager.getHosts(false);
         for (Host host : params) {

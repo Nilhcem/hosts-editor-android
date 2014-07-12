@@ -2,12 +2,12 @@ package com.nilhcem.hostseditor.task;
 
 import android.content.Context;
 import android.os.AsyncTask;
-import com.nilhcem.hostseditor.event.LoadingEvent;
-import com.nilhcem.hostseditor.event.TaskCompletedEvent;
 import com.nilhcem.hostseditor.core.Host;
 import com.nilhcem.hostseditor.core.HostsManager;
-import com.nilhcem.hostseditor.core.util.Log;
+import com.nilhcem.hostseditor.event.LoadingEvent;
+import com.nilhcem.hostseditor.event.TaskCompletedEvent;
 import com.squareup.otto.Bus;
+import timber.log.Timber;
 
 import javax.inject.Inject;
 
@@ -37,14 +37,14 @@ public abstract class GenericTaskAsync extends AsyncTask<Host, Void, Void> {
     @Override
     protected void onPostExecute(Void result) {
         super.onPostExecute(result);
-        Log.d(getClass().getSimpleName(), "Task fully executed");
+        Timber.d("Task fully executed");
         mBus.post(new TaskCompletedEvent(getClass().getSimpleName(), true));
     }
 
     @Override
     protected void onCancelled() {
         super.onCancelled();
-        Log.w(getClass().getSimpleName(), "Task cancelled");
+        Timber.w("Task cancelled");
         mBus.post(new TaskCompletedEvent(getClass().getSimpleName(), false));
     }
 

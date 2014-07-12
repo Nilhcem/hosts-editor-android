@@ -9,17 +9,15 @@ import android.widget.Filter;
 import android.widget.Filterable;
 import com.nilhcem.hostseditor.core.Host;
 import com.nilhcem.hostseditor.core.util.Compatibility;
-import com.nilhcem.hostseditor.core.util.Log;
 import com.nilhcem.hostseditor.core.util.ThreadPreconditions;
 import com.nilhcem.hostseditor.ui.widget.CheckableHostItem;
+import timber.log.Timber;
 
 import javax.inject.Inject;
 import java.util.Collections;
 import java.util.List;
 
 class ListHostsAdapter extends BaseAdapter implements Filterable {
-
-    private static final String TAG = ListHostsAdapter.class.getSimpleName();
 
     @Inject ListHostsSearchFilter mSearchFilter;
 
@@ -49,7 +47,7 @@ class ListHostsAdapter extends BaseAdapter implements Filterable {
         // A tablet can afford having a large column but not a phone.
 
         int screenWidth = Compatibility.getScreenDimensions(context).x;
-        Log.d(TAG, "Screen width: %d", screenWidth);
+        Timber.d("Screen width: %d", screenWidth);
 
         // Step 1: Compute minimum width.
         // Min width must be between [100dp, 160dp]. If possible, 30% of screen width.
@@ -70,7 +68,7 @@ class ListHostsAdapter extends BaseAdapter implements Filterable {
             maxWidth = minWidth;
         }
 
-        Log.d(TAG, "Min width: %d - Max width: %d", minWidth, maxWidth);
+        Timber.d("Min width: %d - Max width: %d", minWidth, maxWidth);
         mIpMinWidth = minWidth;
         mIpMaxWidth = maxWidth;
     }

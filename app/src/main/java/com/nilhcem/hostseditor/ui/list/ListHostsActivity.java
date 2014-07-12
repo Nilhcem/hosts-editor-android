@@ -15,28 +15,23 @@ import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 import com.actionbarsherlock.widget.SearchView;
 import com.nilhcem.hostseditor.R;
-import com.nilhcem.hostseditor.ui.about.AboutDialogFragment;
-import com.nilhcem.hostseditor.ui.addedit.AddEditHostActivity;
+import com.nilhcem.hostseditor.core.Host;
 import com.nilhcem.hostseditor.event.LoadingEvent;
 import com.nilhcem.hostseditor.event.StartAddEditActivityEvent;
 import com.nilhcem.hostseditor.ui.BaseActivity;
-import com.nilhcem.hostseditor.core.Host;
-import com.nilhcem.hostseditor.core.HostsManager;
-import com.nilhcem.hostseditor.core.util.Log;
+import com.nilhcem.hostseditor.ui.about.AboutDialogFragment;
+import com.nilhcem.hostseditor.ui.addedit.AddEditHostActivity;
 import com.squareup.otto.Subscribe;
-
-import javax.inject.Inject;
+import timber.log.Timber;
 
 public class ListHostsActivity extends BaseActivity {
 
     private static final int REQUESTCODE_ADDEDIT_ACTIVITY = 1;
-    private static final String TAG = ListHostsActivity.class.getSimpleName();
     private static final String STR_EMPTY = "";
     private static final String INSTANCE_STATE_LOADING = "loading";
     private static final String INSTANCE_STATE_LOADING_MESSAGE = "loadingMessage";
     private static final String INSTANCE_STATE_SEARCH = "search";
 
-    @Inject protected HostsManager mHostsManager;
     @InjectView(R.id.listLoading) ProgressBar mProgressBar;
     @InjectView(R.id.listLoadingMsg) TextView mLoadingMsg;
 
@@ -50,8 +45,8 @@ public class ListHostsActivity extends BaseActivity {
         setContentView(R.layout.list_hosts_layout);
         ButterKnife.inject(this);
 
-        FragmentManager fragmentMngr = getSupportFragmentManager();
-        mFragment = (ListHostsFragment) fragmentMngr.findFragmentById(R.id.listHostsFragment);
+        FragmentManager fm = getSupportFragmentManager();
+        mFragment = (ListHostsFragment) fm.findFragmentById(R.id.listHostsFragment);
 
         if (savedInstanceState == null) {
             onLoadingEvent(new LoadingEvent(true, R.string.loading_hosts));
@@ -76,7 +71,7 @@ public class ListHostsActivity extends BaseActivity {
 
                 @Override
                 public boolean onQueryTextChange(String newText) {
-                    Log.d(TAG, "Search query: %s", newText);
+                    Timber.d("Search query: %s", newText);
                     setSearchQuery(newText);
                     mFragment.filterList(newText);
                     return true;
@@ -134,7 +129,7 @@ public class ListHostsActivity extends BaseActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        Log.d(TAG, "Activity result received");
+        Timber.d("Activity result received");
         if (requestCode == REQUESTCODE_ADDEDIT_ACTIVITY) {
             if (resultCode == RESULT_OK) {
                 Host modified = data.getParcelableExtra(AddEditHostActivity.EXTRA_HOST_MODIFIED);
@@ -172,7 +167,7 @@ public class ListHostsActivity extends BaseActivity {
 
     @Subscribe
     public void onStartAddEditActivityEvent(StartAddEditActivityEvent event) {
-        Log.d(TAG, "Ready to start AddEditActivity");
+        Timber.d("Ready to start AddEditActivity");
         Intent intent = new Intent(this, AddEditHostActivity.class);
         intent.putExtra(AddEditHostActivity.EXTRA_HOST_ORIGINAL, event.getHost());
         startActivityForResult(intent, REQUESTCODE_ADDEDIT_ACTIVITY);
@@ -184,7 +179,7 @@ public class ListHostsActivity extends BaseActivity {
 
         mLoadingMsg.setText(event.getMessage(this));
         if (event.isLoading()) {
-            Log.d(TAG, "Start loading");
+            Timber.d("Start loading");
             if (mSearchItem != null) {
                 setSearchQuery(STR_EMPTY);
                 mSearchItem.collapseActionView();
@@ -194,7 +189,7 @@ public class ListHostsActivity extends BaseActivity {
             mLoadingMsg.setVisibility(View.VISIBLE);
             ft.hide(mFragment);
         } else {
-            Log.d(TAG, "Stop loading");
+            Timber.d("Stop loading");
             mProgressBar.setVisibility(View.GONE);
             mLoadingMsg.setVisibility(View.GONE);
             ft.show(mFragment);

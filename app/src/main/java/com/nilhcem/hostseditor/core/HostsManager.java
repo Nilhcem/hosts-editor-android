@@ -1,12 +1,12 @@
 package com.nilhcem.hostseditor.core;
 
 import android.content.Context;
-import com.nilhcem.hostseditor.core.util.Log;
 import com.stericson.RootTools.RootTools;
 import com.stericson.RootTools.exceptions.RootDeniedException;
 import com.stericson.RootTools.execution.CommandCapture;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.LineIterator;
+import timber.log.Timber;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -23,8 +23,6 @@ import java.util.concurrent.TimeoutException;
 @Singleton
 public class HostsManager {
 
-    private static final String TAG = HostsManager.class.getSimpleName();
-
     private static final String UTF_8 = "UTF-8";
     private static final String HOSTS_FILE_NAME = "hosts";
     private static final String HOSTS_FILE_PATH = "/system/etc/" + HOSTS_FILE_NAME;
@@ -37,7 +35,7 @@ public class HostsManager {
     private static final String COMMAND_CHMOD_644 = "chmod 644";
 
     // Do not access this field directly even in the same class, use getAllHosts() instead.
-    private List<Host> mHosts = null;
+    private List<Host> mHosts;
 
     @Inject
     public HostsManager() {
@@ -64,7 +62,7 @@ public class HostsManager {
                     }
                 }
             } catch (IOException e) {
-                Log.e(TAG, "I/O error while opening hosts file", e);
+                Timber.e(e, "I/O error while opening hosts file");
             } finally {
                 if (it != null) {
                     LineIterator.closeQuietly(it);
@@ -83,13 +81,13 @@ public class HostsManager {
      */
     public synchronized boolean saveHosts(Context appContext) {
         if (!RootTools.isAccessGiven()) {
-            Log.w(TAG, "Can't get root access");
+            Timber.w("Can't get root access");
             return false;
         }
 
         // Step 1: Create temporary hosts file in /data/data/project_package/files/hosts
         if (!createTempHostsFile(appContext)) {
-            Log.w(TAG, "Can't create temporary hosts file");
+            Timber.w("Can't create temporary hosts file");
             return false;
         }
 
@@ -105,10 +103,10 @@ public class HostsManager {
                     hostsFilePath = hostsFile.getCanonicalPath();
                 }
             } catch (IOException e1) {
-                Log.e(TAG, "", e1);
+                Timber.e(e1, "");
             }
         } else {
-            Log.w(TAG, "Hosts file was not found in filesystem");
+            Timber.w("Hosts file was not found in filesystem");
         }
 
         try {
@@ -128,7 +126,7 @@ public class HostsManager {
             // Step 6: Delete local file
             appContext.deleteFile(HOSTS_FILE_NAME);
         } catch (Exception e) {
-            Log.e(TAG, "", e);
+            Timber.e(e, "");
             return false;
         } finally {
             RootTools.remount(hostsFilePath, MOUNT_TYPE_RO);
@@ -173,14 +171,14 @@ public class HostsManager {
             }
             writer.flush();
         } catch (IOException e) {
-            Log.e(TAG, "", e);
+            Timber.e(e, "");
             return false;
         } finally {
             if (writer != null) {
                 try {
                     writer.close();
                 } catch (IOException e) {
-                    Log.e(TAG, "Error while closing writer", e);
+                    Timber.e(e, "Error while closing writer");
                 }
             }
         }

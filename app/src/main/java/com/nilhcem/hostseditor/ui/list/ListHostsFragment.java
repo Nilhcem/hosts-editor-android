@@ -19,15 +19,15 @@ import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
 import com.nilhcem.hostseditor.R;
+import com.nilhcem.hostseditor.core.Host;
 import com.nilhcem.hostseditor.event.LoadingEvent;
 import com.nilhcem.hostseditor.event.RefreshHostsEvent;
 import com.nilhcem.hostseditor.event.StartAddEditActivityEvent;
 import com.nilhcem.hostseditor.event.TaskCompletedEvent;
-import com.nilhcem.hostseditor.ui.BaseFragment;
-import com.nilhcem.hostseditor.core.Host;
 import com.nilhcem.hostseditor.task.*;
-import com.nilhcem.hostseditor.core.util.Log;
+import com.nilhcem.hostseditor.ui.BaseFragment;
 import com.squareup.otto.Subscribe;
+import timber.log.Timber;
 
 import javax.inject.Inject;
 import java.util.ArrayList;
@@ -35,8 +35,6 @@ import java.util.List;
 import java.util.Locale;
 
 public class ListHostsFragment extends BaseFragment implements OnItemClickListener, OnItemLongClickListener {
-
-    private static final String TAG = ListHostsFragment.class.getSimpleName();
 
     @Inject ListHostsAdapter mAdapter;
     @InjectView(R.id.listHosts) ListView mListView;
@@ -118,7 +116,7 @@ public class ListHostsFragment extends BaseFragment implements OnItemClickListen
 
     @Subscribe
     public void onTaskFinished(TaskCompletedEvent task) {
-        Log.d(TAG, "Task %s finished", task.tag);
+        Timber.d("Task %s finished", task.tag);
         if (task.isSuccessful) {
             refreshHosts(false);
         } else {
@@ -128,7 +126,7 @@ public class ListHostsFragment extends BaseFragment implements OnItemClickListen
 
     @Subscribe
     public void onHostsRefreshed(RefreshHostsEvent hosts) {
-        Log.d(TAG, "Refreshing listview");
+        Timber.d("Refreshing listview");
         finishActionMode();
         mAdapter.updateHosts(hosts.hosts);
         mBus.post(new LoadingEvent());

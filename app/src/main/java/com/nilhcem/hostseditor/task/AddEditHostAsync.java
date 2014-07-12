@@ -2,7 +2,7 @@ package com.nilhcem.hostseditor.task;
 
 import com.nilhcem.hostseditor.R;
 import com.nilhcem.hostseditor.core.Host;
-import com.nilhcem.hostseditor.core.util.Log;
+import timber.log.Timber;
 
 import java.util.List;
 
@@ -11,11 +11,9 @@ import java.util.List;
  */
 public class AddEditHostAsync extends GenericTaskAsync {
 
-    private static final String TAG = AddEditHostAsync.class.getSimpleName();
-
     @Override
     protected void process(Host... params) {
-        Log.d(TAG, "Add/Edit host");
+        Timber.d("Add/Edit host");
         Host host = params[0];
         Host original = params[1];
 
