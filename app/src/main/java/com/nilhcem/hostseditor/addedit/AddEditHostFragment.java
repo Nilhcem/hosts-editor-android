@@ -65,6 +65,12 @@ public class AddEditHostFragment extends BaseFragment {
 		super.onStop();
 	}
 
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        ButterKnife.reset(this);
+    }
+
     @OnClick(R.id.addEditHostButton)
 	void onAddEditHostButtonClicked(Button button) {
 		if (button.getId() == R.id.addEditHostButton) {

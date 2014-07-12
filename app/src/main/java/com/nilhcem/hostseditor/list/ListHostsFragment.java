@@ -94,7 +94,13 @@ public class ListHostsFragment extends BaseFragment implements OnItemClickListen
 		super.onPause();
 	}
 
-	@Override
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        ButterKnife.reset(this);
+    }
+
+    @Override
 	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 		int nbCheckedElements = 0;
 		SparseBooleanArray checked = mListView.getCheckedItemPositions();
