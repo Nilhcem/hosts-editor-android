@@ -54,8 +54,8 @@ class ListHostsAdapter extends BaseAdapter implements Filterable {
         // Step 1: Compute minimum width.
         // Min width must be between [100dp, 160dp]. If possible, 30% of screen width.
         int minWidth = screenWidth * 30 / 100;
-        int minRange = Math.round(Compatibility.convertDpToPixel(100f, context));
-        int maxRange = Math.round(Compatibility.convertDpToPixel(160f, context));
+        int minRange = Compatibility.convertDpToIntPixel(100f, context);
+        int maxRange = Compatibility.convertDpToIntPixel(160f, context);
 
         if (minWidth < minRange) {
             minWidth = minRange;

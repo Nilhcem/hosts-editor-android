@@ -1,5 +1,6 @@
 package com.nilhcem.hostseditor.core.util;
 
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Point;
@@ -7,8 +8,6 @@ import android.os.Build;
 import android.util.DisplayMetrics;
 import android.view.Display;
 import android.view.WindowManager;
-
-import java.lang.reflect.Method;
 
 public class Compatibility {
 
@@ -27,24 +26,15 @@ public class Compatibility {
     }
 
     @SuppressWarnings("deprecation")
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB_MR2)
     public static Point getScreenDimensions(Context context) {
-        boolean oldWay = true;
         Point size = new Point();
 
-        WindowManager wm = (WindowManager) context
-                .getSystemService(Context.WINDOW_SERVICE);
+        WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
         Display display = wm.getDefaultDisplay();
         if (Compatibility.isCompatible(Build.VERSION_CODES.HONEYCOMB_MR2)) {
-            try {
-                Method method = Display.class.getDeclaredMethod("getSize",
-                        new Class[]{Point.class});
-                method.invoke(display, size);
-                oldWay = false;
-            } catch (Exception e) {
-                oldWay = true;
-            }
-        }
-        if (oldWay) {
+            display.getSize(size);
+        } else {
             size.set(display.getWidth(), display.getHeight());
         }
         return size;
@@ -61,5 +51,9 @@ public class Compatibility {
         Resources resources = context.getResources();
         DisplayMetrics metrics = resources.getDisplayMetrics();
         return dp * (metrics.densityDpi / 160f);
+    }
+
+    public static int convertDpToIntPixel(float dp, Context context) {
+        return Math.round(convertDpToPixel(dp, context));
     }
 }
