@@ -3,12 +3,10 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:0.6.+'
-        classpath 'com.neenbedankt.gradle.plugins:android-apt:1.1'
+        classpath 'com.android.tools.build:gradle:0.10.+'
     }
 }
 apply plugin: 'android'
-apply plugin: 'android-apt'
 
 repositories {
     mavenCentral()
@@ -16,31 +14,33 @@ repositories {
 
 android {
     compileSdkVersion 19
-    buildToolsVersion "19.0.1"
+    buildToolsVersion '19.0.3'
 
     defaultConfig {
         minSdkVersion 8
         targetSdkVersion 19
+        versionCode 4
+        versionName '1.3'
     }
 }
 
 dependencies {
     // Commons IO
-    compile "commons-io:commons-io:${commonsioVersion}"
+    compile "commons-io:commons-io:2.4"
 
     // Dagger
-    apt "com.squareup.dagger:dagger-compiler:${daggerVersion}"
-    compile "com.squareup.dagger:dagger:${daggerVersion}"
+    compile "com.squareup.dagger:dagger:1.2.0"
+    provided "com.squareup.dagger:dagger-compiler:1.2.0"
 
     // ActionBarSherlock + Support library
-    compile "com.actionbarsherlock:actionbarsherlock:${absVersion}@aar"
-    compile "com.android.support:support-v4:${supportv4Version}"
+    compile "com.actionbarsherlock:actionbarsherlock:4.4.0@aar"
+    compile "com.android.support:support-v4:19.0.+"
 
     // Butterknife
-    compile "com.jakewharton:butterknife:${butterknifeVersion}"
+    compile "com.jakewharton:butterknife:4.0.1"
 
     // Otto
-    compile "com.squareup:otto:${ottoVersion}"
+    compile "com.squareup:otto:1.3.4"
 
     // Other jars (RootTools)
     compile fileTree(dir: 'libs', include: '*.jar')
