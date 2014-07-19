@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Éditeur Hosts</string>
+
+    <!-- Action bar menu -->
+    <string name="action_search">Rechercher</string>
+    <string name="action_search_results">Résultats de la recherche</string>
+    <string name="action_add_host">Ajouter un host</string>
+    <string name="action_reload">Recharger la liste des hosts</string>
+    <string name="action_select_all">Selectionner tous les hosts</string>
+    <string name="action_about">À propos</string>
+
+    <!-- Add/Edit host -->
+    <string name="add_host_title">Ajouter un nom d'host</string>
+    <string name="edit_host_title">Éditer un nom d'host</string>
+    <string name="add_edit_ip">Adresse IP :</string>
+    <string name="add_edit_name">Nom d'host :</string>
+    <string name="add_edit_comment">Commentaire :</string>
+    <string name="add_edit_error_title">Erreur</string>
+    <string name="add_edit_error_ip">L\'adresse IP est invalide</string>
+    <string name="add_edit_error_hostname">Le nom d'host est invalide</string>
+    <string name="add_edit_error_ok">OK</string>
+
+    <!-- Add/Edit host menu -->
+    <string name="action_add_comment">Ajouter un commentaire</string>
+    <string name="action_remove_comment">Supprimer un commentaire</string>
+
+    <!-- List hosts (empty layout) -->
+    <string name="list_empty">No \'hosts\' records found.</string>
+    <string name="list_empty_desc">We couldn\'t find any host entry.\nFeel free to add some!</string>
+
+    <!-- List hosts (contextual menu) -->
+    <string name="list_menu_selected">%d selectionné</string>
+    <string name="list_menu_edit">Éditer</string>
+    <string name="list_menu_delete">Supprimer</string>
+    <string name="list_menu_toggle">Inverser</string>
+
+    <!-- List hosts error dialog -->
+    <string name="list_error_title">Erreur</string>
+    <string name="list_error_content">Impossible d'éditer le fichier hosts, soyez sur que vous avez les droits root/SuperUser.\nL'app devrait être autorisé à demander les droits SuperUser.</string>
+    <string name="list_error_ok">OK</string>
+
+    <!-- Delete confirmation dialog -->
+    <string name="delete_dialog_title">Supprimer</string>
+    <plurals name="delete_dialog_content">
+        <item quantity="one">Supprimer l'host selectionné ?</item>
+        <item quantity="other">Supprimer les hosts selectionnés ?</item>
+    </plurals>
+    <string name="delete_dialog_cancel">Annuler</string>
+    <string name="delete_dialog_delete">Supprimer</string>
+
+    <!-- Loading messages -->
+    <string name="loading_hosts">Chargement de la liste des hosts</string>
+    <string name="loading_add">Ajouter un entrée</string>
+    <string name="loading_edit">Édition d'entrée</string>
+    <string name="loading_remove_single">Suppression de l'entrée</string>
+    <string name="loading_remove_multiple">Suppression des entrées</string>
+    <string name="loading_toggle_single">Inverser l'entrée</string>
+    <string name="loading_toggle_multiple">Inversion des entrées</string>
+
+    <!-- About -->
+    <string name="about_title">À propos de Éditeur Hosts</string>
+    <string name="about_text">Cette app vous permet de modifier votre fichier /etc/hosts sur Android.\nVous aurez peut être besoin de redémarrer pour vider le cache DNS cache après un changement.</string>
+    <string name="about_author">2013 &#8211; 2014\n<a href="http://www.nilhcem.com">http://www.nilhcem.com</a></string>
+    <string name="about_github_button">GitHub</string>
+</resources>
