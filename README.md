@@ -1,7 +1,7 @@
 # Hosts Editor for Android
 
-This repository contains the source code for the Hosts-editor
-Android app available from [Google Play][].
+This repository contains the source code for the Hosts-editor Android app.
+It is available from [Google Play][] and [F-Droid][].
 
 ![Hosts Editor for Android screenshots][]
 
@@ -16,7 +16,7 @@ You might need to reboot to clear your DNS cache after any change.
 * Insert, Remove, Toggle (comment/uncomment) and Modify host entries
 * Holo theme
 * Fast search engine
-* 100% free, no ads
+* 100% free/libre, gratis, no ads
 
 
 ## Building the app
@@ -247,6 +247,7 @@ This project uses many great open-source libraries, such as:
 
 
 [Google Play]: https://play.google.com/store/apps/details?id=com.nilhcem.hostseditor
+[F-Droid]: https://f-droid.org/repository/browse/?fdid=com.nilhcem.hostseditor
 [Hosts Editor for Android screenshots]: http://nilhcem.github.com/screenshots/hosts-editor.png
 [ActionBarSherlock]: http://actionbarsherlock.com/
 [Butterknife]: http://jakewharton.github.com/butterknife/
