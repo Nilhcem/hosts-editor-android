@@ -46,7 +46,7 @@ public final class InetAddresses {
         // Make a first pass to categorize the characters in this string.
         boolean hasColon = false;
         boolean hasDot = false;
-        for (int i = 0; i < ipString.length(); i++) {
+        for (int i = 0; i < ipString.length(); ++i) {
             char c = ipString.charAt(i);
             if (c == '.') {
                 hasDot = true;
@@ -83,7 +83,7 @@ public final class InetAddresses {
 
         byte[] bytes = new byte[IPV4_PART_COUNT];
         try {
-            for (int i = 0; i < bytes.length; i++) {
+            for (int i = 0; i < bytes.length; ++i) {
                 bytes[i] = parseOctet(address[i]);
             }
         } catch (NumberFormatException ex) {
@@ -103,7 +103,7 @@ public final class InetAddresses {
         // Disregarding the endpoints, find "::" with nothing in between.
         // This indicates that a run of zeroes has been skipped.
         int skipIndex = -1;
-        for (int i = 1; i < parts.length - 1; i++) {
+        for (int i = 1; i < parts.length - 1; ++i) {
             if (parts[i].length() == 0) {
                 if (skipIndex >= 0) {
                     return null; // Can't have more than one ::
@@ -141,13 +141,13 @@ public final class InetAddresses {
         // Now parse the hextets into a byte array.
         ByteBuffer rawBytes = ByteBuffer.allocate(2 * IPV6_PART_COUNT);
         try {
-            for (int i = 0; i < partsHi; i++) {
+            for (int i = 0; i < partsHi; ++i) {
                 rawBytes.putShort(parseHextet(parts[i]));
             }
-            for (int i = 0; i < partsSkipped; i++) {
+            for (int i = 0; i < partsSkipped; ++i) {
                 rawBytes.putShort((short) 0);
             }
-            for (int i = partsLo; i > 0; i--) {
+            for (int i = partsLo; i > 0; --i) {
                 rawBytes.putShort(parseHextet(parts[parts.length - i]));
             }
         } catch (NumberFormatException ex) {

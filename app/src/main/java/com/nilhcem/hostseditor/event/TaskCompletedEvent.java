@@ -6,7 +6,7 @@ public class TaskCompletedEvent {
     public final boolean isSuccessful;
 
     public TaskCompletedEvent(String pTag, boolean pIsSuccessful) {
-        tag = pTag;
-        isSuccessful = pIsSuccessful;
+        this.tag = pTag;
+        this.isSuccessful = pIsSuccessful;
     }
 }

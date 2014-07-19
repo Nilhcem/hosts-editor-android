@@ -13,25 +13,25 @@ public class LoadingEvent {
     }
 
     public LoadingEvent(boolean isLoading, int messageRes) {
-        mIsLoading = isLoading;
-        mMessageRes = messageRes;
-        mMessage = null;
+        this.mIsLoading = isLoading;
+        this.mMessageRes = messageRes;
+        this.mMessage = null;
     }
 
     public LoadingEvent(boolean isLoading, String message) {
-        mIsLoading = isLoading;
-        mMessage = message;
-        mMessageRes = 0;
+        this.mIsLoading = isLoading;
+        this.mMessage = message;
+        this.mMessageRes = 0;
     }
 
     public boolean isLoading() {
-        return mIsLoading;
+        return this.mIsLoading;
     }
 
     public String getMessage(Context context) {
-        if (mMessage == null) {
+        if (this.mMessage == null) {
             return context.getString(mMessageRes);
         }
-        return mMessage;
+        return this.mMessage;
     }
 }

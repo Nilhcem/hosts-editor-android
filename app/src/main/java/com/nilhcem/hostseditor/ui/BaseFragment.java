@@ -51,8 +51,8 @@ public class BaseFragment extends SherlockFragment {
 
     @Override
     public void onDetach() {
-        mApp = null;
-        mActivity = null;
+        this.mApp = null;
+        this.mActivity = null;
         super.onDetach();
     }
 }
