@@ -12,6 +12,6 @@ public class RefreshHostsEvent {
     public final List<Host> hosts;
 
     public RefreshHostsEvent(List<Host> refreshedHosts) {
-        hosts = refreshedHosts;
+        this.hosts = refreshedHosts;
     }
 }

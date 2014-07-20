@@ -38,27 +38,27 @@ public class Host implements Parcelable {
     }
 
     public String getIp() {
-        return mIp;
+        return this.mIp;
     }
 
     public String getHostName() {
-        return mHostName;
+        return this.mHostName;
     }
 
     public String getComment() {
-        return mComment;
+        return this.mComment;
     }
 
     public boolean isValid() {
-        return mIsValid;
+        return this.mIsValid;
     }
 
     public boolean isCommented() {
-        return mIsCommented;
+        return this.mIsCommented;
     }
 
     public void toggleComment() {
-        mIsCommented = !mIsCommented;
+        this.mIsCommented = !this.mIsCommented;
     }
 
     @Override

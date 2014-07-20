@@ -15,7 +15,7 @@ public class CreatedHostEvent {
     public final Host originalHost;
 
     public CreatedHostEvent(Host original, Host edited) {
-        originalHost = original;
-        editedHost = edited;
+        this.originalHost = original;
+        this.editedHost = edited;
     }
 }

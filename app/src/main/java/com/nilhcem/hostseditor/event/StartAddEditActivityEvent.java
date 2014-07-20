@@ -10,6 +10,6 @@ public class StartAddEditActivityEvent {
     public final Host host;
 
     public StartAddEditActivityEvent(Host addEditHost) {
-        host = addEditHost;
+        this.host = addEditHost;
     }
 }
