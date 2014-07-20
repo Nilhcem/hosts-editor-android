@@ -1,6 +1,7 @@
 # Hosts Editor for Android
 
 This repository contains the source code for the Hosts-editor Android app.
+
 It is available from [Google Play][] and [F-Droid][].
 
 ![Hosts Editor for Android screenshots][]
