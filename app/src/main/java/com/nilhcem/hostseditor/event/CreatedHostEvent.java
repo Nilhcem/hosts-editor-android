@@ -10,7 +10,7 @@ public class CreatedHostEvent {
     public final Host editedHost;
 
     /**
-     * Original version of the Host entry (edit mode) or {@code null} (add mode)
+     * Original version of the Host entry (edit mode) or {@code null} (add mode).
      */
     public final Host originalHost;
 
