@@ -36,8 +36,8 @@
         <com.nilhcem.hostseditor.ui.widget.TypefacedTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
             android:autoLink="web"
+            android:gravity="center"
             android:text="@string/about_author"
             app:typeface="fonts/Roboto-Italic.ttf"/>
     </LinearLayout>

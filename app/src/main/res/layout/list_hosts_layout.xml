@@ -2,6 +2,7 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
@@ -12,7 +13,8 @@
         android:id="@+id/listHostsFragment"
         android:name="com.nilhcem.hostseditor.ui.list.ListHostsFragment"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        tools:layout="@layout/list_hosts_fragment"/>
 
     <!-- Loading (progress bar) -->
     <ProgressBar
