@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.nilhcem.hostseditor"
-          android:installLocation="preferExternal">
+<manifest
+    package="com.nilhcem.hostseditor"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:installLocation="preferExternal">
 
     <uses-permission android:name="android.permission.ACCESS_SUPERUSER"/>
 
