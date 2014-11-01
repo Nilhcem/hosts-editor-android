@@ -2,9 +2,10 @@ package com.nilhcem.hostseditor.task;
 
 import com.nilhcem.hostseditor.R;
 import com.nilhcem.hostseditor.core.Host;
-import timber.log.Timber;
 
 import java.util.List;
+
+import timber.log.Timber;
 
 /**
  * AsyncTask that removes one or many host entries and triggers a {@code TaskCompletedEvent} event.

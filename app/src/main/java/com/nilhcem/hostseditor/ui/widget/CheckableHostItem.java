@@ -8,12 +8,14 @@ import android.view.View;
 import android.widget.Checkable;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import butterknife.ButterKnife;
-import butterknife.InjectView;
+
 import com.nilhcem.hostseditor.R;
 import com.nilhcem.hostseditor.core.Host;
 
 import java.util.Locale;
+
+import butterknife.ButterKnife;
+import butterknife.InjectView;
 
 /**
  * Custom component that implements the Checkable interface.

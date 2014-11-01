@@ -6,10 +6,12 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
+
 import com.actionbarsherlock.app.SherlockDialogFragment;
 import com.nilhcem.hostseditor.R;
+
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class AboutDialogFragment extends SherlockDialogFragment {
 

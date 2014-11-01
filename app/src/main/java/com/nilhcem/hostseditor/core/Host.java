@@ -3,6 +3,7 @@ package com.nilhcem.hostseditor.core;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.text.TextUtils;
+
 import com.nilhcem.hostseditor.core.util.InetAddresses;
 
 import java.util.regex.Matcher;

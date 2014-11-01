@@ -2,6 +2,7 @@ package com.nilhcem.hostseditor.task;
 
 import com.nilhcem.hostseditor.R;
 import com.nilhcem.hostseditor.core.Host;
+
 import timber.log.Timber;
 
 /**

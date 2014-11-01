@@ -1,6 +1,7 @@
 package com.nilhcem.hostseditor.core.util;
 
 import android.os.Looper;
+
 import com.nilhcem.hostseditor.BuildConfig;
 
 public final class ThreadPreconditions {

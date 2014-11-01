@@ -1,6 +1,7 @@
 package com.nilhcem.hostseditor.ui;
 
 import android.os.Bundle;
+
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.nilhcem.hostseditor.HostsEditorApplication;
 import com.squareup.otto.Bus;

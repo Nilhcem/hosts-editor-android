@@ -1,15 +1,14 @@
 package com.nilhcem.hostseditor.core;
 
 import android.content.Context;
+
 import com.stericson.RootTools.RootTools;
 import com.stericson.RootTools.exceptions.RootDeniedException;
 import com.stericson.RootTools.execution.CommandCapture;
+
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.LineIterator;
-import timber.log.Timber;
 
-import javax.inject.Inject;
-import javax.inject.Singleton;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -19,6 +18,11 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 import java.util.concurrent.TimeoutException;
+
+import javax.inject.Inject;
+import javax.inject.Singleton;
+
+import timber.log.Timber;
 
 @Singleton
 public class HostsManager {

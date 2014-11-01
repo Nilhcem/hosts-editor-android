@@ -2,6 +2,7 @@ package com.nilhcem.hostseditor.ui;
 
 import android.app.Activity;
 import android.os.Bundle;
+
 import com.actionbarsherlock.app.SherlockFragment;
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.nilhcem.hostseditor.HostsEditorApplication;

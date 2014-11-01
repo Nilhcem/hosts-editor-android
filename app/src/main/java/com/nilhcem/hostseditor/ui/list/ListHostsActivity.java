@@ -9,8 +9,7 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import butterknife.ButterKnife;
-import butterknife.InjectView;
+
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 import com.actionbarsherlock.widget.SearchView;
@@ -22,6 +21,9 @@ import com.nilhcem.hostseditor.ui.BaseActivity;
 import com.nilhcem.hostseditor.ui.about.AboutDialogFragment;
 import com.nilhcem.hostseditor.ui.addedit.AddEditHostActivity;
 import com.squareup.otto.Subscribe;
+
+import butterknife.ButterKnife;
+import butterknife.InjectView;
 import timber.log.Timber;
 
 public class ListHostsActivity extends BaseActivity {

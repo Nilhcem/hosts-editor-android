@@ -12,8 +12,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.ListView;
-import butterknife.ButterKnife;
-import butterknife.InjectView;
+
 import com.actionbarsherlock.view.ActionMode;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
@@ -24,15 +23,23 @@ import com.nilhcem.hostseditor.event.LoadingEvent;
 import com.nilhcem.hostseditor.event.RefreshHostsEvent;
 import com.nilhcem.hostseditor.event.StartAddEditActivityEvent;
 import com.nilhcem.hostseditor.event.TaskCompletedEvent;
-import com.nilhcem.hostseditor.task.*;
+import com.nilhcem.hostseditor.task.AddEditHostAsync;
+import com.nilhcem.hostseditor.task.GenericTaskAsync;
+import com.nilhcem.hostseditor.task.ListHostsAsync;
+import com.nilhcem.hostseditor.task.RemoveHostsAsync;
+import com.nilhcem.hostseditor.task.ToggleHostsAsync;
 import com.nilhcem.hostseditor.ui.BaseFragment;
 import com.squareup.otto.Subscribe;
-import timber.log.Timber;
 
-import javax.inject.Inject;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+
+import javax.inject.Inject;
+
+import butterknife.ButterKnife;
+import butterknife.InjectView;
+import timber.log.Timber;
 
 public class ListHostsFragment extends BaseFragment implements OnItemClickListener, OnItemLongClickListener {
 

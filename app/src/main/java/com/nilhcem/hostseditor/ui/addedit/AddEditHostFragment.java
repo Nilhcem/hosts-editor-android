@@ -10,16 +10,18 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import com.nilhcem.hostseditor.R;
+import com.nilhcem.hostseditor.core.Host;
+import com.nilhcem.hostseditor.core.util.InetAddresses;
+import com.nilhcem.hostseditor.event.CreatedHostEvent;
+import com.nilhcem.hostseditor.ui.BaseFragment;
+
+import java.util.regex.Pattern;
+
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
-import com.nilhcem.hostseditor.R;
-import com.nilhcem.hostseditor.event.CreatedHostEvent;
-import com.nilhcem.hostseditor.ui.BaseFragment;
-import com.nilhcem.hostseditor.core.Host;
-import com.nilhcem.hostseditor.core.util.InetAddresses;
-
-import java.util.regex.Pattern;
 
 public class AddEditHostFragment extends BaseFragment {
 

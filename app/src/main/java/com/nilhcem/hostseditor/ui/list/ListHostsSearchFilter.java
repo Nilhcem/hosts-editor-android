@@ -2,14 +2,17 @@ package com.nilhcem.hostseditor.ui.list;
 
 import android.text.TextUtils;
 import android.widget.Filter;
+
 import com.nilhcem.hostseditor.core.Host;
 import com.nilhcem.hostseditor.core.HostsManager;
 import com.nilhcem.hostseditor.event.RefreshHostsEvent;
 import com.squareup.otto.Bus;
-import timber.log.Timber;
+
+import java.util.List;
 
 import javax.inject.Inject;
-import java.util.List;
+
+import timber.log.Timber;
 
 class ListHostsSearchFilter extends Filter {
 

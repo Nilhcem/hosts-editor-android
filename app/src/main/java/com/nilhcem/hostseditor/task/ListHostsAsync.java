@@ -1,16 +1,18 @@
 package com.nilhcem.hostseditor.task;
 
 import android.os.AsyncTask;
+
 import com.nilhcem.hostseditor.R;
-import com.nilhcem.hostseditor.event.LoadingEvent;
-import com.nilhcem.hostseditor.event.RefreshHostsEvent;
 import com.nilhcem.hostseditor.core.Host;
 import com.nilhcem.hostseditor.core.HostsManager;
+import com.nilhcem.hostseditor.event.LoadingEvent;
+import com.nilhcem.hostseditor.event.RefreshHostsEvent;
 import com.squareup.otto.Bus;
 
-import javax.inject.Inject;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.inject.Inject;
 
 /**
  * AsyncTask that gets all valid hosts and triggers a {@code RefreshHostEvent} event.

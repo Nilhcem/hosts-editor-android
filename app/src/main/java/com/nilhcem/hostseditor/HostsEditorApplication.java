@@ -2,7 +2,9 @@ package com.nilhcem.hostseditor;
 
 import android.app.Application;
 import android.content.Context;
+
 import com.nilhcem.hostseditor.core.logging.ReleaseLogTree;
+
 import dagger.ObjectGraph;
 import timber.log.Timber;
 
