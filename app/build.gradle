@@ -2,15 +2,15 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 21
-    buildToolsVersion "21.1.0"
+    buildToolsVersion '21.1.2'
 
     defaultConfig {
-        applicationId "com.nilhcem.hostseditor"
+        applicationId 'com.nilhcem.hostseditor'
         minSdkVersion 8
         targetSdkVersion 21
         versionCode 4
-        versionName "1.3"
-        resConfig "en"
+        versionName '1.3'
+        resConfig 'en'
     }
 
     compileOptions {
@@ -45,7 +45,7 @@ dependencies {
     compile 'com.jakewharton:butterknife:6.0.0'
 
     // Logging
-    compile 'com.jakewharton.timber:timber:2.4.1'
+    compile 'com.jakewharton.timber:timber:2.5.0'
 
     // Otto
     compile 'com.squareup:otto:1.3.5'
