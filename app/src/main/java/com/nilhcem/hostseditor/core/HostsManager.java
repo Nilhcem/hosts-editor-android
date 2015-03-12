@@ -108,7 +108,7 @@ public class HostsManager {
                     hostsFilePath = hostsFile.getCanonicalPath();
                 }
             } catch (IOException e1) {
-                Timber.e(e1, "");
+                Timber.e(e1, "Can't find hosts file");
             }
         } else {
             Timber.w("Hosts file was not found in filesystem");
@@ -131,7 +131,7 @@ public class HostsManager {
             // Step 6: Delete local file
             appContext.deleteFile(HOSTS_FILE_NAME);
         } catch (Exception e) {
-            Timber.e(e, "");
+            Timber.e(e, "Failed running root command");
             return false;
         } finally {
             RootTools.remount(hostsFilePath, MOUNT_TYPE_RO);
@@ -176,7 +176,7 @@ public class HostsManager {
             }
             writer.flush();
         } catch (IOException e) {
-            Timber.e(e, "");
+            Timber.e(e, "Error creating temporary hosts file");
             return false;
         } finally {
             if (writer != null) {
