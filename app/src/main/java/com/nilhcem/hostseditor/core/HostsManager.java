@@ -2,9 +2,10 @@ package com.nilhcem.hostseditor.core;
 
 import android.content.Context;
 
+import com.stericson.RootShell.RootShell;
+import com.stericson.RootShell.exceptions.RootDeniedException;
+import com.stericson.RootShell.execution.Command;
 import com.stericson.RootTools.RootTools;
-import com.stericson.RootTools.exceptions.RootDeniedException;
-import com.stericson.RootTools.execution.CommandCapture;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.LineIterator;
@@ -143,7 +144,7 @@ public class HostsManager {
      */
     public List<Host> filterHosts(CharSequence constraint) {
         List<Host> all = getHosts(false);
-        List<Host> hosts = new ArrayList<Host>();
+        List<Host> hosts = new ArrayList<>();
 
         for (Host host : all) {
             if (host.isValid()) {
@@ -197,7 +198,7 @@ public class HostsManager {
      * @param uniqueArg the unique argument for the command, usually the file name
      */
     private void runRootCommand(String command, String uniqueArg) throws IOException, TimeoutException, RootDeniedException {
-        CommandCapture cmd = new CommandCapture(0, false, String.format(Locale.US, "%s %s", command, uniqueArg));
-        RootTools.getShell(true).add(cmd);
+        Command cmd = new Command(0, false, String.format(Locale.US, "%s %s", command, uniqueArg));
+        RootShell.getShell(true).add(cmd);
     }
 }
