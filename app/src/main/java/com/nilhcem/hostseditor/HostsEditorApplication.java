@@ -3,6 +3,8 @@ package com.nilhcem.hostseditor;
 import android.app.Application;
 import android.content.Context;
 
+import com.nilhcem.hostseditor.core.log.ReleaseTree;
+
 import dagger.ObjectGraph;
 import timber.log.Timber;
 
@@ -35,6 +37,8 @@ public class HostsEditorApplication extends Application {
     private void initLogger() {
         if (BuildConfig.DEBUG) {
             Timber.plant(new Timber.DebugTree());
+        } else {
+            Timber.plant(new ReleaseTree());
         }
     }
 
