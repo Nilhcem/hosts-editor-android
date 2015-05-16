@@ -1,5 +1,8 @@
 package com.nilhcem.hostseditor.task;
 
+import android.content.Context;
+
+import com.nilhcem.hostseditor.HostsEditorApplication;
 import com.nilhcem.hostseditor.R;
 import com.nilhcem.hostseditor.core.Host;
 
@@ -11,6 +14,11 @@ import timber.log.Timber;
  * AsyncTask that removes one or many host entries and triggers a {@code TaskCompletedEvent} event.
  */
 public class RemoveHostsAsync extends GenericTaskAsync {
+
+    public RemoveHostsAsync(Context appContext, boolean flagMsg) {
+        super(appContext, flagMsg);
+        HostsEditorApplication.get(appContext).component().inject(this);
+    }
 
     @Override
     protected void process(Host... params) {

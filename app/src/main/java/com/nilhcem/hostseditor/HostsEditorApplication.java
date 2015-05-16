@@ -3,35 +3,30 @@ package com.nilhcem.hostseditor;
 import android.app.Application;
 import android.content.Context;
 
+import com.nilhcem.hostseditor.core.dagger.DaggerHostsEditorComponent;
+import com.nilhcem.hostseditor.core.dagger.HostsEditorComponent;
+import com.nilhcem.hostseditor.core.dagger.HostsEditorModule;
 import com.nilhcem.hostseditor.core.log.ReleaseTree;
 
-import dagger.ObjectGraph;
 import timber.log.Timber;
 
-/**
- * Creates and provides access to Dagger's {@link ObjectGraph} instance.
- */
 public class HostsEditorApplication extends Application {
 
-    private ObjectGraph mObjectGraph;
+    private HostsEditorComponent mComponent;
+
+    public static HostsEditorApplication get(Context context) {
+        return (HostsEditorApplication) context.getApplicationContext();
+    }
 
     @Override
     public void onCreate() {
         super.onCreate();
         initLogger();
-        buildObjectGraph();
+        initGraph();
     }
 
-    public void inject(Object target) {
-        mObjectGraph.inject(target);
-    }
-
-    public <T> T get(Class<T> type) {
-        return mObjectGraph.get(type);
-    }
-
-    public static HostsEditorApplication get(Context context) {
-        return (HostsEditorApplication) context.getApplicationContext();
+    public HostsEditorComponent component() {
+        return mComponent;
     }
 
     private void initLogger() {
@@ -42,7 +37,9 @@ public class HostsEditorApplication extends Application {
         }
     }
 
-    private void buildObjectGraph() {
-        mObjectGraph = ObjectGraph.create(new HostsEditorModule());
+    private void initGraph() {
+        mComponent = DaggerHostsEditorComponent.builder()
+                .hostsEditorModule(new HostsEditorModule())
+                .build();
     }
 }

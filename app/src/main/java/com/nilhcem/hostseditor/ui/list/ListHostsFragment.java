@@ -24,7 +24,6 @@ import com.nilhcem.hostseditor.event.RefreshHostsEvent;
 import com.nilhcem.hostseditor.event.StartAddEditActivityEvent;
 import com.nilhcem.hostseditor.event.TaskCompletedEvent;
 import com.nilhcem.hostseditor.task.AddEditHostAsync;
-import com.nilhcem.hostseditor.task.GenericTaskAsync;
 import com.nilhcem.hostseditor.task.ListHostsAsync;
 import com.nilhcem.hostseditor.task.RemoveHostsAsync;
 import com.nilhcem.hostseditor.task.ToggleHostsAsync;
@@ -53,7 +52,8 @@ public class ListHostsFragment extends BaseFragment implements OnItemClickListen
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mAdapter.init(mActivity.getApplicationContext());
+        mApp.component().inject(this);
+        mAdapter.init(mApp);
     }
 
     @Override
@@ -140,11 +140,11 @@ public class ListHostsFragment extends BaseFragment implements OnItemClickListen
     }
 
     public void addEditHost(boolean addMode, Host[] hosts) {
-        runGenericTask(AddEditHostAsync.class, hosts, addMode);
+        new AddEditHostAsync(mApp, addMode).execute(hosts);
     }
 
     public void refreshHosts(boolean forceRefresh) {
-        mApp.get(ListHostsAsync.class).execute(forceRefresh);
+        new ListHostsAsync(mApp).execute(forceRefresh);
     }
 
     public void selectAll() {
@@ -213,7 +213,7 @@ public class ListHostsFragment extends BaseFragment implements OnItemClickListen
                     displayDeleteConfirmationDialog(selectedItems);
                     break;
                 case R.id.cab_action_toggle:
-                    runGenericTask(ToggleHostsAsync.class, selectedItems);
+                    new ToggleHostsAsync(mApp, selectedItems.length == 1).execute(selectedItems);
                     break;
                 default:
                     return false;
@@ -223,7 +223,7 @@ public class ListHostsFragment extends BaseFragment implements OnItemClickListen
         }
 
         private Host[] getSelectedItems() {
-            List<Host> items = new ArrayList<Host>();
+            List<Host> items = new ArrayList<>();
 
             int len = mListView.getCount();
             SparseBooleanArray checked = mListView.getCheckedItemPositions();
@@ -243,7 +243,7 @@ public class ListHostsFragment extends BaseFragment implements OnItemClickListen
                 .setPositiveButton(R.string.delete_dialog_delete, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        runGenericTask(RemoveHostsAsync.class, selectedItems);
+                        new RemoveHostsAsync(mApp, selectedItems.length == 1).execute(selectedItems);
                     }
                 })
                 .setNegativeButton(R.string.delete_dialog_cancel, new DialogInterface.OnClickListener() {
@@ -275,16 +275,6 @@ public class ListHostsFragment extends BaseFragment implements OnItemClickListen
                 })
                 .create();
         mDisplayedDialog.show();
-    }
-
-    private void runGenericTask(Class<? extends GenericTaskAsync> clazz, Host[] hosts) {
-        runGenericTask(clazz, hosts, hosts.length == 1);
-    }
-
-    private void runGenericTask(Class<? extends GenericTaskAsync> clazz, Host[] hosts, boolean flagMsg) {
-        GenericTaskAsync task = mApp.get(clazz);
-        task.init(mActivity.getApplicationContext(), flagMsg);
-        task.execute(hosts);
     }
 
     private void finishActionMode() {

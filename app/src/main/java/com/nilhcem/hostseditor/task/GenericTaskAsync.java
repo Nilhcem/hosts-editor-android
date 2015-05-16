@@ -21,6 +21,11 @@ public abstract class GenericTaskAsync extends AsyncTask<Host, Void, Void> {
     private Context mAppContext;
     protected boolean mFlagLoadingMsg; // which loading message (between 2) to display: (singular/plural) - (add/edit).
 
+    public GenericTaskAsync(Context appContext, boolean flagMsg) {
+        mAppContext = appContext;
+        mFlagLoadingMsg = flagMsg;
+    }
+
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
@@ -48,11 +53,6 @@ public abstract class GenericTaskAsync extends AsyncTask<Host, Void, Void> {
         super.onCancelled();
         Timber.w("Task cancelled");
         mBus.post(new TaskCompletedEvent(getClass().getSimpleName(), false));
-    }
-
-    public void init(Context appContext, boolean flagMsg) {
-        mAppContext = appContext;
-        mFlagLoadingMsg = flagMsg;
     }
 
     /**

@@ -14,11 +14,12 @@ import javax.inject.Inject;
 public abstract class BaseActivity extends SherlockFragmentActivity {
 
     @Inject protected Bus mBus;
+    protected HostsEditorApplication mApp;
 
     @Override
     protected void onCreate(Bundle state) {
         super.onCreate(state);
-        HostsEditorApplication.get(this).inject(this);
+        mApp = HostsEditorApplication.get(this);
     }
 
     @Override
@@ -29,7 +30,7 @@ public abstract class BaseActivity extends SherlockFragmentActivity {
 
     @Override
     protected void onPause() {
-        super.onPause();
         mBus.unregister(this);
+        super.onPause();
     }
 }

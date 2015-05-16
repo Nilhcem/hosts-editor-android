@@ -20,15 +20,19 @@ import javax.inject.Inject;
 
 import timber.log.Timber;
 
-class ListHostsAdapter extends BaseAdapter implements Filterable {
+public class ListHostsAdapter extends BaseAdapter implements Filterable {
 
-    @Inject ListHostsSearchFilter mSearchFilter;
+    private final ListHostsSearchFilter mSearchFilter;
 
     private List<Host> mHosts = Collections.emptyList();
     private Context mAppContext;
 
     private int mIpMinWidth;
     private int mIpMaxWidth;
+
+    @Inject public ListHostsAdapter(ListHostsSearchFilter searchFilter) {
+        mSearchFilter = searchFilter;
+    }
 
     public void init(Context appContext) {
         mAppContext = appContext;

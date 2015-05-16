@@ -14,10 +14,15 @@ import javax.inject.Inject;
 
 import timber.log.Timber;
 
-class ListHostsSearchFilter extends Filter {
+public class ListHostsSearchFilter extends Filter {
 
-    @Inject Bus mBus;
-    @Inject HostsManager mHostsManager;
+    private final Bus mBus;
+    private final HostsManager mHostsManager;
+
+    @Inject public ListHostsSearchFilter(Bus bus, HostsManager hostsManager) {
+        mBus = bus;
+        mHostsManager = hostsManager;
+    }
 
     @SuppressWarnings("unchecked")
     @Override

@@ -1,7 +1,9 @@
 package com.nilhcem.hostseditor.task;
 
+import android.content.Context;
 import android.os.AsyncTask;
 
+import com.nilhcem.hostseditor.HostsEditorApplication;
 import com.nilhcem.hostseditor.R;
 import com.nilhcem.hostseditor.core.Host;
 import com.nilhcem.hostseditor.core.HostsManager;
@@ -22,6 +24,10 @@ public class ListHostsAsync extends AsyncTask<Boolean, Void, List<Host>> {
     @Inject Bus mBus;
     @Inject HostsManager mHostsManager;
 
+    public ListHostsAsync(Context context) {
+        HostsEditorApplication.get(context).component().inject(this);
+    }
+
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
@@ -38,7 +44,7 @@ public class ListHostsAsync extends AsyncTask<Boolean, Void, List<Host>> {
         List<Host> allHosts = mHostsManager.getHosts(forceRefresh);
 
         // Filter to get only valid hosts
-        List<Host> validHosts = new ArrayList<Host>();
+        List<Host> validHosts = new ArrayList<>();
         for (Host host : allHosts) {
             if (host.isValid()) {
                 validHosts.add(host);

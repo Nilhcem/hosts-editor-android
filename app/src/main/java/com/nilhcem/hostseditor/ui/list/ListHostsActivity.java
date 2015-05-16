@@ -44,6 +44,7 @@ public class ListHostsActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mApp.component().inject(this);
         setContentView(R.layout.list_hosts_layout);
         ButterKnife.inject(this);
 

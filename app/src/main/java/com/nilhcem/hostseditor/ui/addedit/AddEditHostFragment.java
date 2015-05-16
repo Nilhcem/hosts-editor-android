@@ -53,6 +53,7 @@ public class AddEditHostFragment extends BaseFragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mApp.component().inject(this);
         Bundle arguments = getArguments();
         if (arguments != null) {
             mInitialHost = arguments.getParcelable(ARG_HOST);
