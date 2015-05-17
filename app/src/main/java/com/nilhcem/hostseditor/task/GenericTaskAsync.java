@@ -3,6 +3,7 @@ package com.nilhcem.hostseditor.task;
 import android.content.Context;
 import android.os.AsyncTask;
 
+import com.nilhcem.hostseditor.HostsEditorApplication;
 import com.nilhcem.hostseditor.core.Host;
 import com.nilhcem.hostseditor.core.HostsManager;
 import com.nilhcem.hostseditor.event.LoadingEvent;
@@ -24,6 +25,7 @@ public abstract class GenericTaskAsync extends AsyncTask<Host, Void, Void> {
     public GenericTaskAsync(Context appContext, boolean flagMsg) {
         mAppContext = appContext;
         mFlagLoadingMsg = flagMsg;
+        HostsEditorApplication.get(appContext).component().inject(this);
     }
 
     @Override

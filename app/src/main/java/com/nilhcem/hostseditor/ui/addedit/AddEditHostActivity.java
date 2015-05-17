@@ -25,7 +25,6 @@ public class AddEditHostActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mApp.component().inject(this);
 
         Host hostToEdit = getHostFromIntent();
         initActionBar(hostToEdit);

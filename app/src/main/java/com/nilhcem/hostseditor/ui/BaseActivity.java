@@ -20,6 +20,7 @@ public abstract class BaseActivity extends SherlockFragmentActivity {
     protected void onCreate(Bundle state) {
         super.onCreate(state);
         mApp = HostsEditorApplication.get(this);
+        mApp.component().inject(this);
     }
 
     @Override
