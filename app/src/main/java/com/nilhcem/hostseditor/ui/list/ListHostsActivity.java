@@ -22,8 +22,8 @@ import com.nilhcem.hostseditor.ui.about.AboutDialogFragment;
 import com.nilhcem.hostseditor.ui.addedit.AddEditHostActivity;
 import com.squareup.otto.Subscribe;
 
+import butterknife.Bind;
 import butterknife.ButterKnife;
-import butterknife.InjectView;
 import timber.log.Timber;
 
 public class ListHostsActivity extends BaseActivity {
@@ -34,8 +34,8 @@ public class ListHostsActivity extends BaseActivity {
     private static final String INSTANCE_STATE_LOADING_MESSAGE = "loadingMessage";
     private static final String INSTANCE_STATE_SEARCH = "search";
 
-    @InjectView(R.id.listLoading) ProgressBar mProgressBar;
-    @InjectView(R.id.listLoadingMsg) TextView mLoadingMsg;
+    @Bind(R.id.listLoading) ProgressBar mProgressBar;
+    @Bind(R.id.listLoadingMsg) TextView mLoadingMsg;
 
     private ListHostsFragment mFragment;
     private String mSearchQuery = STR_EMPTY;
@@ -45,7 +45,7 @@ public class ListHostsActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.list_hosts_layout);
-        ButterKnife.inject(this);
+        ButterKnife.bind(this);
 
         FragmentManager fm = getSupportFragmentManager();
         mFragment = (ListHostsFragment) fm.findFragmentById(R.id.listHostsFragment);
@@ -165,6 +165,12 @@ public class ListHostsActivity extends BaseActivity {
             onLoadingEvent(new LoadingEvent(true, loadingMsg));
         }
         setSearchQuery(savedInstanceState.getString(INSTANCE_STATE_SEARCH));
+    }
+
+    @Override
+    protected void onDestroy() {
+        ButterKnife.unbind(this);
+        super.onDestroy();
     }
 
     @Subscribe

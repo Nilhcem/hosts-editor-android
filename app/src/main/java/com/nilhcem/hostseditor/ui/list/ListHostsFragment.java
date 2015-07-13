@@ -36,14 +36,15 @@ import java.util.Locale;
 
 import javax.inject.Inject;
 
+import butterknife.Bind;
 import butterknife.ButterKnife;
-import butterknife.InjectView;
 import timber.log.Timber;
 
 public class ListHostsFragment extends BaseFragment implements OnItemClickListener, OnItemLongClickListener {
 
     @Inject ListHostsAdapter mAdapter;
-    @InjectView(R.id.listHosts) ListView mListView;
+
+    @Bind(R.id.listHosts) ListView mListView;
 
     private ActionMode mMode;
     private MenuItem mEditMenuItem;
@@ -61,7 +62,7 @@ public class ListHostsFragment extends BaseFragment implements OnItemClickListen
         boolean firstCall = (mListView == null);
 
         View view = inflater.inflate(R.layout.list_hosts_fragment, container, false);
-        ButterKnife.inject(this, view);
+        ButterKnife.bind(this, view);
 
         mListView.setAdapter(mAdapter);
         mListView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
@@ -95,8 +96,8 @@ public class ListHostsFragment extends BaseFragment implements OnItemClickListen
 
     @Override
     public void onDestroyView() {
+        ButterKnife.unbind(this);
         super.onDestroyView();
-        ButterKnife.reset(this);
     }
 
     @Override

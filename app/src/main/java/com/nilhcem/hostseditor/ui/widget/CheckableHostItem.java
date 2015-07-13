@@ -14,8 +14,8 @@ import com.nilhcem.hostseditor.core.Host;
 
 import java.util.Locale;
 
+import butterknife.Bind;
 import butterknife.ButterKnife;
-import butterknife.InjectView;
 
 /**
  * Custom component that implements the Checkable interface.
@@ -24,10 +24,10 @@ import butterknife.InjectView;
  */
 public class CheckableHostItem extends RelativeLayout implements Checkable {
 
-    @InjectView(R.id.hostItemIp) TextView mIp;
-    @InjectView(R.id.hostItemHostname) TextView mHostname;
-    @InjectView(R.id.hostItemComment) TextView mComment;
-    @InjectView(R.id.hostItemCheckbox) InertCheckBox mCheckbox;
+    @Bind(R.id.hostItemIp) TextView mIp;
+    @Bind(R.id.hostItemHostname) TextView mHostname;
+    @Bind(R.id.hostItemComment) TextView mComment;
+    @Bind(R.id.hostItemCheckbox) InertCheckBox mCheckbox;
 
     private int mTextColor;
     private int mCommentColor;
@@ -40,7 +40,7 @@ public class CheckableHostItem extends RelativeLayout implements Checkable {
     private void initLayout(Context context) {
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View view = inflater.inflate(R.layout.checkable_host_item, this, true);
-        ButterKnife.inject(this, view);
+        ButterKnife.bind(this, view);
 
         Resources res = context.getResources();
         mTextColor = res.getColor(R.color.list_hosts_entry);
@@ -73,6 +73,7 @@ public class CheckableHostItem extends RelativeLayout implements Checkable {
             mComment.setVisibility(View.VISIBLE);
         }
     }
+
 
     @Override
     public boolean isChecked() {

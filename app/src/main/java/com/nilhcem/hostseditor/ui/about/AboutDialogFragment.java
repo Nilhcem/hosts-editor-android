@@ -21,15 +21,15 @@ public class AboutDialogFragment extends SherlockDialogFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.about_dialog, container, false);
-        ButterKnife.inject(this, view);
+        ButterKnife.bind(this, view);
         getDialog().setTitle(R.string.about_title);
         return view;
     }
 
     @Override
     public void onDestroyView() {
+        ButterKnife.unbind(this);
         super.onDestroyView();
-        ButterKnife.reset(this);
     }
 
     @OnClick(R.id.aboutGitHub)

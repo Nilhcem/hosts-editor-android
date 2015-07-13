@@ -19,8 +19,8 @@ import com.nilhcem.hostseditor.ui.BaseFragment;
 
 import java.util.regex.Pattern;
 
+import butterknife.Bind;
 import butterknife.ButterKnife;
-import butterknife.InjectView;
 import butterknife.OnClick;
 
 public class AddEditHostFragment extends BaseFragment {
@@ -33,11 +33,11 @@ public class AddEditHostFragment extends BaseFragment {
     private Host mInitialHost; // "edit mode" only - null for "add mode"
     private AlertDialog mErrorAlert;
 
-    @InjectView(R.id.addEditHostIp) EditText mIp;
-    @InjectView(R.id.addEditHostName) EditText mHostName;
-    @InjectView(R.id.addEditComment) EditText mComment;
-    @InjectView(R.id.addEditCommentLabel) TextView mCommentLabel;
-    @InjectView(R.id.addEditHostButton) Button mButton;
+    @Bind(R.id.addEditHostIp) EditText mIp;
+    @Bind(R.id.addEditHostName) EditText mHostName;
+    @Bind(R.id.addEditComment) EditText mComment;
+    @Bind(R.id.addEditCommentLabel) TextView mCommentLabel;
+    @Bind(R.id.addEditHostButton) Button mButton;
 
     public static AddEditHostFragment newInstance(Host hostToEdit) {
         AddEditHostFragment fragment = new AddEditHostFragment();
@@ -63,7 +63,7 @@ public class AddEditHostFragment extends BaseFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.add_edit_host_layout, container, false);
-        ButterKnife.inject(this, view);
+        ButterKnife.bind(this, view);
 
         if (mInitialHost == null) {
             mButton.setText(R.string.add_host_title);
@@ -91,8 +91,8 @@ public class AddEditHostFragment extends BaseFragment {
 
     @Override
     public void onDestroyView() {
+        ButterKnife.unbind(this);
         super.onDestroyView();
-        ButterKnife.reset(this);
     }
 
     @OnClick(R.id.addEditHostButton)

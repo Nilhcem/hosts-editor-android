@@ -56,7 +56,7 @@ public class ListHostsAdapter extends BaseAdapter implements Filterable {
         int screenWidth = Compatibility.getScreenDimensions(context).x;
         Timber.d("Screen width: %d", screenWidth);
 
-        // Step 1: Compute minimum width.
+        // 1: Compute minimum width.
         // Min width must be between [100dp, 160dp]. If possible, 30% of screen width.
         int minWidth = screenWidth * 30 / 100;
         int minRange = Compatibility.convertDpToIntPixel(100f, context);
@@ -69,7 +69,7 @@ public class ListHostsAdapter extends BaseAdapter implements Filterable {
             minWidth = maxRange;
         }
 
-        // Step 2: Compute maximum width, usually 35% of screen width.
+        // 2: Compute maximum width, usually 35% of screen width.
         int maxWidth = screenWidth * 35 / 100;
         if (maxWidth < minWidth) {
             maxWidth = minWidth;
@@ -97,14 +97,17 @@ public class ListHostsAdapter extends BaseAdapter implements Filterable {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
+        CheckableHostItem view;
+
         if (convertView == null) {
-            convertView = new CheckableHostItem(mAppContext);
-            convertView.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
+            view = new CheckableHostItem(mAppContext);
+        } else {
+            view = (CheckableHostItem) convertView;
         }
 
         Host host = getItem(position);
-        ((CheckableHostItem) convertView).init(host, mIpMinWidth, mIpMaxWidth);
-        return convertView;
+        view.init(host, mIpMinWidth, mIpMaxWidth);
+        return view;
     }
 
     @Override
