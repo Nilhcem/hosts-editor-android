@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Hosts Editor</string>
+
+    <!-- Action bar menu -->
+    <string name="action_search">搜索</string>
+    <string name="action_search_results">搜索结果</string>
+    <string name="action_add_host">添加主机</string>
+    <string name="action_reload">重新加载主机条目</string>
+    <string name="action_select_all">选定所有主机</string>
+    <string name="action_about">关于</string>
+
+    <!-- Add/Edit host -->
+    <string name="add_host_title">添加主机名</string>
+    <string name="edit_host_title">编辑主机名</string>
+    <string name="add_edit_ip">IP 地址:</string>
+    <string name="add_edit_name">主机名:</string>
+    <string name="add_edit_comment">注释:</string>
+    <string name="add_edit_error_title">错误</string>
+    <string name="add_edit_error_ip">IP 地址无效</string>
+    <string name="add_edit_error_hostname">主机名无效</string>
+    <string name="add_edit_error_ok">确定</string>
+
+    <!-- Add/Edit host menu -->
+    <string name="action_add_comment">添加注释</string>
+    <string name="action_remove_comment">删除注释</string>
+
+    <!-- List hosts (empty layout) -->
+    <string name="list_empty">"找不到“hosts”记录。"</string>
+    <string name="list_empty_desc">"找不到任何主机条目。\n请随意添加几条!"</string>
+
+    <!-- List hosts (contextual menu) -->
+    <string name="list_menu_selected">已选定 %d 条</string>
+    <string name="list_menu_edit">编辑</string>
+    <string name="list_menu_delete">删除</string>
+    <string name="list_menu_toggle">切换</string>
+
+    <!-- List hosts error dialog -->
+    <string name="list_error_title">错误</string>
+    <string name="list_error_content">"无法编辑 hosts 文件，请确保已获取到“根/超级用户”权限。\n您需要对该应用授予超级用户访问权限。"</string>
+    <string name="list_error_ok">确定</string>
+
+    <!-- Delete confirmation dialog -->
+    <string name="delete_dialog_title">删除</string>
+    <plurals name="delete_dialog_content">
+        <item quantity="one">Delete selected host?</item>
+        <item quantity="other">Delete selected hosts?</item>
+    </plurals>
+    <string name="delete_dialog_cancel">取消</string>
+    <string name="delete_dialog_delete">删除</string>
+
+    <!-- Loading messages -->
+    <string name="loading_hosts">正在加载主机条目</string>
+    <string name="loading_add">正在添加条目</string>
+    <string name="loading_edit">正在编辑条目</string>
+    <string name="loading_remove_single">正在删除条目</string>
+    <string name="loading_remove_multiple">正在删除条目</string>
+    <string name="loading_toggle_single">正在切换条目</string>
+    <string name="loading_toggle_multiple">正在切换条目</string>
+
+    <!-- About -->
+    <string name="about_title">关于 Hosts Editor</string>
+    <string name="about_text">"此应用用于修改 Android 设备上的 /etc/hosts 文件。\n在对任何条目进行更改之后，可能需要重新启动，以清除 DNS 缓存。\n\n简体中文本地化: 李柏均\n(Localized by Bojun Li)"</string>
+    <string name="about_author">"2013 – 2015\n"<a href="http://www.nilhcem.com">http://www.nilhcem.com</a></string>
+    <string name="about_github_button">GitHub</string>
+</resources>
