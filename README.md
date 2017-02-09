@@ -249,7 +249,7 @@ This project uses many great open-source libraries, such as:
 
 [Google Play]: https://play.google.com/store/apps/details?id=com.nilhcem.hostseditor
 [F-Droid]: https://f-droid.org/repository/browse/?fdid=com.nilhcem.hostseditor
-[Hosts Editor for Android screenshots]: http://nilhcem.github.com/screenshots/hosts-editor.png
+[Hosts Editor for Android screenshots]: https://raw.githubusercontent.com/Nilhcem/hosts-editor-android/master/screenshot.png
 [ActionBarSherlock]: http://actionbarsherlock.com/
 [Butterknife]: http://jakewharton.github.com/butterknife/
 [Dagger]: http://square.github.com/dagger/
